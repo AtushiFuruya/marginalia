@@ -14,7 +14,6 @@
 ```
 /
 ├── index.html                    # 年齢確認ページ（エントリーポイント）
-├── opening.html                  # オープニングアニメーション
 ├── main.html                     # メインページ（トップ）
 │
 ├── pages/                        # サブページ
@@ -31,7 +30,7 @@
 │   ├── variables.css            # CSS変数（カラーパレット等）
 │   ├── common.css               # 共通スタイル
 │   ├── age-verification.css     # 年齢確認ページ
-│   ├── opening.css              # オープニング
+│   ├── opening.css              # index内オープニング演出
 │   ├── main.css                 # メインページ
 │   └── pages/                   # ページ別スタイル
 │       ├── story.css
@@ -43,7 +42,6 @@
 │
 ├── js/                           # JavaScript
 │   ├── age-verification.js      # 年齢確認ロジック
-│   ├── opening.js               # スライドショー
 │   ├── main.js                  # メインページロジック
 │   ├── navigation.js            # グローバルナビゲーション
 │   ├── modal.js                 # モーダルウィンドウ
@@ -55,12 +53,7 @@
 │   ├── images/                  # 画像
 │   │   ├── age-verification/    # 年齢確認用
 │   │   │   └── background.jpg
-│   │   ├── opening/             # オープニング用
-│   │   │   ├── slide-01.png
-│   │   │   ├── slide-02.png
-│   │   │   ├── slide-03.png
-│   │   │   ├── slide-04.png
-│   │   │   └── slide-05.png
+│   │   ├── opening/             # オープニング用フォールバック（placeholder等）
 │   │   ├── common/              # 共通画像
 │   │   │   ├── logo.png
 │   │   │   ├── loading.gif
@@ -98,29 +91,18 @@
 
 ### 1. ルートレベル（必須ページ）
 
-#### 1.1 index.html - 年齢確認ページ
-- **役割**: サイトのエントリーポイント、18歳以上確認
-- **遷移先**:
-  - ✅ YES → `opening.html`
-  - ❌ NO → 外部サイト（clearrave.co.jp等）
-- **必要リソース**:
-  - CSS: `css/age-verification.css`
-  - JS: `js/age-verification.js`
-  - 画像: `assets/images/age-verification/background.jpg`
-
-#### 1.2 opening.html - オープニングアニメーション
-- **役割**: ビジュアル演出でユーザーを引き込む
+#### 1.1 index.html - 年齢確認＋オープニング
+- **役割**: サイトのエントリーポイント。18歳以上確認後、そのままフルスクリーンのスライド演出を実行し `main.html` へ遷移。
 - **機能**:
-  - スライドショー（5枚の画像、2秒間隔）
-  - スキップボタン
-  - プログレスバー
-  - 自動遷移（完了後 → `main.html`）
+  - 年齢確認ダイアログ（Enter/Exit）
+  - バックグラウンドムービー＋静止画スライド
+  - 承認後のオープニングスライドショー（5枚・2秒間隔・スキップ可）
 - **必要リソース**:
-  - CSS: `css/opening.css`
-  - JS: `js/opening.js`
-  - 画像: `assets/images/opening/slide-01.png` ~ `slide-05.png`
+  - CSS: `css/age-verification.css`, `css/opening.css`
+  - JS: `js/age-verification.js`（開閉とスライドを統合）
+  - 画像/動画: `assets/images/age-verification/background.jpg`, `assets/videos/intro.mp4`, `images/gallery/*.jpg`
 
-#### 1.3 main.html - メインページ（トップ）
+#### 1.2 main.html - メインページ（トップ）
 - **役割**: サイトのハブ、ナビゲーション起点
 - **コンテンツ**:
   - ヘッダー（ロゴ、タイトル）
@@ -248,16 +230,13 @@
 [ブラウザでアクセス]
          ↓
 ┌──────────────────┐
-│  index.html      │  年齢確認
-│  (年齢確認)       │  ・YES/NOボタン
-└────────┬─────────┘  ・背景画像
-         │ YES
-         ↓
-┌──────────────────┐
-│  opening.html    │  オープニング
-│  (オープニング)    │  ・スライドショー(5枚)
-└────────┬─────────┘  ・スキップボタン
-         │ 自動遷移
+│  index.html      │  年齢確認 + オープニング
+│  (Entry)          │  ・YES/NOボタン
+│                  │  ・背景動画/静止画
+│                  │  ・スライドショー(5枚)
+│                  │  ・スキップボタン
+└────────┬─────────┘
+         │ YES/自動遷移
          ↓
 ┌──────────────────┐
 │  main.html       │  メインページ
@@ -279,7 +258,7 @@
 
 | 参考サイトの要素 | 本番サイトでの実装 | ファイルパス |
 |---------------|------------------|------------|
-| モーダル年齢確認 | 専用ページ化 | `index.html` |
+| モーダル年齢確認+演出 | `index.html` 内に集約 | `index.html` |
 | 単一ページ（SPA） | マルチページ構成 | `main.html` + `pages/*.html` |
 | #win0 (Home) | メインページ | `main.html` |
 | #win2 (Story) | ストーリーページ | `pages/story.html` |
@@ -377,9 +356,8 @@
 ## 📝 実装優先順位
 
 ### Phase 1: Walking Skeleton（Week 1）
-1. `index.html` - 年齢確認ページ
-2. `opening.html` - 簡易スライドショー
-3. `main.html` - 基本レイアウト
+1. `index.html` - 年齢確認＋オープニング
+2. `main.html` - 基本レイアウト
 
 ### Phase 2: コア機能（Week 2）
 4. `pages/gallery.html` - ギャラリー
