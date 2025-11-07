@@ -10,56 +10,90 @@
   const skipBtn = document.getElementById('skipBtn');
 
   const slides = [];
-  // try to load up to 5 slides
-  for(let i=1;i<=5;i++){
-    slides.push(`assets/images/opening/slide-0${i}.png`);
+  // use SVG placeholders (slide-01.svg ... slide-05.svg)
+  for (let i = 1; i <= 5; i++) {
+    slides.push(`assets/images/opening/slide-0${i}.svg`);
   }
 
   let idx = 0;
   const interval = 2000;
+  let timer = null;
 
-  function show(index){
+  function setProgressDuration(ms) {
+    progressEl.style.transition = `width ${ms}ms linear`;
+  }
+
+  function show(index) {
     const url = slides[index];
     slideEl.classList.remove('visible');
     // preload
     const img = new Image();
-    img.onload = ()=>{
+    img.onload = () => {
       slideEl.src = url;
-      requestAnimationFrame(()=>{
+      // restart progress
+      requestAnimationFrame(() => {
+        setProgressDuration(interval);
+        progressEl.style.width = '100%';
         slideEl.classList.add('visible');
       });
     };
-    img.onerror = ()=>{
-      // fallback: use a low-contrast placeholder
-      slideEl.src = 'assets/images/opening/placeholder.png';
+    img.onerror = () => {
+      slideEl.src = 'assets/images/opening/placeholder.svg';
+      setProgressDuration(interval);
+      progressEl.style.width = '100%';
       slideEl.classList.add('visible');
     };
     img.src = url;
-    // progress bar
-    progressEl.style.transitionDuration = interval + 'ms';
-    progressEl.style.width = '100%';
   }
 
-  function start(){
+  function next() {
+    idx++;
+    if (idx >= slides.length) {
+      // finished -> go to main
+      window.location.href = 'main.html';
+      return;
+    }
+    progressEl.style.transition = 'none';
+    progressEl.style.width = '0%';
+    // allow CSS transition reset
+    setTimeout(() => show(idx), 50);
+  }
+
+  function start() {
     show(idx);
-    const timer = setInterval(()=>{
-      idx++;
-      if(idx>=slides.length){
-        clearInterval(timer);
-        // finished -> go to main
-        window.location.href = 'main.html';
-        return;
-      }
-      progressEl.style.width = '0%';
-      // allow CSS transition reset
-      setTimeout(()=>{
-        show(idx);
-      }, 100);
+    timer = setInterval(() => {
+      next();
     }, interval);
   }
 
-  skipBtn.addEventListener('click', ()=>{
+  function stopTimer() {
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
+    }
+  }
+
+  skipBtn.addEventListener('click', () => {
     window.location.href = 'main.html';
+  });
+
+  // keyboard controls: Space/Enter skip; Right -> next; Left -> prev
+  document.addEventListener('keydown', (e) => {
+    if (e.key === ' ' || e.key === 'Spacebar' || e.key === 'Enter') {
+      e.preventDefault();
+      window.location.href = 'main.html';
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      stopTimer();
+      next();
+    } else if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      stopTimer();
+      idx = Math.max(0, idx - 1);
+      progressEl.style.transition = 'none';
+      progressEl.style.width = '0%';
+      setTimeout(() => show(idx), 50);
+    }
   });
 
   // start when DOM ready
