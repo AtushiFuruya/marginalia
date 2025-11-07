@@ -14,14 +14,33 @@ document.addEventListener('DOMContentLoaded', function(){
     sessionStorage.setItem = function(k,v){ if(/age/i.test(k)) return; return _origSSSet(k,v); };
   }catch(e){ /* ignore in restricted contexts */ }
 
+  const bodyEl = document.body;
   const enterBtn = document.getElementById('enter-btn');
   const exitBtn = document.getElementById('exit-btn');
   const overlay = document.querySelector('.overlay');
   const video = document.getElementById('bg-video');
+  const prefersReducedMotion = window.matchMedia ?
+    window.matchMedia('(prefers-reduced-motion: reduce)') :
+    { matches: false };
+
+  function flagNoVideo(){ bodyEl.classList.add('no-video'); }
+  function clearNoVideo(){ bodyEl.classList.remove('no-video'); }
+
+  if(!video){
+    flagNoVideo();
+  } else {
+    const support = typeof video.canPlayType === 'function' ? video.canPlayType('video/mp4') : 'maybe';
+    if(!support){
+      flagNoVideo();
+    }else{
+      video.addEventListener('error', flagNoVideo);
+      video.addEventListener('loadeddata', clearNoVideo, { once: true });
+    }
+  }
 
   function redirectToOpening(){
     // フェードアニメーションのためにクラス付与
-    overlay.classList.add('fade-out');
+    overlay && overlay.classList.add('fade-out');
     // 少し待ってから遷移（CSSに合わせて500ms）
     setTimeout(()=>{ window.location.href = 'opening.html' }, 520);
   }
@@ -31,8 +50,8 @@ document.addEventListener('DOMContentLoaded', function(){
     window.location.href = 'https://www.google.com';
   }
 
-  enterBtn.addEventListener('click', redirectToOpening);
-  exitBtn.addEventListener('click', exitToExternal);
+  if(enterBtn) enterBtn.addEventListener('click', redirectToOpening);
+  if(exitBtn) exitBtn.addEventListener('click', exitToExternal);
 
   // キーボード操作対応: Enter で入場, Escape で退出
   document.addEventListener('keydown', function(e){
@@ -60,7 +79,8 @@ document.addEventListener('DOMContentLoaded', function(){
   const slideshowFlash = document.getElementById('slideshow-flash');
 
   function playSlideshow(list, displayTime=500, flashDuration=180){
-    if(!list || list.length === 0) return;
+    if(!slideshowContainer || !slideshowImg || !slideshowFlash) return;
+    if(!list || list.length === 0 || prefersReducedMotion.matches) return;
     slideshowContainer.style.display = 'flex';
     slideshowContainer.setAttribute('aria-hidden','false');
     // 隠すビデオ
@@ -99,12 +119,18 @@ document.addEventListener('DOMContentLoaded', function(){
     setTimeout(()=>{
       if(!video.ended){
         // 8秒経過後に動画がまだ終わっていなければ一旦停止してスライド開始
-        try{ video.pause(); video.currentTime = video.duration || 0 }catch(e){}
+        try{
+          video.pause();
+          if(Number.isFinite(video.duration)){
+            video.currentTime = video.duration;
+          }
+        }catch(e){}
         playSlideshow(slideshowImages, 500, 180);
       }
     }, 8000);
   } else {
     // video が無ければ即座にスライドを開始
+    flagNoVideo();
     playSlideshow(slideshowImages, 500, 180);
   }
 });

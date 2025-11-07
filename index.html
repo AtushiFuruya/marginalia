@@ -3,36 +3,58 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>年齢確認 - Karin Gamesite</title>
+  <title>かりんのゲームサイト | 年齢確認</title>
+  <meta name="description" content="成人向けゲームサイトの入り口です。１８歳以上のみ入場できます。">
+  <link rel="preload" href="assets/videos/intro.mp4" as="video" type="video/mp4">
+  <link rel="preload" href="assets/images/age-verification/background.jpg" as="image">
   <link rel="stylesheet" href="css/age-verification.css">
 </head>
 <body>
-  <main class="age-verify-root" role="main">
-    <!-- 背景動画/画像 -->
-    <div class="media-bg">
-      <video id="bg-video" class="bg-media" autoplay muted playsinline>
-        <source src="assets/images/age-verification/opening_001.mp4" type="video/mp4">
-        <!-- フォールバック画像 -->
-      </video>
-
-      <!-- ビデオ再生後に表示するスライドショー（初期は非表示） -->
-      <div id="bg-slideshow" class="bg-media slideshow" aria-hidden="true">
-        <img id="slideshow-img" src="" alt="スライドショー画像">
-        <div id="slideshow-flash" class="slideshow-flash" aria-hidden="true"></div>
-      </div>
+  <div class="media-bg" aria-hidden="true">
+    <video
+      id="bg-video"
+      class="bg-media"
+      poster="assets/images/age-verification/background.jpg"
+      autoplay
+      muted
+      playsinline
+      preload="auto"
+      aria-hidden="true"
+      tabindex="-1">
+      <source src="assets/videos/intro.mp4" type="video/mp4">
+    </video>
+    <img src="assets/images/age-verification/background.jpg" alt="" class="bg-media bg-fallback" aria-hidden="true">
+    <div id="bg-slideshow" class="slideshow" aria-hidden="true">
+      <img id="slideshow-img" src="assets/images/age-verification/background.jpg" alt="">
+      <div id="slideshow-flash" class="slideshow-flash"></div>
     </div>
+  </div>
 
-    <!-- オーバーレイの年齢確認UI -->
-    <div class="overlay" role="dialog" aria-labelledby="age-title" aria-describedby="age-desc">
+  <main class="age-gate" role="main">
+    <section class="overlay" role="dialog" aria-modal="true" aria-labelledby="age-title" aria-describedby="age-desc age-warning">
+      <p class="eyebrow" aria-hidden="true">ADULTS ONLY / 18+</p>
       <h1 id="age-title">年齢確認</h1>
-      <p id="age-desc">このサイトは18歳以上の方を対象としています。18歳未満の方は入場できません。</p>
-
-      <div class="controls">
-        <button id="enter-btn" class="btn primary" aria-label="18歳以上です。入場する">18歳以上</button>
-        <button id="exit-btn" class="btn" aria-label="18歳未満です。サイトを退出する">退出する</button>
+      <p id="age-desc" class="lead">
+        このサイトは成人向けゲーム作品を扱っています。１８歳未満の方、もしくは閲覧が法律で制限されている地域にお住まいの方はご退出ください。
+      </p>
+      <p id="age-warning" class="note">
+        「入場する」をクリックすると１８歳以上であることに同意し、opening.html へ進みます。年齢情報は保存しません。
+      </p>
+      <ul class="notices" aria-label="注意事項">
+        <li>ENTER ボタンで演出ページ（opening.html）へ遷移します。</li>
+        <li>EXIT ボタンで Google へ移動します。</li>
+      </ul>
+      <div class="controls" role="group" aria-label="年齢確認の選択肢">
+        <button id="enter-btn" class="btn primary" type="button" aria-label="18歳以上なので入場する" autofocus>入場する (ENTER)</button>
+        <button id="exit-btn" class="btn" type="button" aria-label="18歳未満なので退出する">退出する (EXIT)</button>
       </div>
-    </div>
+      <p class="privacy-note">共有端末をご利用の場合は履歴を消去してください。</p>
+    </section>
   </main>
+
+  <noscript>
+    <p class="noscript-message">このサイトを利用するには JavaScript を有効にしてください。</p>
+  </noscript>
 
   <script src="js/age-verification.js" defer></script>
 </body>
