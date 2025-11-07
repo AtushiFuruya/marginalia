@@ -1,8 +1,8 @@
 :root{
-  --bg: #03000a;
-  --text: #f5f3ff;
-  --accent: #f05dff;
-  --accent-2: #7b45ff;
+  --opening-bg: #03000a;
+  --opening-text: #f5f3ff;
+  --opening-accent: #f05dff;
+  --opening-accent-2: #7b45ff;
 }
 
 *,
@@ -11,24 +11,24 @@
   box-sizing:border-box;
 }
 
-html,body{
-  height:100%;
-}
-
-body{
-  margin:0;
-  min-height:100%;
-  font-family:'Noto Sans JP','Hiragino Kaku Gothic ProN',system-ui,-apple-system,'Segoe UI',Roboto,Arial,Helvetica,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  overflow:hidden;
-}
-
 .opening{
-  position:relative;
-  min-height:100vh;
-  width:100%;
+  position:fixed;
+  inset:0;
+  width:100vw;
+  height:100vh;
   overflow:hidden;
+  background:var(--opening-bg);
+  color:var(--opening-text);
+  display:none;
+  z-index:50;
+}
+
+.opening--hidden{
+  display:none;
+}
+
+.opening--active{
+  display:block;
 }
 
 .opening__visual{
@@ -81,7 +81,7 @@ body{
 .skip-btn{
   border:1px solid rgba(255,255,255,0.5);
   background:rgba(0,0,0,0.35);
-  color:var(--text);
+  color:var(--opening-text);
   padding:10px 24px;
   font-size:0.85rem;
   letter-spacing:0.3em;
@@ -114,7 +114,7 @@ body{
 .progress-bar{
   width:0%;
   height:100%;
-  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  background:linear-gradient(90deg,var(--opening-accent),var(--opening-accent-2));
   transform-origin:left center;
   transition:width 2s linear;
 }

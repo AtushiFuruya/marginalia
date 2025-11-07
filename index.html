@@ -8,6 +8,7 @@
   <link rel="preload" href="assets/videos/intro.mp4" as="video" type="video/mp4">
   <link rel="preload" href="assets/images/age-verification/background.jpg" as="image">
   <link rel="stylesheet" href="css/age-verification.css">
+  <link rel="stylesheet" href="css/opening.css">
 </head>
 <body>
   <div class="media-bg" aria-hidden="true">
@@ -38,10 +39,10 @@
         このサイトは成人向けゲーム作品を扱っています。１８歳未満の方、もしくは閲覧が法律で制限されている地域にお住まいの方はご退出ください。
       </p>
       <p id="age-warning" class="note">
-        「入場する」をクリックすると１８歳以上であることに同意し、opening.html へ進みます。年齢情報は保存しません。
+        「入場する」をクリックすると１８歳以上であることに同意し、フルスクリーン演出を経てメインページに移動します。年齢情報は保存しません。
       </p>
       <ul class="notices" aria-label="注意事項">
-        <li>ENTER ボタンで演出ページ（opening.html）へ遷移します。</li>
+        <li>ENTER ボタンでオープニング演出が始まり、完了後にメインページへ遷移します。</li>
         <li>EXIT ボタンで Google へ移動します。</li>
       </ul>
       <div class="controls" role="group" aria-label="年齢確認の選択肢">
@@ -52,8 +53,28 @@
     </section>
   </main>
 
+  <section id="opening-sequence" class="opening opening--hidden" aria-hidden="true" hidden>
+    <div class="opening__hud">
+      <p class="opening__tagline">Karin Game Project</p>
+      <button id="skip-opening" class="skip-btn" type="button" aria-label="スキップしてメインページへ進む">SKIP</button>
+    </div>
+    <div class="opening__visual" aria-hidden="true">
+      <img id="opening-slide" class="opening__img" src="images/gallery/scene_caning.jpg" alt="オープニングスライド" decoding="async">
+      <div class="opening__vignette"></div>
+      <div class="progress-track" aria-hidden="true">
+        <div id="progress-bar" class="progress-bar"></div>
+      </div>
+    </div>
+    <div class="opening__caption" aria-live="polite">
+      <p id="slide-caption">痛みと恥辱の中で微笑むあなた。</p>
+    </div>
+    <p id="slide-status" class="sr-only" aria-live="polite">スライド 1 / 5</p>
+  </section>
+
   <noscript>
-    <p class="noscript-message">このサイトを利用するには JavaScript を有効にしてください。</p>
+    <p class="noscript-message">
+      このサイトを利用するには JavaScript を有効にしてください。無効な場合は <a href="main.html">こちら</a> からメインページへ進めます。
+    </p>
   </noscript>
 
   <script src="js/age-verification.js" defer></script>

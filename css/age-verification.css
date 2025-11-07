@@ -58,6 +58,9 @@ body.no-video .bg-fallback{
   justify-content:center;
   align-items:center;
 }
+.age-gate--hidden{
+  display:none;
+}
 
 /* ダイアログ風オーバーレイ */
 .overlay{
