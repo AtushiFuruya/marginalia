@@ -1,0 +1,47 @@
+:root{
+  /* Windows95-like palette (imitation) */
+  --win-bg: #C0C0C0; /* window background */
+  --win-title: #000080; /* title bar blue */
+  --win-face: #E0E0E0; /* button face */
+  --win-shadow: #808080; /* beveled shadow */
+  --accent: #8B00FF; /* keep accent for highlights */
+  --text: #000000;
+  --overlay-bg: rgba(0,0,0,0.5);
+}
+*{box-sizing:border-box}
+html,body,#bg-video{height:100%}
+
+/* Windows95-like appearance */
+body{margin:0;font-family: 'MS PGothic', 'Noto Sans JP', system-ui, -apple-system, 'Segoe UI', Roboto, Arial; background:var(--win-bg); color:var(--text)}
+
+.media-bg{position:fixed;inset:0;overflow:hidden;z-index:0}
+.bg-media{width:100%;height:100%;object-fit:cover}
+
+/* ダイアログ風オーバーレイ（Windows95風） */
+.overlay{position:relative;z-index:20;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text);text-align:center;padding:24px}
+.overlay{background:linear-gradient(#ffffff,#e6e6e6);border:2px solid var(--win-shadow);box-shadow:4px 4px 0 var(--win-shadow);max-width:760px;margin:32px auto;border-radius:4px}
+.overlay h1{font-size:clamp(18px,3.5vw,28px);margin:0 0 8px;color:var(--win-title);background:linear-gradient(var(--win-title),var(--win-title));-webkit-background-clip:text;background-clip:text}
+.overlay p{max-width:720px;margin:0 0 20px;line-height:1.6;color:var(--text)}
+
+.controls{display:flex;gap:12px}
+.btn{padding:8px 14px;border:2px solid var(--win-shadow);background:linear-gradient(var(--win-face),#dcdcdc);color:var(--text);font-size:14px;cursor:pointer;box-shadow:inset 2px 2px 0 #fff, inset -2px -2px 0 var(--win-shadow)}
+.btn.primary{background:linear-gradient(#fff,#d0d0ff);border-color:var(--win-title);color:var(--win-title);}
+.btn:focus{outline:3px solid rgba(139,0,255,0.12)}
+.btn:hover{filter:brightness(1.02)}
+
+/* レスポンシブ: スマホではボタンを縦並び */
+@media (max-width:767px){
+  .controls{flex-direction:column;width:100%;max-width:320px}
+  .btn{width:100%}
+  .overlay p{padding:0 8px}
+}
+
+/* フェードアウト時のユーティリティ */
+.fade-out{animation:fadeOut .5s forwards}
+@keyframes fadeOut{to{opacity:0;transform:translateY(8px)}}
+
+/* スライドショー（ビデオ終了後に表示） */
+.slideshow{display:none;position:absolute;inset:0;align-items:center;justify-content:center}
+.slideshow img{width:100%;height:100%;object-fit:cover;display:block}
+.slideshow-flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;transition:opacity .12s linear}
+.slideshow-flash.visible{opacity:1}

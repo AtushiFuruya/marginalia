@@ -1,0 +1,80 @@
+{
+  "http://bug-system.com/product/04_mk/": {
+    "title": "真愛の百合は赤く染まる",
+    "depth": 0,
+    "links": [
+      {
+        "url": "http://bug-system.com/product/04_mk/img/top/masterup.jpg",
+        "text": "マスターアップしました！"
+      },
+      {
+        "url": "http://bug-system.com/product/04_mk/img/top/gal01.jpg",
+        "text": "gallery1"
+      },
+      {
+        "url": "http://bug-system.com/product/04_mk/img/top/gal02.jpg",
+        "text": "gallery2"
+      },
+      {
+        "url": "http://bug-system.com/product/04_mk/img/top/gal03.jpg",
+        "text": "gallery3"
+      },
+      {
+        "url": "http://bug-system.com/product/04_mk/img/top/gal04.jpg",
+        "text": "gallery4"
+      },
+      {
+        "url": "http://bug-system.com/product/04_mk/img/top/gal05.jpg",
+        "text": "gallery5"
+      },
+      {
+        "url": "http://bug-system.com/product/04_mk/img/top/gal06.jpg",
+        "text": "gallery6"
+      },
+      {
+        "url": "http://bug-system.com/product/04_mk/img/top/tokuten.jpg",
+        "text": "sample"
+      }
+    ]
+  },
+  "http://bug-system.com/product/04_mk/img/top/masterup.jpg": {
+    "title": "No Title",
+    "depth": 1,
+    "links": []
+  },
+  "http://bug-system.com/product/04_mk/img/top/gal01.jpg": {
+    "title": "No Title",
+    "depth": 1,
+    "links": []
+  },
+  "http://bug-system.com/product/04_mk/img/top/gal02.jpg": {
+    "title": "No Title",
+    "depth": 1,
+    "links": []
+  },
+  "http://bug-system.com/product/04_mk/img/top/gal03.jpg": {
+    "title": "No Title",
+    "depth": 1,
+    "links": []
+  },
+  "http://bug-system.com/product/04_mk/img/top/gal04.jpg": {
+    "title": "No Title",
+    "depth": 1,
+    "links": []
+  },
+  "http://bug-system.com/product/04_mk/img/top/gal05.jpg": {
+    "title": "No Title",
+    "depth": 1,
+    "links": []
+  },
+  "http://bug-system.com/product/04_mk/img/top/gal06.jpg": {
+    "title": "No Title",
+    "depth": 1,
+    "links": []
+  },
+  "http://bug-system.com/product/04_mk/img/top/tokuten.jpg": {
+    "title": "No Title",
+    "depth": 1,
+    "links": []
+  }
+}

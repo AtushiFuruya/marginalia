@@ -1,0 +1,71 @@
+{
+  "url": "http://bug-system.com/product/04_mk/",
+  "analyzedAt": "2025-11-06T12:40:38.219Z",
+  "structure": {},
+  "html": "<!DOCTYPE html PUBLIC \"-//IETF//DTD HTML 2.0//EN\"><html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL /product/04_mk/ was not found on this server.</p>\n\n</body></html>",
+  "css": [],
+  "javascript": [],
+  "images": [],
+  "fonts": [],
+  "videos": [],
+  "links": [],
+  "metadata": {
+    "title": "404 Not Found",
+    "description": null,
+    "keywords": null,
+    "ogTitle": null,
+    "ogDescription": null,
+    "ogImage": null,
+    "charset": "windows-1252",
+    "language": ""
+  },
+  "performance": {
+    "domContentLoaded": 0,
+    "loadComplete": 0,
+    "domInteractive": 616.8999999985099,
+    "transferSize": 512,
+    "encodedBodySize": 212,
+    "decodedBodySize": 212
+  },
+  "domStructure": {
+    "tag": "body",
+    "id": null,
+    "classes": [],
+    "attributes": {},
+    "textContent": null,
+    "children": [
+      {
+        "tag": "h1",
+        "id": null,
+        "classes": [],
+        "attributes": {},
+        "textContent": "Not Found",
+        "children": []
+      },
+      {
+        "tag": "p",
+        "id": null,
+        "classes": [],
+        "attributes": {},
+        "textContent": "The requested URL /product/04_mk/ was not found on this server.",
+        "children": []
+      }
+    ]
+  },
+  "styles": {
+    "body": {
+      "display": "block",
+      "position": "static",
+      "width": "784px",
+      "height": "576px",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "color": "rgb(0, 0, 0)",
+      "fontSize": "16px",
+      "fontFamily": "\"Hiragino Kaku Gothic ProN\"",
+      "margin": "8px",
+      "padding": "0px",
+      "border": "0px none rgb(0, 0, 0)"
+    }
+  },
+  "scripts": []
+}
