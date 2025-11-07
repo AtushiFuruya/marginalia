@@ -209,6 +209,22 @@
   color:#fff;
 }
 
+@media (max-width:1024px){
+  .opening__visual{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .opening__img{
+    position:relative;
+    inset:auto;
+    width:100vw;
+    height:auto;
+    object-fit:contain;
+    object-position:center;
+  }
+}
+
 @media (max-width:600px){
   .opening__hud{
     flex-direction:column;
