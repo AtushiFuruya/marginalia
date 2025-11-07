@@ -26,6 +26,8 @@ document.addEventListener('DOMContentLoaded', function(){
   const openingStatusEl = document.getElementById('slide-status');
   const openingProgressEl = document.getElementById('progress-bar');
   const openingFlashEl = document.getElementById('opening-flash');
+  const fireVideoLayer = document.getElementById('fire-video-layer');
+  const fireVideo = document.getElementById('fire-video');
   const mainView = document.getElementById('main-view');
 
   const prefersReducedMotion = window.matchMedia ?
@@ -137,12 +139,32 @@ document.addEventListener('DOMContentLoaded', function(){
   let openingIndex = 0;
   let openingStarted = false;
   let mainShown = false;
+  let fireVideoActive = false;
+  let fireVideoTimeout = null;
+
+  function resetFireVideoLayer(){
+    if(!fireVideoLayer || !fireVideo) return;
+    fireVideoLayer.classList.add('fire-video--hidden');
+    fireVideoLayer.classList.remove('fire-video--visible');
+    fireVideoLayer.classList.remove('fire-video--fade');
+    fireVideoLayer.setAttribute('aria-hidden','true');
+    try{
+      fireVideo.pause();
+      fireVideo.currentTime = 0;
+    }catch(e){}
+    fireVideoActive = false;
+  }
 
   function showMainView(){
     if(mainShown) return;
     mainShown = true;
     openingStarted = false;
     clearTimeout(openingTimer);
+    if(fireVideoTimeout){
+      clearTimeout(fireVideoTimeout);
+      fireVideoTimeout = null;
+    }
+    resetFireVideoLayer();
     if(openingSection){
       openingSection.classList.remove('opening--active');
       openingSection.classList.add('opening--hidden');
@@ -220,7 +242,7 @@ document.addEventListener('DOMContentLoaded', function(){
     openingTimer = setTimeout(()=>{
       openingIndex += 1;
       if(openingIndex >= openingSlides.length){
-        goToMain();
+        startFireVideoSequence();
         return;
       }
       showOpeningSlide(openingIndex);
@@ -253,7 +275,82 @@ document.addEventListener('DOMContentLoaded', function(){
     startOpeningSlides();
   }
 
+  function handleFireVideoEnded(){
+    fadeOutFireVideoLayer(false);
+  }
+
+  function handleFireVideoError(){
+    fadeOutFireVideoLayer(true);
+  }
+
+  function fadeOutFireVideoLayer(skipAnimation){
+    if(fireVideoTimeout){
+      clearTimeout(fireVideoTimeout);
+      fireVideoTimeout = null;
+    }
+    if(fireVideo){
+      try{ fireVideo.pause(); }catch(e){}
+      fireVideo.removeEventListener('ended', handleFireVideoEnded);
+      fireVideo.removeEventListener('error', handleFireVideoError);
+    }
+    if(!fireVideoLayer){
+      showMainView();
+      return;
+    }
+    if(skipAnimation || prefersReducedMotion.matches){
+      resetFireVideoLayer();
+      showMainView();
+      return;
+    }
+    fireVideoLayer.classList.add('fire-video--fade');
+    setTimeout(()=>{
+      resetFireVideoLayer();
+      showMainView();
+    }, 600);
+  }
+
+  function startFireVideoSequence(){
+    if(mainShown){
+      showMainView();
+      return;
+    }
+    if(!fireVideoLayer || !fireVideo){
+      showMainView();
+      return;
+    }
+    fireVideoLayer.classList.remove('fire-video--hidden');
+    fireVideoLayer.classList.remove('fire-video--fade');
+    fireVideoLayer.classList.add('fire-video--visible');
+    fireVideoLayer.setAttribute('aria-hidden','false');
+    fireVideo.currentTime = 0;
+    fireVideoActive = true;
+
+    const playVideo = () => {
+      try{
+        const playPromise = fireVideo.play();
+        if(playPromise && typeof playPromise.catch === 'function'){
+          playPromise.catch(()=> handleFireVideoError());
+        }
+      }catch(e){
+        handleFireVideoError();
+      }
+    };
+
+    fireVideo.addEventListener('ended', handleFireVideoEnded, { once:true });
+    fireVideo.addEventListener('error', handleFireVideoError, { once:true });
+
+    fireVideoTimeout = setTimeout(playVideo, 100);
+  }
+
   function skipOpening(){
+    if(fireVideoTimeout){
+      clearTimeout(fireVideoTimeout);
+      fireVideoTimeout = null;
+    }
+    if(fireVideoActive){
+      fadeOutFireVideoLayer(true);
+      return;
+    }
     goToMain();
   }
 
