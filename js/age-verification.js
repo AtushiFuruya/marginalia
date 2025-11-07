@@ -1,4 +1,19 @@
 document.addEventListener('DOMContentLoaded', function(){
+  // === Temporarily disable remembering age-confirmation ===
+  try{
+    // Remove any previously stored keys used for age verification
+    localStorage.removeItem('ageVerified');
+    sessionStorage.removeItem('ageVerified');
+    // delete cookie named ageVerified (if exists)
+    document.cookie = 'ageVerified=; Max-Age=0; path=/;';
+
+    // Prevent future storage of age-related keys during this session
+    const _origLSSet = localStorage.setItem.bind(localStorage);
+    const _origSSSet = sessionStorage.setItem.bind(sessionStorage);
+    localStorage.setItem = function(k,v){ if(/age/i.test(k)) return; return _origLSSet(k,v); };
+    sessionStorage.setItem = function(k,v){ if(/age/i.test(k)) return; return _origSSSet(k,v); };
+  }catch(e){ /* ignore in restricted contexts */ }
+
   const enterBtn = document.getElementById('enter-btn');
   const exitBtn = document.getElementById('exit-btn');
   const overlay = document.querySelector('.overlay');
