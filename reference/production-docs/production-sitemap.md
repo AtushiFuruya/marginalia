@@ -13,8 +13,7 @@
 
 ```
 /
-├── index.html                    # 年齢確認＋オープニング（エントリーポイント）
-├── main.html                     # メインページ（トップ）
+├── index.html                    # 年齢確認＋オープニング＋メインビュー
 │
 ├── pages/                        # サブページ
 │   ├── story.html               # ストーリー紹介
@@ -91,29 +90,17 @@
 
 ### 1. ルートレベル（必須ページ）
 
-#### 1.1 index.html - 年齢確認＋オープニング
-- **役割**: サイトのエントリーポイント。18歳以上確認後、そのままフルスクリーンスライドを再生し `main.html` へ遷移。
+#### 1.1 index.html - 年齢確認＋オープニング＋メインビュー
+- **役割**: サイトのエントリーポイント。18歳以上確認→フルスクリーンスライド→メインビューまで1ページで完結。
 - **機能**:
   - 年齢確認ダイアログ（Enter/Exit）
   - 背景ムービー／静止画切替
   - 5枚のスライドショー（モバイル/タブレット対応、スキップボタン、プログレスバー）
+  - メインビュー（Coming Soon。将来的にギャラリーや更新情報を配置）
 - **必要リソース**:
-  - CSS: `css/age-verification.css`, `css/opening.css`
+  - CSS: `css/age-verification.css`, `css/opening.css`, `css/main.css`
   - JS: `js/age-verification.js`
   - 画像/動画: `assets/images/age-verification/background.jpg`, `assets/videos/intro.mp4`, `images/gallery/*.jpg`
-
-#### 1.2 main.html - メインページ（トップ）
-- **役割**: サイトのハブ、ナビゲーション起点
-- **コンテンツ**:
-  - ヘッダー（ロゴ、タイトル）
-  - グローバルナビゲーション（下記セクションへのリンク）
-  - ギャラリープレビュー
-  - 最新情報
-  - 外部購入リンク
-- **必要リソース**:
-  - CSS: `css/main.css`
-  - JS: `js/main.js`, `js/navigation.js`
-  - 画像: `assets/images/common/logo.png`
 
 ---
 
@@ -197,7 +184,7 @@
 ```
 
 **リンク先**:
-- **Home**: `main.html` または `#` （単一ページ版の場合）
+- **Home**: `index.html#main-view` または `#main-view`
 - **Story**: `pages/story.html` または `#story`
 - **Characters**: `pages/characters.html` または `#characters`
 - **Gallery**: `pages/gallery.html` または `#gallery`
@@ -215,7 +202,7 @@
 - 初期読み込みが軽い
 
 #### パターンB: シングルページアプリケーション（SPA）
-- 全コンテンツを `main.html` に集約
+- 全コンテンツを `index.html` に集約
 - セクション切り替えはJavaScriptで制御
 - スムーズなアニメーション
 - 初期読み込みは重い
@@ -230,18 +217,13 @@
 [ブラウザでアクセス]
          ↓
 ┌──────────────────┐
-│  index.html      │  年齢確認 + オープニング
+│  index.html      │  年齢確認 + オープニング + メイン
 │  (Entry)          │  ・YES/NOボタン
 │                  │  ・背景動画/静止画
 │                  │  ・スライドショー(5枚)
 │                  │  ・スキップボタン
+│                  │  ・メインビュー
 └────────┬─────────┘
-         │ YES/自動遷移
-         ↓
-┌──────────────────┐
-│  main.html       │  メインページ
-│  (トップ)         │  ・ナビゲーション
-└────────┬─────────┘  ・コンテンツプレビュー
          │
          ├─→ pages/story.html        (ストーリー)
          ├─→ pages/characters.html   (キャラクター)
@@ -259,8 +241,8 @@
 | 参考サイトの要素 | 本番サイトでの実装 | ファイルパス |
 |---------------|------------------|------------|
 | モーダル年齢確認+演出 | `index.html` 内に集約 | `index.html` |
-| 単一ページ（SPA） | マルチページ構成 | `main.html` + `pages/*.html` |
-| #win0 (Home) | メインページ | `main.html` |
+| 単一ページ（SPA） | マルチページ構成 | `index.html` + `pages/*.html` |
+| #win0 (Home) | index内メインビュー | `index.html#main-view` |
 | #win2 (Story) | ストーリーページ | `pages/story.html` |
 | #win3 (Character) | キャラクターページ | `pages/characters.html` |
 | #win4 (Gallery) | ギャラリーページ | `pages/gallery.html` |
@@ -357,7 +339,7 @@
 
 ### Phase 1: Walking Skeleton（Week 1）
 1. `index.html` - 年齢確認＋オープニング
-2. `main.html` - 基本レイアウト
+2. `index.html` (メインビュー) - 基本レイアウト
 
 ### Phase 2: コア機能（Week 2）
 4. `pages/gallery.html` - ギャラリー
