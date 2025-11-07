@@ -4,7 +4,7 @@
 
 ## プロジェクト構成
 
-- `index.html` - 年齢確認ページ
+- `index.html` - 年齢確認・オープニング・メインビュー
 - `css/` - スタイルシート
 - `js/` - JavaScript
 - `assets/` - 画像・動画素材

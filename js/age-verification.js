@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function(){
     sessionStorage.setItem = function(k,v){ if(/age/i.test(k)) return; return _origSSSet(k,v); };
   }catch(e){ /* ignore in restricted contexts */ }
 
+  const docEl = document.documentElement;
   const bodyEl = document.body;
   const ageGate = document.querySelector('.age-gate');
   const enterBtn = document.getElementById('enter-btn');
@@ -24,10 +25,22 @@ document.addEventListener('DOMContentLoaded', function(){
   const openingCaptionEl = document.getElementById('slide-caption');
   const openingStatusEl = document.getElementById('slide-status');
   const openingProgressEl = document.getElementById('progress-bar');
+  const mainView = document.getElementById('main-view');
 
   const prefersReducedMotion = window.matchMedia ?
     window.matchMedia('(prefers-reduced-motion: reduce)') :
     { matches: false };
+  let resizeTimer = null;
+
+  function setViewportUnit(){
+    if(!docEl) return;
+    docEl.style.setProperty('--vh', `${window.innerHeight}px`);
+  }
+  setViewportUnit();
+  window.addEventListener('resize', ()=>{
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(setViewportUnit, 150);
+  });
 
   function flagNoVideo(){ bodyEl.classList.add('no-video'); }
   function clearNoVideo(){ bodyEl.classList.remove('no-video'); }
@@ -122,12 +135,33 @@ document.addEventListener('DOMContentLoaded', function(){
   let openingTimer = null;
   let openingIndex = 0;
   let openingStarted = false;
+  let mainShown = false;
 
-  function goToMain(){
+  function showMainView(){
+    if(mainShown) return;
+    mainShown = true;
+    openingStarted = false;
+    clearTimeout(openingTimer);
+    if(openingSection){
+      openingSection.classList.remove('opening--active');
+      openingSection.classList.add('opening--hidden');
+      openingSection.hidden = true;
+      openingSection.setAttribute('aria-hidden','true');
+    }
+    if(mainView){
+      mainView.classList.remove('main-view--hidden');
+      mainView.setAttribute('aria-hidden','false');
+      if(typeof mainView.focus === 'function'){
+        mainView.focus({ preventScroll: false });
+      }
+    }
     if(history.replaceState){
       history.replaceState(null, document.title, window.location.pathname);
     }
-    window.location.href = 'main.html';
+  }
+
+  function goToMain(){
+    showMainView();
   }
 
   function animateOpeningProgress(duration){
@@ -216,7 +250,6 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 
   function skipOpening(){
-    clearTimeout(openingTimer);
     goToMain();
   }
 

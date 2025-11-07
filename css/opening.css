@@ -3,6 +3,7 @@
   --opening-text: #f5f3ff;
   --opening-accent: #f05dff;
   --opening-accent-2: #7b45ff;
+  --vh: 100vh;
 }
 
 *,
@@ -15,7 +16,7 @@
   position:fixed;
   inset:0;
   width:100vw;
-  height:100vh;
+  height:calc(var(--vh, 100vh));
   overflow:hidden;
   background:var(--opening-bg);
   color:var(--opening-text);
@@ -42,7 +43,7 @@
   position:absolute;
   inset:0;
   width:100vw;
-  height:100vh;
+  height:calc(var(--vh, 100vh));
   object-fit:cover;
   object-position:left center;
   opacity:0;
