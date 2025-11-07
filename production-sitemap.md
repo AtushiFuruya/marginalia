@@ -53,12 +53,7 @@
 │   ├── images/                  # 画像
 │   │   ├── age-verification/    # 年齢確認用
 │   │   │   └── background.jpg
-│   │   ├── opening/             # オープニング用
-│   │   │   ├── slide-01.png
-│   │   │   ├── slide-02.png
-│   │   │   ├── slide-03.png
-│   │   │   ├── slide-04.png
-│   │   │   └── slide-05.png
+│   │   ├── opening/             # オープニング用フォールバック（placeholder等）
 │   │   ├── common/              # 共通画像
 │   │   │   ├── logo.png
 │   │   │   ├── loading.gif
