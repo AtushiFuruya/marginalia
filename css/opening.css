@@ -209,7 +209,7 @@
   color:#fff;
 }
 
-@media (max-width:1024px){
+@media (max-width:1280px){
   .opening__visual{
     display:flex;
     align-items:center;
@@ -225,6 +225,14 @@
   }
 }
 
+@media (max-width:1280px){
+  .fire-video__media{
+    width:100vw;
+    height:auto;
+    object-fit:contain;
+  }
+}
+
 @media (max-width:600px){
   .opening__hud{
     flex-direction:column;
@@ -237,11 +245,6 @@
   }
   .opening__caption{
     bottom:32px;
-  }
-  .fire-video__media{
-    width:100vw;
-    height:auto;
-    object-fit:contain;
   }
 }
 
