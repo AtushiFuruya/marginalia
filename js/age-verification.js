@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function(){
   const openingCaptionEl = document.getElementById('slide-caption');
   const openingStatusEl = document.getElementById('slide-status');
   const openingProgressEl = document.getElementById('progress-bar');
+  const openingFlashEl = document.getElementById('opening-flash');
   const mainView = document.getElementById('main-view');
 
   const prefersReducedMotion = window.matchMedia ?
@@ -183,6 +184,13 @@ document.addEventListener('DOMContentLoaded', function(){
     }
   }
 
+  function triggerOpeningFlash(){
+    if(!openingFlashEl || prefersReducedMotion.matches) return;
+    openingFlashEl.classList.remove('visible');
+    void openingFlashEl.offsetWidth;
+    openingFlashEl.classList.add('visible');
+  }
+
   function showOpeningSlide(index){
     if(!openingSlideEl) return;
     const slide = openingSlides[index];
@@ -193,6 +201,7 @@ document.addEventListener('DOMContentLoaded', function(){
       openingSlideEl.src = loader.src;
       openingSlideEl.alt = slide.text;
       updateOpeningStatus();
+      triggerOpeningFlash();
       requestAnimationFrame(()=> openingSlideEl.classList.add('visible'));
       animateOpeningProgress(openingDuration);
     };
@@ -200,6 +209,7 @@ document.addEventListener('DOMContentLoaded', function(){
       openingSlideEl.src = 'assets/images/opening/placeholder.svg';
       openingSlideEl.alt = 'スライド画像を読み込めませんでした';
       updateOpeningStatus();
+      triggerOpeningFlash();
       animateOpeningProgress(openingDuration);
     };
     loader.src = encodeURI(slide.src);
@@ -228,12 +238,6 @@ document.addEventListener('DOMContentLoaded', function(){
   function revealOpeningSequence(options = {}){
     if(openingStarted || !openingSection) return;
     openingStarted = true;
-
-    if(history.replaceState){
-      history.replaceState(null, document.title, '#opening');
-    } else {
-      window.location.hash = 'opening';
-    }
 
     if(ageGate){
       ageGate.classList.add('age-gate--hidden');
@@ -274,8 +278,7 @@ document.addEventListener('DOMContentLoaded', function(){
     }
   });
 
-  if(window.location.hash === '#opening'){
-    overlay && overlay.classList.remove('fade-out');
-    revealOpeningSequence();
+  if(history.replaceState && window.location.hash === '#opening'){
+    history.replaceState(null, document.title, window.location.pathname);
   }
 });
