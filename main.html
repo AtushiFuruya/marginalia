@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>かりんのゲームサイト | メインページ</title>
+  <meta name="description" content="ゲームの世界観や最新情報を紹介するメインページです。">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <span class="brand__logo" aria-hidden="true">K</span>
+      <div>
+        <p class="brand__eyebrow">Karin Project</p>
+        <p class="brand__title">かりんのゲームサイト</p>
+      </div>
+    </div>
+    <nav class="main-nav" aria-label="主要ナビゲーション">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-list">MENU</button>
+      <ul id="nav-list" class="main-nav__list">
+        <li><a href="#hero">トップ</a></li>
+        <li><a href="#features">特徴</a></li>
+        <li><a href="#gallery-preview">ギャラリー</a></li>
+        <li><a href="#newsletter">ニュース</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="hero" class="hero">
+      <div class="hero__content">
+        <p class="hero__eyebrow">18+ Visual Novel</p>
+        <h1>傷跡に咲く悦びを、<br>あなたの手で確かめて。</h1>
+        <p>暴力と耽美が交差する「Marginalia」。プレイヤーの選択がキャラクターの運命を変え、残酷な快楽を描き出します。</p>
+        <div class="hero__actions">
+          <a class="btn primary" href="#gallery-preview">ギャラリーを見る</a>
+          <a class="btn ghost" href="pages/news.html">ニュースへ</a>
+        </div>
+      </div>
+      <figure class="hero__visual">
+        <img src="images/gallery/scene_mary_smile.jpg" alt="微笑みながらこちらを見つめるキャラクターのCG">
+        <figcaption>Illustration © Karin Project</figcaption>
+      </figure>
+    </section>
+
+    <section id="features" class="features">
+      <h2>世界観のキーポイント</h2>
+      <div class="features__grid">
+        <article>
+          <h3>閉鎖施設の謎</h3>
+          <p>失踪した姉を捜索する主人公が辿り着いたのは、拷問研究を装った巨大な研究塔。</p>
+        </article>
+        <article>
+          <h3>痛覚実験</h3>
+          <p>各キャラクターは異なる耐性を持ち、プレイヤーの選択で快楽か破滅かが決まる。</p>
+        </article>
+        <article>
+          <h3>マルチエンディング</h3>
+          <p>感情値と記録データによって分岐。真実エンドに到達するには冷酷な判断が必要。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="gallery-preview" class="gallery-preview">
+      <header>
+        <p class="eyebrow">Preview</p>
+        <h2>ギャラリー先行公開</h2>
+      </header>
+      <div class="gallery-preview__grid">
+        <figure>
+          <img src="images/gallery/scene_caning.jpg" alt="鞭打ちを受けるキャラクター">
+          <figcaption>耐えることが新たな悦びに</figcaption>
+        </figure>
+        <figure>
+          <img src="images/gallery/scene_tits.jpg" alt="拘束されたキャラクターの胸元">
+          <figcaption>冷たい金属と熱い吐息</figcaption>
+        </figure>
+        <figure>
+          <img src="images/gallery/scene_orgy.jpg" alt="複数キャラクターの儀式的なシーン">
+          <figcaption>儀式は狂気と快楽の境界線</figcaption>
+        </figure>
+      </div>
+      <p class="gallery-preview__cta">
+        <a class="btn primary" href="pages/gallery.html">フルギャラリーを開く</a>
+      </p>
+    </section>
+
+    <section id="newsletter" class="newsletter">
+      <div>
+        <p class="eyebrow">News</p>
+        <h2>発売通知を受け取る</h2>
+        <p>発売日、体験版、限定特典などの情報をメールで受け取れます。</p>
+      </div>
+      <form class="newsletter__form">
+        <label for="newsletter-email">メールアドレス</label>
+        <div class="newsletter__controls">
+          <input id="newsletter-email" type="email" name="email" placeholder="your.name@example.com" required>
+          <button type="submit" class="btn primary">登録する</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2025 Karin Project. All rights reserved.</p>
+    <a href="mailto:info@example.com">お問い合わせ</a>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
