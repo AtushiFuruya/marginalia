@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function(){
   const openingFlashEl = document.getElementById('opening-flash');
   const fireVideoLayer = document.getElementById('fire-video-layer');
   const fireVideo = document.getElementById('fire-video');
-  const mainView = document.getElementById('main-view');
+  const MAIN_PAGE = 'main.html';
 
   const prefersReducedMotion = window.matchMedia ?
     window.matchMedia('(prefers-reduced-motion: reduce)') :
@@ -138,9 +138,9 @@ document.addEventListener('DOMContentLoaded', function(){
   let openingTimer = null;
   let openingIndex = 0;
   let openingStarted = false;
-  let mainShown = false;
   let fireVideoActive = false;
   let fireVideoTimeout = null;
+  let hasNavigatedToMain = false;
 
   function resetFireVideoLayer(){
     if(!fireVideoLayer || !fireVideo) return;
@@ -155,36 +155,13 @@ document.addEventListener('DOMContentLoaded', function(){
     fireVideoActive = false;
   }
 
-  function showMainView(){
-    if(mainShown) return;
-    mainShown = true;
-    openingStarted = false;
-    clearTimeout(openingTimer);
-    if(fireVideoTimeout){
-      clearTimeout(fireVideoTimeout);
-      fireVideoTimeout = null;
-    }
-    resetFireVideoLayer();
-    if(openingSection){
-      openingSection.classList.remove('opening--active');
-      openingSection.classList.add('opening--hidden');
-      openingSection.hidden = true;
-      openingSection.setAttribute('aria-hidden','true');
-    }
-    if(mainView){
-      mainView.classList.remove('main-view--hidden');
-      mainView.setAttribute('aria-hidden','false');
-      if(typeof mainView.focus === 'function'){
-        mainView.focus({ preventScroll: false });
-      }
-    }
+  function navigateToMain(){
+    if(hasNavigatedToMain) return;
+    hasNavigatedToMain = true;
     if(history.replaceState){
       history.replaceState(null, document.title, window.location.pathname);
     }
-  }
-
-  function goToMain(){
-    showMainView();
+    window.location.href = MAIN_PAGE;
   }
 
   function animateOpeningProgress(duration){
@@ -294,28 +271,24 @@ document.addEventListener('DOMContentLoaded', function(){
       fireVideo.removeEventListener('error', handleFireVideoError);
     }
     if(!fireVideoLayer){
-      showMainView();
+      navigateToMain();
       return;
     }
     if(skipAnimation || prefersReducedMotion.matches){
       resetFireVideoLayer();
-      showMainView();
+      navigateToMain();
       return;
     }
     fireVideoLayer.classList.add('fire-video--fade');
     setTimeout(()=>{
       resetFireVideoLayer();
-      showMainView();
+      navigateToMain();
     }, 600);
   }
 
   function startFireVideoSequence(){
-    if(mainShown){
-      showMainView();
-      return;
-    }
     if(!fireVideoLayer || !fireVideo){
-      showMainView();
+      navigateToMain();
       return;
     }
     fireVideoLayer.classList.remove('fire-video--hidden');
@@ -351,7 +324,7 @@ document.addEventListener('DOMContentLoaded', function(){
       fadeOutFireVideoLayer(true);
       return;
     }
-    goToMain();
+    navigateToMain();
   }
 
   if(skipBtn) skipBtn.addEventListener('click', skipOpening);
