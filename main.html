@@ -12,9 +12,8 @@
 </head>
 <body>
   <header class="site-header" aria-label="グローバルヘッダー">
-    <a class="brand" href="index.html">
+    <a class="brand" href="index.html" aria-label="トップページへ戻る">
       <img class="brand__logo" src="images/age-verification/Logo.png" alt="Karin Project ロゴ">
-      <span class="brand__title">Karin Project</span>
     </a>
     <button class="hamburger" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="ナビゲーションを開閉する">
       <span></span><span></span><span></span>
@@ -36,10 +35,6 @@
       <p class="eyebrow">Marginalia</p>
       <h1 id="hero-title">その傷は悦楽か、贖罪か。</h1>
       <p>静寂な大聖堂で繰り広げられる、宗教的モチーフと百合をテーマにした残酷な物語。感情値と記録データが真実を左右します。</p>
-      <div class="hero__actions">
-        <a class="btn primary" href="pages/download.html">体験版を待つ</a>
-        <a class="btn ghost" href="#story">世界観を知る</a>
-      </div>
     </div>
   </section>
 
@@ -48,11 +43,12 @@
       <div class="story__text">
         <p class="eyebrow">Story</p>
         <h2 id="story-title">大聖堂に響く祈りは、誰のために。</h2>
+        <p>長い宗教戦争が続く時代――</p>
         <p>
-          中世ヨーロッパ風の世界観を舞台に、宗教的モチーフと百合（女性同士の恋愛）をテーマにした物語。
+          新人神父モンテファルコは、悪魔憑きの噂が絶えない女子修道院に赴任する。前任の神父は修道女たちに告発され、魔術師として火刑に処されていた。モンテファルコは典礼と告解を重ねるうち、修道院長マリィをはじめ、修道女たちの奇行と狂気を目の当たりにしていく。
         </p>
         <p>
-          大聖堂を背景に、複数のキャラクターが織りなす美しく、時に残酷な物語が展開される。失踪した姉の行方を追い、禁じられた実験塔へ足を踏み入れたあなたは、快楽と贖いの狭間で選択を迫られる。
+          一方、街では不合理な魔女裁判が続き、女たちが拷問され、正義の名のもとに焼かれていく。その光景の中で、モンテファルコは次第に、信仰と疑念、善と悪の境界を見失っていく。
         </p>
       </div>
       <figure class="story__visual">
@@ -63,14 +59,17 @@
   </section>
 
   <section id="character" class="section character" aria-labelledby="character-title">
-    <div class="section__inner">
-      <p class="eyebrow">Character</p>
-      <h2 id="character-title">彼女たちの誓いと背徳。</h2>
-      <div class="character__visual">
-        <img src="images/characters/all_characters.png" alt="主要キャラクターが並ぶイラスト">
+    <div class="section__inner character__wrap">
+      <div class="member__bg" aria-hidden="true">
+        <img src="https://placehold.co/1400x900/3C044B/FFFFFF?text=Character+Scene" alt="">
       </div>
-      <div class="section__action">
-        <a class="btn cta" href="pages/characters.html">More</a>
+      <div class="character__panel">
+        <p class="eyebrow">Character</p>
+        <h2 id="character-title">彼女たちの誓いと背徳。</h2>
+        <p>キャラクタービジュアルは 1400×900px 以上、背景透過PNG推奨。光源は左上、彩度を抑えた紫系で統一してください。</p>
+        <div class="section__action">
+          <a class="btn cta" href="pages/characters.html">More</a>
+        </div>
       </div>
     </div>
   </section>

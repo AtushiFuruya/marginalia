@@ -49,9 +49,8 @@ a{
 }
 
 .brand{
-  display:flex;
+  display:inline-flex;
   align-items:center;
-  gap:0.75rem;
 }
 .brand__logo{
   width:48px;
@@ -59,11 +58,6 @@ a{
   border-radius:12px;
   object-fit:cover;
   border:1px solid rgba(255,255,255,0.2);
-}
-.brand__title{
-  font-size:1rem;
-  letter-spacing:0.2em;
-  text-transform:uppercase;
 }
 
 .hamburger{
@@ -159,11 +153,6 @@ a{
 .hero__content p{
   margin:0 0 1rem;
 }
-.hero__actions{
-  display:flex;
-  flex-wrap:wrap;
-  gap:1rem;
-}
 
 .section{
   min-height:100vh;
@@ -221,21 +210,35 @@ a{
 }
 
 .character{
-  background:linear-gradient(180deg,var(--background),#100413);
-  text-align:center;
+  background:linear-gradient(180deg,var(--background),#0f0614);
 }
-.character__visual{
-  margin:0 auto 2rem;
-  max-width:680px;
-  border-radius:24px;
+.character__wrap{
+  position:relative;
+  min-height:70vh;
+}
+.member__bg{
+  position:absolute;
+  inset:0;
+  border-radius:30px;
   overflow:hidden;
-  border:1px solid rgba(255,255,255,0.1);
-  background:rgba(0,0,0,0.3);
+  border:1px solid rgba(255,255,255,0.12);
 }
-.character__visual img{
-  display:block;
+.member__bg img{
   width:100%;
-  height:auto;
+  height:100%;
+  object-fit:cover;
+  opacity:0.25;
+}
+.character__panel{
+  position:relative;
+  margin:0 auto;
+  padding:3rem 2rem;
+  max-width:680px;
+  background:rgba(26,10,31,0.85);
+  border-radius:24px;
+  box-shadow:0 30px 60px rgba(0,0,0,0.35);
+  border:1px solid rgba(255,255,255,0.08);
+  text-align:center;
 }
 
 .gallery{
