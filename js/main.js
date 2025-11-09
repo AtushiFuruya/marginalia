@@ -63,30 +63,4 @@ document.addEventListener('DOMContentLoaded', () => {
       closeMenu();
     }
   });
-
-  const revealElements = document.querySelectorAll('.js-scrollreveal');
-  const revealMap = {
-    '1': { delay:200, duration:800 },
-    '2': { delay:250, duration:900 },
-    '3': { delay:250, duration:900 },
-    '4': { delay:150, duration:700 }
-  };
-
-  if('IntersectionObserver' in window){
-    const observer = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          const type = entry.target.getAttribute('data-reveal') || '1';
-          const cfg = revealMap[type] || revealMap['1'];
-          entry.target.style.transitionDuration = `${cfg.duration}ms`;
-          entry.target.style.transitionDelay = `${cfg.delay}ms`;
-          entry.target.classList.add('sr-active');
-          observer.unobserve(entry.target);
-        }
-      });
-    },{ threshold:0.2 });
-    revealElements.forEach(el=>observer.observe(el));
-  } else {
-    revealElements.forEach(el=>el.classList.add('sr-active'));
-  }
 });
