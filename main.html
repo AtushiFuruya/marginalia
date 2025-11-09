@@ -59,17 +59,75 @@
   </section>
 
   <section id="character" class="section character" aria-labelledby="character-title">
-    <div class="section__inner character__wrap">
-      <div class="member__bg" aria-hidden="true">
-        <img src="https://placehold.co/1400x900/3C044B/FFFFFF?text=Character+Scene" alt="">
+    <div class="section__inner">
+      <p class="eyebrow">Character</p>
+      <h2 id="character-title">彼女たちの誓いと背徳。</h2>
+      <p class="character__note">背景ステージは 1920×1080px 以上のシネマティックなシーン画像、キャラクターは 900×1200px / 200dpi / 背景透過PNG を推奨しています。</p>
+    </div>
+    <div class="character-slider" data-autoplay="true">
+      <div class="character-slider__track">
+        <article class="character-slide is-active" data-index="0">
+          <a class="character-slide__link" href="pages/characters.html">
+            <div class="character-slide__image">
+              <img src="https://placehold.co/900x1200/5D0C6B/FFFFFF?text=Mary" alt="キャラクター Mary のビジュアル" loading="lazy">
+              <span class="character-slide__placeholder">01</span>
+            </div>
+            <div class="character-slide__meta">
+              <p class="character-slide__name">Mary</p>
+              <p class="character-slide__role">修道院長</p>
+            </div>
+          </a>
+        </article>
+        <article class="character-slide" data-index="1">
+          <a class="character-slide__link" href="pages/characters.html">
+            <div class="character-slide__image">
+              <img src="https://placehold.co/900x1200/800889/FFFFFF?text=Elaine" alt="キャラクター Elaine のビジュアル" loading="lazy">
+              <span class="character-slide__placeholder">02</span>
+            </div>
+            <div class="character-slide__meta">
+              <p class="character-slide__name">Elaine</p>
+              <p class="character-slide__role">審問官</p>
+            </div>
+          </a>
+        </article>
+        <article class="character-slide" data-index="2">
+          <a class="character-slide__link" href="pages/characters.html">
+            <div class="character-slide__image">
+              <img src="https://placehold.co/900x1200/3C044B/FFFFFF?text=Luna" alt="キャラクター Luna のビジュアル" loading="lazy">
+              <span class="character-slide__placeholder">03</span>
+            </div>
+            <div class="character-slide__meta">
+              <p class="character-slide__name">Luna</p>
+              <p class="character-slide__role">儀式筆記者</p>
+            </div>
+          </a>
+        </article>
+        <article class="character-slide" data-index="3">
+          <a class="character-slide__link" href="pages/characters.html">
+            <div class="character-slide__image">
+              <img src="https://placehold.co/900x1200/8B5A5A/FFFFFF?text=Celeste" alt="キャラクター Celeste のビジュアル" loading="lazy">
+              <span class="character-slide__placeholder">04</span>
+            </div>
+            <div class="character-slide__meta">
+              <p class="character-slide__name">Celeste</p>
+              <p class="character-slide__role">星読みの巫女</p>
+            </div>
+          </a>
+        </article>
       </div>
-      <div class="character__panel">
-        <p class="eyebrow">Character</p>
-        <h2 id="character-title">彼女たちの誓いと背徳。</h2>
-        <p>キャラクタービジュアルは 1400×900px 以上、背景透過PNG推奨。光源は左上、彩度を抑えた紫系で統一してください。</p>
-        <div class="section__action">
-          <a class="btn cta" href="pages/characters.html">More</a>
-        </div>
+      <div class="character-slider__nav" role="tablist">
+        <button class="character-slider__nav__item is-active" type="button" data-slide="0" aria-label="Mary">
+          <span>01</span>
+        </button>
+        <button class="character-slider__nav__item" type="button" data-slide="1" aria-label="Elaine">
+          <span>02</span>
+        </button>
+        <button class="character-slider__nav__item" type="button" data-slide="2" aria-label="Luna">
+          <span>03</span>
+        </button>
+        <button class="character-slider__nav__item" type="button" data-slide="3" aria-label="Celeste">
+          <span>04</span>
+        </button>
       </div>
     </div>
   </section>
