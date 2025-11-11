@@ -122,17 +122,19 @@
       justify-content:center;
       gap:1rem;
     }
-    .name-vertical,
-    .role-vertical{
-      writing-mode:vertical-rl;
-      text-orientation:upright;
-      letter-spacing:0.2em;
-      font-size:1rem;
+    .name-vertical{
+      writing-mode:horizontal-tb;
+      text-orientation:initial;
+      letter-spacing:0.12em;
+      font-size:1.1rem;
       color:var(--lavender);
     }
     .role-vertical{
+      writing-mode:horizontal-tb;
+      letter-spacing:0.08em;
       font-size:0.85rem;
       opacity:0.8;
+      color:var(--lavender);
     }
     .member-card__desc{
       margin-top:1.5rem;
@@ -241,35 +243,39 @@
         --card-gap:48px;
       }
     }
-    @media (max-width:767px){
-      .member{
-        padding:4rem 1.25rem 3rem;
-      }
-      .member-slider{
-        max-width:640px;
-      }
-      .member-slider__viewport{
-        padding:0;
-        overflow:visible;
-      }
-      .member-slider__track{
-        flex-wrap:wrap;
-        justify-content:center;
-        gap:2rem;
-        transform:none !important;
-      }
-      .member-card{
-        flex:1 1 clamp(220px,46vw,280px);
-        padding:0;
-      }
-      .member-card__figure{
-        box-shadow:0 18px 35px rgba(18,8,32,0.12);
-      }
-      .member-slider__controls,
-      .member-slider__dots{
-        display:none;
-      }
-    }
+@media (max-width:767px){
+  .member{
+    padding:4rem 1.25rem 3rem;
+  }
+  .member-slider{
+    max-width:640px;
+  }
+  .member-slider__viewport{
+    padding:0;
+    overflow:visible;
+  }
+  .member-slider__track{
+    flex-wrap:wrap;
+    justify-content:flex-start;
+    gap:1.25rem;
+    transform:none !important;
+  }
+  .member-card{
+    flex:0 0 calc(50% - 0.625rem);
+    max-width:calc(50% - 0.625rem);
+    padding:0;
+  }
+  .member-card__figure{
+    box-shadow:0 18px 35px rgba(18,8,32,0.12);
+  }
+  .member-card:nth-child(odd){
+    margin-right:auto;
+  }
+  .member-slider__controls,
+  .member-slider__dots{
+    display:none;
+  }
+}
   </style>
 </head>
 <body>
@@ -285,57 +291,79 @@
         <div class="member-slider__track">
           <article class="member-card">
             <figure class="member-card__figure">
-              <img src="images/character_thumbnail/Thumbnail_01_Elaine.png" alt="秘空木礼">
+              <img src="../../images/character_thumbnail/Thumbnail_01_Elaine.png" alt="イレーヌ">
             </figure>
             <div class="member-card__meta">
-              <p class="name-vertical">秘空木礼</p>
-              <p class="role-vertical">cv. 前田誠二</p>
+              <p class="name-vertical">イレーヌ</p>
+              <p class="role-vertical">&nbsp;</p>
             </div>
-            <p class="member-card__desc">静かな綿密さを秘めた戦術家。透徹した視線の奥に、部の未来を託されている。</p>
+            <p class="member-card__desc">村の山奥で娘クリスタと暮らす美しい女性。洋裁の仕事をしながら家事をしている。</p>
           </article>
 
           <article class="member-card">
             <figure class="member-card__figure">
-              <img src="images/character_thumbnail/Thumbnail_02.png" alt="高階蘭士">
+              <img src="../../images/character_thumbnail/Thumbnail_02_Christa.png" alt="クリスタ">
             </figure>
             <div class="member-card__meta">
-              <p class="name-vertical">高階蘭士</p>
-              <p class="role-vertical">cv. 宮崎雅也</p>
+              <p class="name-vertical">クリスタ</p>
+              <p class="role-vertical">&nbsp;</p>
             </div>
-            <p class="member-card__desc">柔らかな声で励ます癒やし担当。丁寧な振る舞いの裏で誰よりも大胆。</p>
+            <p class="member-card__desc">雑用係の見習い修道女。元々マリィの侍女であり、常にそばで付き従っている。</p>
           </article>
 
           <article class="member-card">
             <figure class="member-card__figure">
-              <img src="images/character_thumbnail/Thumbnail_03_mary.png" alt="妃崎余花">
+              <img src="../../images/character_thumbnail/Thumbnail_03_mary.png" alt="マリィ">
             </figure>
             <div class="member-card__meta">
-              <p class="name-vertical">妃崎余花</p>
-              <p class="role-vertical">cv. 秋山諒</p>
+              <p class="name-vertical">マリィ</p>
+              <p class="role-vertical">&nbsp;</p>
             </div>
-            <p class="member-card__desc">微笑と毒舌を使い分ける策士。見透かされたような色香でチームを翻弄する。</p>
+            <p class="member-card__desc">女子修道院の修道委員長を務める信仰深い修道女。集団悪魔憑きの中心人物。</p>
           </article>
 
           <article class="member-card">
             <figure class="member-card__figure">
-              <img src="https://placehold.co/420x420/EEE6E2/3C32BE?text=Coming+Soon" alt="雨鬼籠">
+              <img src="../../images/character_thumbnail/Thumbnail_04_Pauline.png" alt="ポーリン">
             </figure>
             <div class="member-card__meta">
-              <p class="name-vertical">雨鬼籠</p>
-              <p class="role-vertical">cv. 山本彬</p>
+              <p class="name-vertical">ポーリン</p>
+              <p class="role-vertical">&nbsp;</p>
             </div>
-            <p class="member-card__desc">冷徹な外見に反し、仲間思いの熱量が迸る。武骨な立ち姿が魅力。</p>
+            <p class="member-card__desc">雑用係の見習い修道女。元々マリィの侍女であり、常にそばで付き従っている。</p>
           </article>
 
           <article class="member-card">
             <figure class="member-card__figure">
-              <img src="https://placehold.co/420x420/EEE6E2/3C32BE?text=Coming+Soon" alt="菊秋明">
+              <img src="../../images/character_thumbnail/Thumbnail_05_ InquisitorGeese.png" alt="Coming soon...">
             </figure>
             <div class="member-card__meta">
-              <p class="name-vertical">菊秋明</p>
-              <p class="role-vertical">cv. 山口智広</p>
+              <p class="name-vertical">Coming soon...</p>
+              <p class="role-vertical">&nbsp;</p>
             </div>
-            <p class="member-card__desc">華やかな歌声で空気を変える芸術肌。笑顔の陰に秘めた闘志が光る。</p>
+            <p class="member-card__desc">Coming soon...</p>
+          </article>
+
+          <article class="member-card">
+            <figure class="member-card__figure">
+              <img src="../../images/character_thumbnail/Thumbnail_06_bishop.png" alt="Coming soon...">
+            </figure>
+            <div class="member-card__meta">
+              <p class="name-vertical">Coming soon...</p>
+              <p class="role-vertical">&nbsp;</p>
+            </div>
+            <p class="member-card__desc">Coming soon...</p>
+          </article>
+
+          <article class="member-card">
+            <figure class="member-card__figure">
+              <img src="../../images/character_thumbnail/Thumbnail_07.png" alt="Coming soon...">
+            </figure>
+            <div class="member-card__meta">
+              <p class="name-vertical">Coming soon...</p>
+              <p class="role-vertical">&nbsp;</p>
+            </div>
+            <p class="member-card__desc">Coming soon...</p>
           </article>
         </div>
       </div>
