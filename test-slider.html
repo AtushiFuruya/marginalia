@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Boys be Maid Member Slider Test</title>
+  <style>
+    *,*::before,*::after{
+      box-sizing:border-box;
+    }
+    :root{
+      color-scheme:light;
+      --ink:#180c26;
+      --lavender:#3c32be;
+      --lavender-dark:#1f1475;
+      --cream:#f6f2ea;
+      --beige:#ece6dc;
+      --shadow:0 30px 70px rgba(18,8,32,0.15);
+      --card-width:420px;
+      --card-gap:80px;
+    }
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:'Noto Serif JP','Hiragino Mincho ProN',serif;
+      background:linear-gradient(180deg,#faf8f5 0%,#efe9e0 100%);
+      color:var(--ink);
+    }
+    .member{
+      padding:6rem clamp(1.5rem,5vw,4rem) 5rem;
+    }
+    .member__inner{
+      max-width:1180px;
+      margin:0 auto 4rem;
+      text-align:center;
+    }
+    .member__eyebrow{
+      font-size:0.9rem;
+      letter-spacing:0.3em;
+      color:var(--lavender);
+      text-transform:uppercase;
+      margin-bottom:0.75rem;
+    }
+    .member__title{
+      font-size:clamp(2rem,5vw,3.6rem);
+      letter-spacing:0.08em;
+      margin:0 0 1.25rem;
+    }
+    .member__lead{
+      margin:0 auto;
+      max-width:720px;
+      line-height:1.9;
+      color:#4b3f53;
+    }
+    .member-slider{
+      position:relative;
+      margin:0 auto;
+      width:100%;
+    }
+    .member-slider__viewport{
+      position:relative;
+      overflow:hidden;
+      padding:1rem clamp(2rem,(100% - var(--card-width))/2,12vw);
+    }
+    .member-slider::before,
+    .member-slider::after{
+      content:"";
+      position:absolute;
+      top:0;
+      bottom:0;
+      width:110px;
+      pointer-events:none;
+      z-index:2;
+      background:linear-gradient(90deg,rgba(250,248,245,1),rgba(250,248,245,0));
+      transition:opacity 0.3s ease;
+    }
+    .member-slider::after{
+      right:0;
+      left:auto;
+      transform:scaleX(-1);
+    }
+    .member-slider::before{
+      left:0;
+    }
+    .member-slider.is-slider-disabled::before,
+    .member-slider.is-slider-disabled::after{
+      opacity:0;
+    }
+    .member-slider__track{
+      display:flex;
+      gap:var(--card-gap);
+      transition:transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94);
+      will-change:transform;
+    }
+    .member-card{
+      flex:0 0 var(--card-width);
+      width:var(--card-width);
+      position:relative;
+      padding:0 1.5rem;
+    }
+    .member-card__figure{
+      position:relative;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      aspect-ratio:1/1;
+      border-radius:50%;
+      background:linear-gradient(135deg,#fefbf7,#f0e7e1);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .member-card__figure img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transform:scale(1.02);
+      transition:transform 0.6s ease;
+    }
+    .member-card__meta{
+      margin-top:1.5rem;
+      display:flex;
+      justify-content:center;
+      gap:1rem;
+    }
+    .name-vertical,
+    .role-vertical{
+      writing-mode:vertical-rl;
+      text-orientation:upright;
+      letter-spacing:0.2em;
+      font-size:1rem;
+      color:var(--lavender);
+    }
+    .role-vertical{
+      font-size:0.85rem;
+      opacity:0.8;
+    }
+    .member-card__desc{
+      margin-top:1.5rem;
+      text-align:center;
+      font-size:0.95rem;
+      color:#675d74;
+      line-height:1.8;
+    }
+    .member-slider__controls{
+      margin:3rem auto 0;
+      display:flex;
+      justify-content:center;
+      gap:1.25rem;
+    }
+    .member-slider__control{
+      width:72px;
+      height:72px;
+      border-radius:999px;
+      border:2px solid var(--lavender);
+      background:transparent;
+      color:var(--lavender);
+      cursor:pointer;
+      transition:transform 0.2s ease,background 0.2s ease,color 0.2s ease;
+    }
+    .member-slider__control:focus-visible{
+      outline:3px solid var(--lavender);
+      outline-offset:4px;
+    }
+    .member-slider__control:hover{
+      transform:translateY(-4px);
+      background:var(--lavender);
+      color:#fff;
+    }
+    .member-slider__control[disabled]{
+      opacity:0.35;
+      cursor:not-allowed;
+      transform:none;
+      background:none;
+      color:var(--lavender);
+    }
+    .icon{
+      display:inline-flex;
+      justify-content:center;
+      align-items:center;
+      width:100%;
+      height:100%;
+    }
+    .icon--arrow::before{
+      content:"";
+      width:16px;
+      height:16px;
+      border-top:2px solid currentColor;
+      border-right:2px solid currentColor;
+      transform:rotate(135deg);
+      margin-left:6px;
+    }
+    .icon--arrow.is-next::before{
+      transform:rotate(-45deg);
+      margin-left:-6px;
+    }
+    .icon--toggle{
+      gap:6px;
+    }
+    .icon--toggle span{
+      width:6px;
+      height:18px;
+      border-radius:3px;
+      background:currentColor;
+      display:block;
+      transition:transform 0.2s ease;
+    }
+    .icon--toggle[data-state="paused"] span:first-child{
+      transform:rotate(-45deg);
+      width:0;
+    }
+    .icon--toggle[data-state="paused"] span:last-child{
+      transform:rotate(45deg);
+      width:0;
+    }
+    .member-slider__dots{
+      display:flex;
+      justify-content:center;
+      gap:0.35rem;
+      margin-top:1.5rem;
+    }
+    .member-slider__dot{
+      width:32px;
+      height:4px;
+      border-radius:999px;
+      background:#d7d0c6;
+      transition:background 0.3s ease,width 0.3s ease;
+    }
+    .member-slider__dot.is-active{
+      background:var(--lavender);
+      width:56px;
+    }
+    @media (max-width:1199px){
+      :root{
+        --card-width:360px;
+        --card-gap:64px;
+      }
+    }
+    @media (max-width:991px){
+      :root{
+        --card-width:320px;
+        --card-gap:48px;
+      }
+    }
+    @media (max-width:767px){
+      .member{
+        padding:4rem 1.25rem 3rem;
+      }
+      .member-slider{
+        max-width:640px;
+      }
+      .member-slider__viewport{
+        padding:0;
+        overflow:visible;
+      }
+      .member-slider__track{
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:2rem;
+        transform:none !important;
+      }
+      .member-card{
+        flex:1 1 clamp(220px,46vw,280px);
+        padding:0;
+      }
+      .member-card__figure{
+        box-shadow:0 18px 35px rgba(18,8,32,0.12);
+      }
+      .member-slider__controls,
+      .member-slider__dots{
+        display:none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="member" id="member">
+    <div class="member__inner">
+      <p class="member__eyebrow">MEMBER</p>
+      <h1 class="member__title">彼らの日常を覗き見る。</h1>
+      <p class="member__lead">Boys be Maid のメイドボーイ部に所属する御曹司たち。左右にスライドして彼らの素顔と淡い笑み、そして守りたい誓いを体験してください。</p>
+    </div>
+
+    <div class="member-slider" data-autoplay="true">
+      <div class="member-slider__viewport">
+        <div class="member-slider__track">
+          <article class="member-card">
+            <figure class="member-card__figure">
+              <img src="images/figma-slider/slide-01.png" alt="秘空木礼">
+            </figure>
+            <div class="member-card__meta">
+              <p class="name-vertical">秘空木礼</p>
+              <p class="role-vertical">cv. 前田誠二</p>
+            </div>
+            <p class="member-card__desc">静かな綿密さを秘めた戦術家。透徹した視線の奥に、部の未来を託されている。</p>
+          </article>
+
+          <article class="member-card">
+            <figure class="member-card__figure">
+              <img src="images/figma-slider/slide-02.png" alt="高階蘭士">
+            </figure>
+            <div class="member-card__meta">
+              <p class="name-vertical">高階蘭士</p>
+              <p class="role-vertical">cv. 宮崎雅也</p>
+            </div>
+            <p class="member-card__desc">柔らかな声で励ます癒やし担当。丁寧な振る舞いの裏で誰よりも大胆。</p>
+          </article>
+
+          <article class="member-card">
+            <figure class="member-card__figure">
+              <img src="images/figma-slider/slide-03.png" alt="妃崎余花">
+            </figure>
+            <div class="member-card__meta">
+              <p class="name-vertical">妃崎余花</p>
+              <p class="role-vertical">cv. 秋山諒</p>
+            </div>
+            <p class="member-card__desc">微笑と毒舌を使い分ける策士。見透かされたような色香でチームを翻弄する。</p>
+          </article>
+
+          <article class="member-card">
+            <figure class="member-card__figure">
+              <img src="images/figma-slider/slide-04.png" alt="雨鬼籠">
+            </figure>
+            <div class="member-card__meta">
+              <p class="name-vertical">雨鬼籠</p>
+              <p class="role-vertical">cv. 山本彬</p>
+            </div>
+            <p class="member-card__desc">冷徹な外見に反し、仲間思いの熱量が迸る。武骨な立ち姿が魅力。</p>
+          </article>
+
+          <article class="member-card">
+            <figure class="member-card__figure">
+              <img src="images/figma-slider/slide-05.png" alt="菊秋明">
+            </figure>
+            <div class="member-card__meta">
+              <p class="name-vertical">菊秋明</p>
+              <p class="role-vertical">cv. 山口智広</p>
+            </div>
+            <p class="member-card__desc">華やかな歌声で空気を変える芸術肌。笑顔の陰に秘めた闘志が光る。</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="member-slider__controls">
+        <button class="member-slider__control" type="button" data-action="prev" aria-label="前のメンバー">
+          <span class="icon icon--arrow"></span>
+        </button>
+        <button class="member-slider__control" type="button" data-action="toggle" aria-label="自動再生を切り替え" aria-pressed="true">
+          <span class="icon icon--toggle" data-state="playing"><span></span><span></span></span>
+        </button>
+        <button class="member-slider__control" type="button" data-action="next" aria-label="次のメンバー">
+          <span class="icon icon--arrow is-next"></span>
+        </button>
+      </div>
+
+      <div class="member-slider__dots" role="tablist" aria-label="メンバースライダーインジケーター">
+        <button class="member-slider__dot is-active" type="button" aria-label="1枚目"></button>
+        <button class="member-slider__dot" type="button" aria-label="2枚目"></button>
+        <button class="member-slider__dot" type="button" aria-label="3枚目"></button>
+        <button class="member-slider__dot" type="button" aria-label="4枚目"></button>
+        <button class="member-slider__dot" type="button" aria-label="5枚目"></button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    class MemberSlider{
+      constructor(root){
+        this.root = root;
+        this.viewport = root?.querySelector('.member-slider__viewport');
+        this.track = root?.querySelector('.member-slider__track');
+        this.prevBtn = root?.querySelector('[data-action="prev"]');
+        this.nextBtn = root?.querySelector('[data-action="next"]');
+        this.toggleBtn = root?.querySelector('[data-action="toggle"]');
+        this.dots = Array.from(root?.querySelectorAll('.member-slider__dot') || []);
+        this.originalSlides = Array.from(this.track?.querySelectorAll('.member-card') || []);
+        this.logicalCount = this.originalSlides.length;
+        this.slides = [];
+        this.indexOffset = 0;
+        this.virtualIndex = 0;
+        this.safeStart = 0;
+        this.safeEnd = 0;
+        this.shouldSnap = false;
+        this.currentIndex = 0;
+        this.timer = null;
+        this.autoplayDelay = 5200;
+        this.autoplayEnabled = root?.dataset.autoplay !== 'false';
+        this.isEnabled = false;
+        this.metrics = {
+          slideWidth:0,
+          gap:0,
+          paddingLeft:0,
+          paddingRight:0,
+          viewportWidth:0,
+          totalWidth:0
+        };
+        this.handleResize = this.handleResize.bind(this);
+        this.handleTransitionEnd = this.handleTransitionEnd.bind(this);
+        this.handleViewportResize = this.handleViewportResize.bind(this);
+        this.init();
+      }
+
+      init(){
+        if(!this.track || !this.viewport || this.logicalCount === 0) return;
+        this.setupInfiniteTrack();
+        this.bindControls();
+        window.addEventListener('resize', this.handleResize);
+        this.resizeObserver = new ResizeObserver(this.handleViewportResize);
+        this.resizeObserver.observe(this.viewport);
+        this.root.addEventListener('mouseenter', ()=> this.stopAutoplay());
+        this.root.addEventListener('mouseleave', ()=> this.startAutoplay());
+        this.handleResize();
+      }
+
+      setupInfiniteTrack(){
+        if(this.logicalCount === 0) return;
+        const beforeFrag = document.createDocumentFragment();
+        const afterFrag = document.createDocumentFragment();
+        this.originalSlides.slice().reverse().forEach(slide=>{
+          const clone = slide.cloneNode(true);
+          clone.classList.add('member-card--clone');
+          clone.setAttribute('aria-hidden','true');
+          beforeFrag.appendChild(clone);
+        });
+        this.originalSlides.forEach(slide=>{
+          const clone = slide.cloneNode(true);
+          clone.classList.add('member-card--clone');
+          clone.setAttribute('aria-hidden','true');
+          afterFrag.appendChild(clone);
+        });
+        this.track.insertBefore(beforeFrag, this.originalSlides[0]);
+        this.track.appendChild(afterFrag);
+        this.slides = Array.from(this.track.children);
+        this.indexOffset = this.logicalCount;
+        this.safeStart = this.logicalCount;
+        this.safeEnd = this.logicalCount * 2 - 1;
+        this.virtualIndex = this.indexOffset;
+      }
+
+      bindControls(){
+        this.prevBtn?.addEventListener('click', ()=>{
+          this.moveBy(-1);
+          this.resetAutoplay();
+        });
+        this.nextBtn?.addEventListener('click', ()=>{
+          this.moveBy(1);
+          this.resetAutoplay();
+        });
+        this.toggleBtn?.addEventListener('click', ()=>{
+          this.autoplayEnabled = !this.autoplayEnabled;
+          this.toggleBtn?.setAttribute('aria-pressed', String(this.autoplayEnabled));
+          const icon = this.toggleBtn?.querySelector('.icon--toggle');
+          icon?.setAttribute('data-state', this.autoplayEnabled ? 'playing' : 'paused');
+          if(this.autoplayEnabled){
+            this.startAutoplay();
+          }else{
+            this.stopAutoplay();
+          }
+        });
+        this.dots.forEach((dot,index)=>{
+          dot.addEventListener('click', ()=>{
+            this.goToLogical(index);
+            this.resetAutoplay();
+          });
+        });
+      }
+
+      isMobile(){
+        return window.matchMedia('(max-width: 767px)').matches;
+      }
+
+      handleResize(){
+        if(this.isMobile()){
+          this.disableSlider();
+        }else{
+          this.enableSlider();
+        }
+      }
+
+      enableSlider(){
+        if(this.isEnabled) return;
+        this.isEnabled = true;
+        this.root.classList.add('is-slider-enabled');
+        this.root.classList.remove('is-slider-disabled');
+        this.track.addEventListener('transitionend', this.handleTransitionEnd);
+        this.updateMetrics();
+        this.virtualIndex = this.indexOffset + this.currentIndex;
+        this.applyTransformForVirtual(false);
+        this.startAutoplay();
+        this.prevBtn?.removeAttribute('disabled');
+        this.nextBtn?.removeAttribute('disabled');
+        this.toggleBtn?.setAttribute('aria-pressed', String(this.autoplayEnabled));
+        const icon = this.toggleBtn?.querySelector('.icon--toggle');
+        icon?.setAttribute('data-state', this.autoplayEnabled ? 'playing' : 'paused');
+      }
+
+      disableSlider(){
+        if(!this.isEnabled){
+          this.root.classList.add('is-slider-disabled');
+          this.root.classList.remove('is-slider-enabled');
+          return;
+        }
+        this.isEnabled = false;
+        this.track.removeEventListener('transitionend', this.handleTransitionEnd);
+        this.stopAutoplay();
+        this.track.style.transition = '';
+        this.track.style.transform = '';
+        this.root.classList.add('is-slider-disabled');
+        this.root.classList.remove('is-slider-enabled');
+        this.prevBtn?.setAttribute('disabled','true');
+        this.nextBtn?.setAttribute('disabled','true');
+        this.dots.forEach(dot => dot.classList.remove('is-active'));
+        this.toggleBtn?.setAttribute('aria-pressed','false');
+        const icon = this.toggleBtn?.querySelector('.icon--toggle');
+        icon?.setAttribute('data-state','paused');
+      }
+
+      handleViewportResize(){
+        if(!this.isEnabled) return;
+        this.updateMetrics();
+        this.applyTransformForVirtual(false);
+      }
+
+      updateMetrics(){
+        if(!this.slides.length) return;
+        const referenceSlide = this.slides[this.indexOffset];
+        if(!referenceSlide) return;
+        const slideRect = referenceSlide.getBoundingClientRect();
+        const trackStyles = getComputedStyle(this.track);
+        const viewportStyles = getComputedStyle(this.viewport);
+        const gapValue = parseFloat(trackStyles.columnGap || trackStyles.gap || '0') || 0;
+        const paddingLeft = parseFloat(viewportStyles.paddingLeft || '0');
+        const paddingRight = parseFloat(viewportStyles.paddingRight || '0');
+        const viewportWidth = this.viewport.getBoundingClientRect().width;
+        const totalWidth = paddingLeft + paddingRight + (slideRect.width + gapValue) * this.slides.length - gapValue;
+        this.metrics = {
+          slideWidth:slideRect.width,
+          gap:gapValue,
+          paddingLeft,
+          paddingRight,
+          viewportWidth,
+          totalWidth
+        };
+      }
+
+      moveBy(delta, animate = true){
+        if(!this.isEnabled || delta === 0) return;
+        this.virtualIndex += delta;
+        this.currentIndex = ((this.currentIndex + delta) % this.logicalCount + this.logicalCount) % this.logicalCount;
+        this.applyTransformForVirtual(animate);
+        this.updateDots(this.currentIndex);
+        this.shouldSnap = this.virtualIndex < this.safeStart || this.virtualIndex > this.safeEnd;
+      }
+
+      goToLogical(targetIndex){
+        if(!this.isEnabled) return;
+        const normalized = ((targetIndex % this.logicalCount) + this.logicalCount) % this.logicalCount;
+        let delta = normalized - this.currentIndex;
+        const altDelta = delta > 0 ? delta - this.logicalCount : delta + this.logicalCount;
+        if(Math.abs(altDelta) < Math.abs(delta)){
+          delta = altDelta;
+        }
+        this.moveBy(delta);
+      }
+
+      applyTransformForVirtual(animate){
+        const { slideWidth, gap, paddingLeft, viewportWidth, totalWidth } = this.metrics;
+        const slideLeft = paddingLeft + this.virtualIndex * (slideWidth + gap);
+        const targetCenter = slideLeft + slideWidth / 2;
+        const offset = targetCenter - viewportWidth / 2;
+        const baseShift = viewportWidth > totalWidth ? -(viewportWidth - totalWidth)/2 : 0;
+        this.setTransform(offset + baseShift, animate);
+      }
+
+      setTransform(offset, animate){
+        if(!this.track) return;
+        if(!animate){
+          this.track.style.transition = 'none';
+          requestAnimationFrame(()=>{
+            this.track.style.transform = `translateX(${-offset}px)`;
+            requestAnimationFrame(()=> this.track.style.transition = '');
+          });
+        }else{
+          this.track.style.transform = `translateX(${-offset}px)`;
+        }
+      }
+
+      handleTransitionEnd(){
+        if(!this.shouldSnap) return;
+        while(this.virtualIndex > this.safeEnd){
+          this.virtualIndex -= this.logicalCount;
+        }
+        while(this.virtualIndex < this.safeStart){
+          this.virtualIndex += this.logicalCount;
+        }
+        this.shouldSnap = false;
+        this.applyTransformForVirtual(false);
+      }
+
+      updateDots(activeIndex){
+        this.dots.forEach((dot,index)=>{
+          dot.classList.toggle('is-active', index === activeIndex);
+        });
+      }
+
+      startAutoplay(){
+        if(!this.autoplayEnabled || !this.isEnabled || this.logicalCount < 2) return;
+        this.stopAutoplay();
+        this.timer = window.setInterval(()=> this.moveBy(1), this.autoplayDelay);
+      }
+
+      stopAutoplay(){
+        if(this.timer){
+          clearInterval(this.timer);
+          this.timer = null;
+        }
+      }
+
+      resetAutoplay(){
+        if(!this.autoplayEnabled) return;
+        this.stopAutoplay();
+        this.startAutoplay();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', ()=>{
+      document.querySelectorAll('.member-slider').forEach(sliderEl => new MemberSlider(sliderEl));
+    });
+  </script></script>
+</body>
+</html>
