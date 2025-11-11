@@ -285,7 +285,7 @@
         <div class="member-slider__track">
           <article class="member-card">
             <figure class="member-card__figure">
-              <img src="images/figma-slider/slide-01.png" alt="秘空木礼">
+              <img src="images/character_thumbnail/Thumbnail_01_Elaine.png" alt="秘空木礼">
             </figure>
             <div class="member-card__meta">
               <p class="name-vertical">秘空木礼</p>
@@ -296,7 +296,7 @@
 
           <article class="member-card">
             <figure class="member-card__figure">
-              <img src="images/figma-slider/slide-02.png" alt="高階蘭士">
+              <img src="images/character_thumbnail/Thumbnail_02.png" alt="高階蘭士">
             </figure>
             <div class="member-card__meta">
               <p class="name-vertical">高階蘭士</p>
@@ -307,7 +307,7 @@
 
           <article class="member-card">
             <figure class="member-card__figure">
-              <img src="images/figma-slider/slide-03.png" alt="妃崎余花">
+              <img src="images/character_thumbnail/Thumbnail_03_mary.png" alt="妃崎余花">
             </figure>
             <div class="member-card__meta">
               <p class="name-vertical">妃崎余花</p>
@@ -318,7 +318,7 @@
 
           <article class="member-card">
             <figure class="member-card__figure">
-              <img src="images/figma-slider/slide-04.png" alt="雨鬼籠">
+              <img src="https://placehold.co/420x420/EEE6E2/3C32BE?text=Coming+Soon" alt="雨鬼籠">
             </figure>
             <div class="member-card__meta">
               <p class="name-vertical">雨鬼籠</p>
@@ -329,7 +329,7 @@
 
           <article class="member-card">
             <figure class="member-card__figure">
-              <img src="images/figma-slider/slide-05.png" alt="菊秋明">
+              <img src="https://placehold.co/420x420/EEE6E2/3C32BE?text=Coming+Soon" alt="菊秋明">
             </figure>
             <div class="member-card__meta">
               <p class="name-vertical">菊秋明</p>
@@ -375,12 +375,9 @@
         this.originalSlides = Array.from(this.track?.querySelectorAll('.member-card') || []);
         this.logicalCount = this.originalSlides.length;
         this.slides = [];
-        this.indexOffset = 0;
-        this.virtualIndex = 0;
-        this.safeStart = 0;
-        this.safeEnd = 0;
-        this.shouldSnap = false;
+        this.indexOffset = 1; // number of leading clones
         this.currentIndex = 0;
+        this.pendingLogical = null;
         this.timer = null;
         this.autoplayDelay = 5200;
         this.autoplayEnabled = root?.dataset.autoplay !== 'false';
@@ -401,7 +398,7 @@
 
       init(){
         if(!this.track || !this.viewport || this.logicalCount === 0) return;
-        this.setupInfiniteTrack();
+        this.setupClones();
         this.bindControls();
         window.addEventListener('resize', this.handleResize);
         this.resizeObserver = new ResizeObserver(this.handleViewportResize);
@@ -411,38 +408,28 @@
         this.handleResize();
       }
 
-      setupInfiniteTrack(){
+      setupClones(){
         if(this.logicalCount === 0) return;
-        const beforeFrag = document.createDocumentFragment();
-        const afterFrag = document.createDocumentFragment();
-        this.originalSlides.slice().reverse().forEach(slide=>{
-          const clone = slide.cloneNode(true);
+        const first = this.originalSlides[0];
+        const last = this.originalSlides[this.logicalCount - 1];
+        const firstClone = first.cloneNode(true);
+        const lastClone = last.cloneNode(true);
+        [firstClone, lastClone].forEach(clone => {
           clone.classList.add('member-card--clone');
           clone.setAttribute('aria-hidden','true');
-          beforeFrag.appendChild(clone);
         });
-        this.originalSlides.forEach(slide=>{
-          const clone = slide.cloneNode(true);
-          clone.classList.add('member-card--clone');
-          clone.setAttribute('aria-hidden','true');
-          afterFrag.appendChild(clone);
-        });
-        this.track.insertBefore(beforeFrag, this.originalSlides[0]);
-        this.track.appendChild(afterFrag);
+        this.track.appendChild(firstClone);
+        this.track.insertBefore(lastClone, first);
         this.slides = Array.from(this.track.children);
-        this.indexOffset = this.logicalCount;
-        this.safeStart = this.logicalCount;
-        this.safeEnd = this.logicalCount * 2 - 1;
-        this.virtualIndex = this.indexOffset;
       }
 
       bindControls(){
         this.prevBtn?.addEventListener('click', ()=>{
-          this.moveBy(-1);
+          this.goToLogical(this.currentIndex - 1);
           this.resetAutoplay();
         });
         this.nextBtn?.addEventListener('click', ()=>{
-          this.moveBy(1);
+          this.goToLogical(this.currentIndex + 1);
           this.resetAutoplay();
         });
         this.toggleBtn?.addEventListener('click', ()=>{
@@ -483,8 +470,7 @@
         this.root.classList.remove('is-slider-disabled');
         this.track.addEventListener('transitionend', this.handleTransitionEnd);
         this.updateMetrics();
-        this.virtualIndex = this.indexOffset + this.currentIndex;
-        this.applyTransformForVirtual(false);
+        this.jumpToLogical(this.currentIndex, false);
         this.startAutoplay();
         this.prevBtn?.removeAttribute('disabled');
         this.nextBtn?.removeAttribute('disabled');
@@ -517,13 +503,12 @@
       handleViewportResize(){
         if(!this.isEnabled) return;
         this.updateMetrics();
-        this.applyTransformForVirtual(false);
+        this.jumpToLogical(this.currentIndex, false);
       }
 
       updateMetrics(){
         if(!this.slides.length) return;
         const referenceSlide = this.slides[this.indexOffset];
-        if(!referenceSlide) return;
         const slideRect = referenceSlide.getBoundingClientRect();
         const trackStyles = getComputedStyle(this.track);
         const viewportStyles = getComputedStyle(this.viewport);
@@ -542,33 +527,41 @@
         };
       }
 
-      moveBy(delta, animate = true){
-        if(!this.isEnabled || delta === 0) return;
-        this.virtualIndex += delta;
-        this.currentIndex = ((this.currentIndex + delta) % this.logicalCount + this.logicalCount) % this.logicalCount;
-        this.applyTransformForVirtual(animate);
-        this.updateDots(this.currentIndex);
-        this.shouldSnap = this.virtualIndex < this.safeStart || this.virtualIndex > this.safeEnd;
-      }
-
       goToLogical(targetIndex){
         if(!this.isEnabled) return;
-        const normalized = ((targetIndex % this.logicalCount) + this.logicalCount) % this.logicalCount;
-        let delta = normalized - this.currentIndex;
-        const altDelta = delta > 0 ? delta - this.logicalCount : delta + this.logicalCount;
-        if(Math.abs(altDelta) < Math.abs(delta)){
-          delta = altDelta;
+        if(targetIndex < 0){
+          this.pendingLogical = this.logicalCount - 1;
+          this.jumpToActual(0, true);
+          return;
         }
-        this.moveBy(delta);
+        if(targetIndex >= this.logicalCount){
+          this.pendingLogical = 0;
+          this.jumpToActual(this.logicalCount + this.indexOffset, true);
+          return;
+        }
+        this.pendingLogical = null;
+        this.currentIndex = targetIndex;
+        this.jumpToActual(targetIndex + this.indexOffset, true);
       }
 
-      applyTransformForVirtual(animate){
+      jumpToLogical(logicalIndex, animate){
+        this.currentIndex = ((logicalIndex % this.logicalCount)+this.logicalCount)%this.logicalCount;
+        this.pendingLogical = null;
+        this.jumpToActual(this.currentIndex + this.indexOffset, animate);
+      }
+
+      jumpToActual(actualIndex, animate){
+        const offset = this.offsetFor(actualIndex);
+        this.setTransform(offset, animate);
+        this.updateDots(this.currentIndex);
+      }
+
+      offsetFor(actualIndex){
         const { slideWidth, gap, paddingLeft, viewportWidth, totalWidth } = this.metrics;
-        const slideLeft = paddingLeft + this.virtualIndex * (slideWidth + gap);
+        const slideLeft = paddingLeft + actualIndex * (slideWidth + gap);
         const targetCenter = slideLeft + slideWidth / 2;
-        const offset = targetCenter - viewportWidth / 2;
         const baseShift = viewportWidth > totalWidth ? -(viewportWidth - totalWidth)/2 : 0;
-        this.setTransform(offset + baseShift, animate);
+        return targetCenter - viewportWidth / 2 + baseShift;
       }
 
       setTransform(offset, animate){
@@ -585,15 +578,8 @@
       }
 
       handleTransitionEnd(){
-        if(!this.shouldSnap) return;
-        while(this.virtualIndex > this.safeEnd){
-          this.virtualIndex -= this.logicalCount;
-        }
-        while(this.virtualIndex < this.safeStart){
-          this.virtualIndex += this.logicalCount;
-        }
-        this.shouldSnap = false;
-        this.applyTransformForVirtual(false);
+        if(this.pendingLogical === null) return;
+        this.jumpToLogical(this.pendingLogical, false);
       }
 
       updateDots(activeIndex){
@@ -605,7 +591,7 @@
       startAutoplay(){
         if(!this.autoplayEnabled || !this.isEnabled || this.logicalCount < 2) return;
         this.stopAutoplay();
-        this.timer = window.setInterval(()=> this.moveBy(1), this.autoplayDelay);
+        this.timer = window.setInterval(()=> this.goToLogical(this.currentIndex + 1), this.autoplayDelay);
       }
 
       stopAutoplay(){
@@ -625,6 +611,6 @@
     document.addEventListener('DOMContentLoaded', ()=>{
       document.querySelectorAll('.member-slider').forEach(sliderEl => new MemberSlider(sliderEl));
     });
-  </script></script>
+  </script></script></script>
 </body>
 </html>
