@@ -4,109 +4,230 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>かりんのゲームサイト | メインページ</title>
-  <meta name="description" content="ゲームの世界観や最新情報を紹介するメインページです。">
+  <meta name="description" content="暴力と耽美が交差する Karin Project の公式メインページです。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="brand">
-      <span class="brand__logo" aria-hidden="true">K</span>
-      <div>
-        <p class="brand__eyebrow">Karin Project</p>
-        <p class="brand__title">かりんのゲームサイト</p>
-      </div>
-    </div>
-    <nav class="main-nav" aria-label="主要ナビゲーション">
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-list">MENU</button>
-      <ul id="nav-list" class="main-nav__list">
-        <li><a href="#hero">トップ</a></li>
-        <li><a href="#features">特徴</a></li>
-        <li><a href="#gallery-preview">ギャラリー</a></li>
-        <li><a href="#newsletter">ニュース</a></li>
-      </ul>
-    </nav>
-  </header>
+  <div class="page-container">
+    <header class="site-header" aria-label="グローバルヘッダー">
+      <a class="brand" href="index.html" aria-label="トップページへ戻る">
+        <img class="brand__logo" src="images/logo/Logo.png" alt="Karin Project ロゴ">
+      </a>
+      <button class="hamburger" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="ナビゲーションを開閉する">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="site-nav" class="main-nav" aria-hidden="true">
+        <a href="#story">Story</a>
+        <a href="#character">Character</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#news">News</a>
+        <a href="pages/special.html">Special</a>
+        <a href="pages/download.html">Download</a>
+        <a href="pages/spec.html">Spec</a>
+      </nav>
+    </header>
 
-  <main>
-    <section id="hero" class="hero">
-      <div class="hero__content">
-        <p class="hero__eyebrow">18+ Visual Novel</p>
-        <h1>傷跡に咲く悦びを、<br>あなたの手で確かめて。</h1>
-        <p>暴力と耽美が交差する「Marginalia」。プレイヤーの選択がキャラクターの運命を変え、残酷な快楽を描き出します。</p>
-        <div class="hero__actions">
-          <a class="btn primary" href="#gallery-preview">ギャラリーを見る</a>
-          <a class="btn ghost" href="pages/news.html">ニュースへ</a>
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero__media" aria-hidden="true">
+          <picture class="hero__picture">
+            <source srcset="images/eyecatch/eyecatch_sp.jpg" media="(max-width: 767px)">
+            <img src="images/eyecatch/eyecatch_pc.jpg" alt="" class="hero__image" loading="eager" decoding="async">
+          </picture>
         </div>
-      </div>
-      <figure class="hero__visual">
-        <img src="images/gallery/scene_mary_smile.jpg" alt="微笑みながらこちらを見つめるキャラクターのCG">
-        <figcaption>Illustration © Karin Project</figcaption>
-      </figure>
-    </section>
+      </section>
 
-    <section id="features" class="features">
-      <h2>世界観のキーポイント</h2>
-      <div class="features__grid">
-        <article>
-          <h3>閉鎖施設の謎</h3>
-          <p>失踪した姉を捜索する主人公が辿り着いたのは、拷問研究を装った巨大な研究塔。</p>
-        </article>
-        <article>
-          <h3>痛覚実験</h3>
-          <p>各キャラクターは異なる耐性を持ち、プレイヤーの選択で快楽か破滅かが決まる。</p>
-        </article>
-        <article>
-          <h3>マルチエンディング</h3>
-          <p>感情値と記録データによって分岐。真実エンドに到達するには冷酷な判断が必要。</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="gallery-preview" class="gallery-preview">
-      <header>
-        <p class="eyebrow">Preview</p>
-        <h2>ギャラリー先行公開</h2>
-      </header>
-      <div class="gallery-preview__grid">
-        <figure>
-          <img src="images/gallery/scene_caning.jpg" alt="鞭打ちを受けるキャラクター">
-          <figcaption>耐えることが新たな悦びに</figcaption>
-        </figure>
-        <figure>
-          <img src="images/gallery/scene_tits.jpg" alt="拘束されたキャラクターの胸元">
-          <figcaption>冷たい金属と熱い吐息</figcaption>
-        </figure>
-        <figure>
-          <img src="images/gallery/scene_orgy.jpg" alt="複数キャラクターの儀式的なシーン">
-          <figcaption>儀式は狂気と快楽の境界線</figcaption>
-        </figure>
-      </div>
-      <p class="gallery-preview__cta">
-        <a class="btn primary" href="pages/gallery.html">フルギャラリーを開く</a>
-      </p>
-    </section>
-
-    <section id="newsletter" class="newsletter">
-      <div>
-        <p class="eyebrow">News</p>
-        <h2>発売通知を受け取る</h2>
-        <p>発売日、体験版、限定特典などの情報をメールで受け取れます。</p>
-      </div>
-      <form class="newsletter__form">
-        <label for="newsletter-email">メールアドレス</label>
-        <div class="newsletter__controls">
-          <input id="newsletter-email" type="email" name="email" placeholder="your.name@example.com" required>
-          <button type="submit" class="btn primary">登録する</button>
+      <section id="story" class="section story" aria-labelledby="story-title">
+        <div class="section__inner">
+          <p class="eyebrow center" id="story-title">Story</p>
+          <h2>罪と信仰の狭間で</h2>
+          <div class="story__text">
+            <p>長い宗教戦争が続く時代――新人神父モンテファルコは、悪魔憑きの噂が絶えない女子修道院に赴任する。前任の神父は修道女たちに告発され、魔術師として火刑に処されていた。</p>
+            <p>典礼と告解を重ねるうち、修道院長マリィをはじめ、修道女たちの奇行と狂気が浮かび上がる。街では不合理な魔女裁判が続き、女たちが拷問され、正義の名のもとに焼かれていく。</p>
+            <p>信仰と疑念、善と悪の境界が崩れゆくなか、モンテファルコは残酷な儀式と甘美な悦びに飲み込まれていく。</p>
+          </div>
         </div>
-      </form>
-    </section>
-  </main>
+      </section>
 
-  <footer class="site-footer">
-    <p>© 2025 Karin Project. All rights reserved.</p>
-    <a href="mailto:info@example.com">お問い合わせ</a>
-  </footer>
+      <section id="character" class="section character" aria-labelledby="character-title">
+        <div class="section__inner">
+          <p class="eyebrow" id="character-title">MEMBER</p>
+          <h2>キャラクター紹介</h2>
+        </div>
+        <div class="member-slider" data-autoplay="true">
+          <div class="member-slider__viewport">
+            <div class="member-slider__track">
+              <article class="member-card">
+                <figure class="member-card__figure">
+                  <img src="images/character_thumbnail/Thumbnail_03_mary.png" alt="マリィ">
+                </figure>
+                <div class="member-card__meta">
+                  <p class="name-vertical">マリィ</p>
+                  <p class="role-vertical">&nbsp;</p>
+                </div>
+                <p class="member-card__desc">女子修道院の修道委員長を務める信仰深い修道女。集団悪魔憑きの中心人物。</p>
+              </article>
 
+              <article class="member-card">
+                <figure class="member-card__figure">
+                  <img src="images/character_thumbnail/Thumbnail_01_Elaine.png" alt="イレーヌ">
+                </figure>
+                <div class="member-card__meta">
+                  <p class="name-vertical">イレーヌ</p>
+                  <p class="role-vertical">&nbsp;</p>
+                </div>
+                <p class="member-card__desc">村の山奥で娘クリスタと暮らす美しい女性。洋裁の仕事をしながら家事をしている。</p>
+              </article>
+
+              <article class="member-card">
+                <figure class="member-card__figure">
+                  <img src="images/character_thumbnail/Thumbnail_02_Christa.png" alt="クリスタ">
+                </figure>
+                <div class="member-card__meta">
+                  <p class="name-vertical">クリスタ</p>
+                  <p class="role-vertical">&nbsp;</p>
+                </div>
+                <p class="member-card__desc">雑用係の見習い修道女。元々マリィの侍女であり、常にそばで付き従っている。</p>
+              </article>
+
+              <article class="member-card">
+                <figure class="member-card__figure">
+                  <img src="images/character_thumbnail/Thumbnail_04_Pauline.png" alt="ポーリン">
+                </figure>
+                <div class="member-card__meta">
+                  <p class="name-vertical">ポーリン</p>
+                  <p class="role-vertical">&nbsp;</p>
+                </div>
+                <p class="member-card__desc">雑用係の見習い修道女。元々マリィの侍女であり、常にそばで付き従っている。</p>
+              </article>
+
+              <article class="member-card">
+                <figure class="member-card__figure">
+                  <img src="images/character_thumbnail/Thumbnail_05_InquisitorGeese.png" alt="Coming soon...">
+                </figure>
+                <div class="member-card__meta">
+                  <p class="name-vertical">Coming soon...</p>
+                  <p class="role-vertical">&nbsp;</p>
+                </div>
+                <p class="member-card__desc">Coming soon...</p>
+              </article>
+
+              <article class="member-card">
+                <figure class="member-card__figure">
+                  <img src="images/character_thumbnail/Thumbnail_06_bishop.png" alt="Coming soon...">
+                </figure>
+                <div class="member-card__meta">
+                  <p class="name-vertical">Coming soon...</p>
+                  <p class="role-vertical">&nbsp;</p>
+                </div>
+                <p class="member-card__desc">Coming soon...</p>
+              </article>
+
+              <article class="member-card">
+                <figure class="member-card__figure">
+                  <img src="images/character_thumbnail/Thumbnail_07.png" alt="Coming soon...">
+                </figure>
+                <div class="member-card__meta">
+                  <p class="name-vertical">Coming soon...</p>
+                  <p class="role-vertical">&nbsp;</p>
+                </div>
+                <p class="member-card__desc">Coming soon...</p>
+              </article>
+            </div>
+          </div>
+
+          <div class="member-slider__controls">
+            <button class="member-slider__control" type="button" data-action="prev" aria-label="前のメンバー">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button class="member-slider__control" type="button" data-action="next" aria-label="次のメンバー">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+
+          <div class="member-slider__dots" role="tablist" aria-label="メンバースライダーインジケーター">
+            <button class="member-slider__dot is-active" type="button" aria-label="1枚目"></button>
+            <button class="member-slider__dot" type="button" aria-label="2枚目"></button>
+            <button class="member-slider__dot" type="button" aria-label="3枚目"></button>
+            <button class="member-slider__dot" type="button" aria-label="4枚目"></button>
+            <button class="member-slider__dot" type="button" aria-label="5枚目"></button>
+          </div>
+        </div>
+      </section>
+
+      <section id="gallery" class="section gallery" aria-labelledby="gallery-title">
+        <div class="section__inner">
+          <p class="eyebrow">Gallery</p>
+          <h2 id="gallery-title">禁断の瞬間を垣間見る。</h2>
+          <div class="gallery__grid">
+            <figure>
+              <img src="images/gallery/scene_blowjob.jpg" alt="密やかな儀式のワンシーン">
+              <figcaption>囁きは甘美な戒律。</figcaption>
+            </figure>
+            <figure>
+              <img src="images/gallery/scene_caning.jpg" alt="鞭の軌跡が描く軌道">
+              <figcaption>疼く傷は忠誠の証。</figcaption>
+            </figure>
+            <figure>
+              <img src="images/gallery/scene_daily.jpg" alt="静謐な日常の一幕">
+              <figcaption>嵐の前の安息。</figcaption>
+            </figure>
+          </div>
+          <div class="section__action">
+            <a class="btn cta" href="pages/gallery.html">More</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="news" class="section news" aria-labelledby="news-title">
+        <div class="section__inner">
+          <p class="eyebrow">News</p>
+          <h2 id="news-title">最新情報</h2>
+          <ul class="news__list">
+            <li>
+              <a href="pages/news/article-001.html">
+                <time datetime="2025-11-08">2025.11.08</time>
+                <span>オープニングアニメーション実装完了</span>
+              </a>
+            </li>
+            <li>
+              <a href="pages/news/article-002.html">
+                <time datetime="2025-11-07">2025.11.07</time>
+                <span>キャラクターページ更新</span>
+              </a>
+            </li>
+            <li>
+              <a href="pages/news/article-003.html">
+                <time datetime="2025-11-06">2025.11.06</time>
+                <span>ギャラリー画像追加</span>
+              </a>
+            </li>
+          </ul>
+          <div class="section__action">
+            <a class="btn cta" href="pages/news.html">More News</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© 2025 Karin Project. All Rights Reserved.</p>
+      <nav aria-label="フッターナビゲーション">
+        <a href="pages/spec.html">Spec</a>
+        <a href="pages/download.html">Download</a>
+        <a href="pages/special.html">Special</a>
+      </nav>
+    </footer>
+  </div>
+
+  <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js" defer></script>
   <script src="js/main.js" defer></script>
 </body>
 </html>
