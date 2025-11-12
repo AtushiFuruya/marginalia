@@ -1,0 +1,13 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-11-12T00:51:18Z",
+  "utilities": [
+    {
+      "id": "prefers-reduced-motion",
+      "description": "Utility helper to short circuit animations when reduced motion is requested.",
+      "language": "js",
+      "code": "export const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;\n",
+      "notes": "Import into any animation module before triggering long-running timelines."
+    }
+  ]
+}

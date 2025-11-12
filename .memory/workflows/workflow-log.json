@@ -1,0 +1,17 @@
+{
+  "version": "1.0.0",
+  "autoCapture": true,
+  "sources": [
+    "reference/issues.md",
+    "reference/production-docs/implementation-plan.md",
+    "reference/changes-log.md"
+  ],
+  "entries": [
+    {
+      "id": "wf-2025-11-12-01",
+      "timestamp": "2025-11-12T00:51:18Z",
+      "summary": "OpenMemory再設定 (新APIキー登録 + 自動保存設定更新)",
+      "status": "in-progress"
+    }
+  ]
+}

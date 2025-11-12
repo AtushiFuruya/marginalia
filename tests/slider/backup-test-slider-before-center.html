@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Boys be Maid Member Slider Test</title>
+  <style>
+    *,*::before,*::after{
+      box-sizing:border-box;
+    }
+    :root{
+      color-scheme:light;
+      --ink:#180c26;
+      --lavender:#3c32be;
+      --lavender-dark:#1f1475;
+      --cream:#f6f2ea;
+      --beige:#ece6dc;
+      --shadow:0 30px 70px rgba(18,8,32,0.15);
+      --card-width:420px;
+      --card-gap:80px;
+    }
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:'Noto Serif JP','Hiragino Mincho ProN',serif;
+      background:linear-gradient(180deg,#faf8f5 0%,#efe9e0 100%);
+      color:var(--ink);
+    }
+    .member{
+      padding:6rem clamp(1.5rem,5vw,4rem) 5rem;
+    }
+    .member__inner{
+      max-width:1180px;
+      margin:0 auto 4rem;
+      text-align:center;
+    }
+    .member__eyebrow{
+      font-size:0.9rem;
+      letter-spacing:0.3em;
+      color:var(--lavender);
+      text-transform:uppercase;
+      margin-bottom:0.75rem;
+    }
+    .member__title{
+      font-size:clamp(2rem,5vw,3.6rem);
+      letter-spacing:0.08em;
+      margin:0 0 1.25rem;
+    }
+    .member__lead{
+      margin:0 auto;
+      max-width:720px;
+      line-height:1.9;
+      color:#4b3f53;
+    }
+    .member-slider{
+      position:relative;
+      margin:0 auto;
+      width:100%;
+    }
+    .member-slider__viewport{
+      position:relative;
+      overflow:hidden;
+      padding:1rem clamp(2rem,(100% - var(--card-width))/2,12vw);
+    }
+    .member-slider::before,
+    .member-slider::after{
+      content:"";
+      position:absolute;
+      top:0;
+      bottom:0;
+      width:110px;
+      pointer-events:none;
+      z-index:2;
+      background:linear-gradient(90deg,rgba(250,248,245,1),rgba(250,248,245,0));
+      transition:opacity 0.3s ease;
+    }
+    .member-slider::after{
+      right:0;
+      left:auto;
+      transform:scaleX(-1);
+    }
+    .member-slider::before{
+      left:0;
+    }
+    .member-slider.is-slider-disabled::before,
+    .member-slider.is-slider-disabled::after{
+      opacity:0;
+    }
+    .member-slider__track{
+      display:flex;
+      gap:var(--card-gap);
+      transition:transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94);
+      will-change:transform;
+    }
+    .member-card{
+      flex:0 0 var(--card-width);
+      width:var(--card-width);
+      position:relative;
+      padding:0 1.5rem;
+    }
+    .member-card__figure{
+      position:relative;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      aspect-ratio:1/1;
+      border-radius:50%;
+      background:linear-gradient(135deg,#fefbf7,#f0e7e1);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .member-card__figure img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transform:scale(1.02);
+      transition:transform 0.6s ease;
+    }
+    .member-card__meta{
+      margin-top:1.5rem;
+      display:flex;
+      justify-content:center;
+      gap:1rem;
+    }
+    .name-vertical,
+    .role-vertical{
+      writing-mode:vertical-rl;
+      text-orientation:upright;
+      letter-spacing:0.2em;
+      font-size:1rem;
+      color:var(--lavender);
+    }
+    .role-vertical{
+      font-size:0.85rem;
+      opacity:0.8;
+    }
+    .member-card__desc{
+      margin-top:1.5rem;
+      text-align:center;
+      font-size:0.95rem;
+      color:#675d74;
+      line-height:1.8;
+    }
+    .member-slider__controls{
+      margin:3rem auto 0;
+      display:flex;
+      justify-content:center;
+      gap:1.25rem;
+    }
+    .member-slider__control{
+      width:72px;
+      height:72px;
+      border-radius:999px;
+      border:2px solid var(--lavender);
+      background:transparent;
+      color:var(--lavender);
+      cursor:pointer;
+      transition:transform 0.2s ease,background 0.2s ease,color 0.2s ease;
+    }
+    .member-slider__control:focus-visible{
+      outline:3px solid var(--lavender);
+      outline-offset:4px;
+    }
+    .member-slider__control:hover{
+      transform:translateY(-4px);
+      background:var(--lavender);
+      color:#fff;
+    }
+    .member-slider__control[disabled]{
+      opacity:0.35;
+      cursor:not-allowed;
+      transform:none;
+      background:none;
+      color:var(--lavender);
+    }
+    .icon{
+      display:inline-flex;
+      justify-content:center;
+      align-items:center;
+      width:100%;
+      height:100%;
+    }
+    .icon--arrow::before{
+      content:"";
+      width:16px;
+      height:16px;
+      border-top:2px solid currentColor;
+      border-right:2px solid currentColor;
+      transform:rotate(135deg);
+      margin-left:6px;
+    }
+    .icon--arrow.is-next::before{
+      transform:rotate(-45deg);
+      margin-left:-6px;
+    }
+    .icon--toggle{
+      gap:6px;
+    }
+    .icon--toggle span{
+      width:6px;
+      height:18px;
+      border-radius:3px;
+      background:currentColor;
+      display:block;
+      transition:transform 0.2s ease;
+    }
+    .icon--toggle[data-state="paused"] span:first-child{
+      transform:rotate(-45deg);
+      width:0;
+    }
+    .icon--toggle[data-state="paused"] span:last-child{
+      transform:rotate(45deg);
+      width:0;
+    }
+    .member-slider__dots{
+      display:flex;
+      justify-content:center;
+      gap:0.35rem;
+      margin-top:1.5rem;
+    }
+    .member-slider__dot{
+      width:32px;
+      height:4px;
+      border-radius:999px;
+      background:#d7d0c6;
+      transition:background 0.3s ease,width 0.3s ease;
+    }
+    .member-slider__dot.is-active{
+      background:var(--lavender);
+      width:56px;
+    }
+    @media (max-width:1199px){
+      :root{
+        --card-width:360px;
+        --card-gap:64px;
+      }
+    }
+    @media (max-width:991px){
+      :root{
+        --card-width:320px;
+        --card-gap:48px;
+      }
+    }
+    @media (max-width:767px){
+      .member{
+        padding:4rem 1.25rem 3rem;
+      }
+      .member-slider{
+        max-width:640px;
+      }
+      .member-slider__viewport{
+        padding:0;
+        overflow:visible;
+      }
+      .member-slider__track{
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:2rem;
+        transform:none !important;
+      }
+      .member-card{
+        flex:1 1 clamp(220px,46vw,280px);
+        padding:0;
+      }
+      .member-card__figure{
+        box-shadow:0 18px 35px rgba(18,8,32,0.12);
+      }
+      .member-slider__controls,
+      .member-slider__dots{
+        display:none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="member" id="member">
+    <div class="member__inner">
+      <p class="member__eyebrow">MEMBER</p>
+      <h1 class="member__title">彼らの日常を覗き見る。</h1>
+      <p class="member__lead">Boys be Maid のメイドボーイ部に所属する御曹司たち。左右にスライドして彼らの素顔と淡い笑み、そして守りたい誓いを体験してください。</p>
+    </div>
+
+    <div class="member-slider" data-autoplay="true">
+      <div class="member-slider__viewport">
+        <div class="member-slider__track">
+          <article class="member-card">
+            <figure class="member-card__figure">
+              <img src="images/figma-slider/slide-01.png" alt="秘空木礼">
+            </figure>
+            <div class="member-card__meta">
+              <p class="name-vertical">秘空木礼</p>
+              <p class="role-vertical">cv. 前田誠二</p>
+            </div>
+            <p class="member-card__desc">静かな綿密さを秘めた戦術家。透徹した視線の奥に、部の未来を託されている。</p>
+          </article>
+
+          <article class="member-card">
+            <figure class="member-card__figure">
+              <img src="images/figma-slider/slide-02.png" alt="高階蘭士">
+            </figure>
+            <div class="member-card__meta">
+              <p class="name-vertical">高階蘭士</p>
+              <p class="role-vertical">cv. 宮崎雅也</p>
+            </div>
+            <p class="member-card__desc">柔らかな声で励ます癒やし担当。丁寧な振る舞いの裏で誰よりも大胆。</p>
+          </article>
+
+          <article class="member-card">
+            <figure class="member-card__figure">
+              <img src="images/figma-slider/slide-03.png" alt="妃崎余花">
+            </figure>
+            <div class="member-card__meta">
+              <p class="name-vertical">妃崎余花</p>
+              <p class="role-vertical">cv. 秋山諒</p>
+            </div>
+            <p class="member-card__desc">微笑と毒舌を使い分ける策士。見透かされたような色香でチームを翻弄する。</p>
+          </article>
+
+          <article class="member-card">
+            <figure class="member-card__figure">
+              <img src="images/figma-slider/slide-04.png" alt="雨鬼籠">
+            </figure>
+            <div class="member-card__meta">
+              <p class="name-vertical">雨鬼籠</p>
+              <p class="role-vertical">cv. 山本彬</p>
+            </div>
+            <p class="member-card__desc">冷徹な外見に反し、仲間思いの熱量が迸る。武骨な立ち姿が魅力。</p>
+          </article>
+
+          <article class="member-card">
+            <figure class="member-card__figure">
+              <img src="images/figma-slider/slide-05.png" alt="菊秋明">
+            </figure>
+            <div class="member-card__meta">
+              <p class="name-vertical">菊秋明</p>
+              <p class="role-vertical">cv. 山口智広</p>
+            </div>
+            <p class="member-card__desc">華やかな歌声で空気を変える芸術肌。笑顔の陰に秘めた闘志が光る。</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="member-slider__controls">
+        <button class="member-slider__control" type="button" data-action="prev" aria-label="前のメンバー">
+          <span class="icon icon--arrow"></span>
+        </button>
+        <button class="member-slider__control" type="button" data-action="toggle" aria-label="自動再生を切り替え" aria-pressed="true">
+          <span class="icon icon--toggle" data-state="playing"><span></span><span></span></span>
+        </button>
+        <button class="member-slider__control" type="button" data-action="next" aria-label="次のメンバー">
+          <span class="icon icon--arrow is-next"></span>
+        </button>
+      </div>
+
+      <div class="member-slider__dots" role="tablist" aria-label="メンバースライダーインジケーター">
+        <button class="member-slider__dot is-active" type="button" aria-label="1枚目"></button>
+        <button class="member-slider__dot" type="button" aria-label="2枚目"></button>
+        <button class="member-slider__dot" type="button" aria-label="3枚目"></button>
+        <button class="member-slider__dot" type="button" aria-label="4枚目"></button>
+        <button class="member-slider__dot" type="button" aria-label="5枚目"></button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    class MemberSlider{
+      constructor(root){
+        this.root = root;
+        this.viewport = root?.querySelector('.member-slider__viewport');
+        this.track = root?.querySelector('.member-slider__track');
+        this.slides = Array.from(root?.querySelectorAll('.member-card') || []);
+        this.prevBtn = root?.querySelector('[data-action=\"prev\"]');
+        this.nextBtn = root?.querySelector('[data-action=\"next\"]');
+        this.toggleBtn = root?.querySelector('[data-action=\"toggle\"]');
+        this.dots = Array.from(root?.querySelectorAll('.member-slider__dot'));
+        this.currentIndex = 0;
+        this.metrics = { slideWidth:0, gap:0, padding:0, viewportWidth:0, maxOffset:0 };
+        this.autoplayDelay = 4500;
+        this.autoplayEnabled = root?.dataset.autoplay !== 'false';
+        this.timer = null;
+        this.isEnabled = false;
+        this.handleResize = this.handleResize.bind(this);
+        this.init();
+      }
+
+      init(){
+        if(!this.root || this.slides.length === 0) return;
+        this.prevBtn?.addEventListener('click', ()=> this.move(-1));
+        this.nextBtn?.addEventListener('click', ()=> this.move(1));
+        this.toggleBtn?.addEventListener('click', ()=> this.toggleAutoplay());
+        this.dots.forEach((dot,index)=> dot.addEventListener('click', ()=> this.goTo(index)));
+        window.addEventListener('resize', this.handleResize);
+        this.handleResize();
+      }
+
+      isMobile(){
+        return window.matchMedia('(max-width: 767px)').matches;
+      }
+
+      handleResize(){
+        if(this.isMobile()){
+          this.disable();
+        }else{
+          this.enable();
+          this.updateMetrics();
+          this.goTo(this.currentIndex,false);
+        }
+      }
+
+      enable(){
+        if(this.isEnabled) return;
+        this.isEnabled = true;
+        this.root.classList.add('is-slider-enabled');
+        this.root.classList.remove('is-slider-disabled');
+        this.updateMetrics();
+        this.goTo(this.currentIndex,false);
+        this.startAutoplay();
+        this.prevBtn?.removeAttribute('disabled');
+        this.nextBtn?.removeAttribute('disabled');
+        this.toggleBtn?.setAttribute('aria-pressed', String(this.autoplayEnabled));
+        const toggleIcon = this.toggleBtn?.querySelector('.icon--toggle');
+        toggleIcon?.setAttribute('data-state', this.autoplayEnabled ? 'playing' : 'paused');
+      }
+
+      disable(){
+        if(this.isEnabled){
+          this.isEnabled = false;
+          this.stopAutoplay();
+          this.track.style.transition = '';
+          this.track.style.transform = '';
+        }else{
+          this.stopAutoplay();
+        }
+        this.root.classList.add('is-slider-disabled');
+        this.root.classList.remove('is-slider-enabled');
+        this.prevBtn?.setAttribute('disabled','true');
+        this.nextBtn?.setAttribute('disabled','true');
+        this.dots.forEach(dot => dot.classList.remove('is-active'));
+        this.toggleBtn?.setAttribute('aria-pressed','false');
+        const toggleIcon = this.toggleBtn?.querySelector('.icon--toggle');
+        toggleIcon?.setAttribute('data-state','paused');
+      }
+
+      updateMetrics(){
+        if(!this.viewport) return;
+        const slideRect = this.slides[0].getBoundingClientRect();
+        const trackStyles = getComputedStyle(this.track);
+        const viewportStyles = getComputedStyle(this.viewport);
+        const gap = parseFloat(trackStyles.columnGap || trackStyles.gap || '0') || 0;
+        const paddingLeft = parseFloat(viewportStyles.paddingLeft || '0');
+        const paddingRight = parseFloat(viewportStyles.paddingRight || '0');
+        const viewportWidth = this.viewport.getBoundingClientRect().width;
+        const totalWidth = paddingLeft + paddingRight + (slideRect.width * this.slides.length) + gap * (this.slides.length - 1);
+        this.metrics = {
+          slideWidth:slideRect.width,
+          gap,
+          padding:paddingLeft,
+          viewportWidth,
+          maxOffset:Math.max(0,totalWidth - viewportWidth)
+        };
+      }
+
+      move(delta){
+        this.goTo(this.currentIndex + delta);
+        this.resetAutoplay();
+      }
+
+      goTo(index, animate = true){
+        if(!this.isEnabled) return;
+        const count = this.slides.length;
+        if(index < 0) index = count - 1;
+        if(index >= count) index = 0;
+        this.currentIndex = index;
+        const { slideWidth, gap, padding, viewportWidth, maxOffset } = this.metrics;
+        const slideLeft = padding + index * (slideWidth + gap);
+        const targetCenter = slideLeft + slideWidth / 2;
+        const rawOffset = targetCenter - viewportWidth / 2;
+        const clamped = Math.max(0, Math.min(rawOffset, maxOffset));
+        this.applyTransform(clamped, animate);
+        this.updateDots(index);
+      }
+
+      applyTransform(offset, animate){
+        if(!this.track) return;
+        if(!animate){
+          this.track.style.transition = 'none';
+          requestAnimationFrame(()=>{
+            this.track.style.transform = `translateX(${-offset}px)`;
+            requestAnimationFrame(()=> this.track.style.transition = '');
+          });
+        }else{
+          this.track.style.transform = `translateX(${-offset}px)`;
+        }
+      }
+
+      updateDots(activeIndex){
+        this.dots.forEach((dot,index)=>{
+          dot.classList.toggle('is-active', index === activeIndex);
+        });
+      }
+
+      toggleAutoplay(){
+        this.autoplayEnabled = !this.autoplayEnabled;
+        if(this.autoplayEnabled){
+          this.startAutoplay();
+        }else{
+          this.stopAutoplay();
+        }
+        this.toggleBtn?.setAttribute('aria-pressed', String(this.autoplayEnabled));
+        const toggleIcon = this.toggleBtn?.querySelector('.icon--toggle');
+        toggleIcon?.setAttribute('data-state', this.autoplayEnabled ? 'playing' : 'paused');
+      }
+
+      startAutoplay(){
+        if(!this.autoplayEnabled || !this.isEnabled) return;
+        this.stopAutoplay();
+        this.timer = window.setInterval(()=> this.goTo(this.currentIndex + 1), this.autoplayDelay);
+      }
+
+      stopAutoplay(){
+        if(this.timer){
+          clearInterval(this.timer);
+          this.timer = null;
+        }
+      }
+
+      resetAutoplay(){
+        if(!this.autoplayEnabled) return;
+        this.stopAutoplay();
+        this.startAutoplay();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', ()=>{
+      const sliderEl = document.querySelector('.member-slider');
+      if(sliderEl){
+        new MemberSlider(sliderEl);
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-11-08T00:00:00Z",
+  "project": {
+    "name": "Karin_gamesite",
+    "type": "Japanese Adult Game Website",
+    "description": "18禁対象の日本語エロティックゲーム紹介サイト",
+    "genre": "Visual Novel/Erotic Game Website",
+    "theme": "中世ヨーロッパ風、宗教的モチーフ、百合（女性同士の恋愛）",
+    "techStack": [
+      "HTML5",
+      "CSS3",
+      "Vanilla JavaScript (ES6+)"
+    ],
+    "status": "Planning & Documentation Complete",
+    "currentPhase": "Ready for Issue Division & Implementation",
+    "referenceProjectAnalyzed": true
+  },
+  "team": {
+    "developer": "furuyaatsushi"
+  },
+  "goals": [
+    "年齢確認ページの実装",
+    "オープニングアニメーションページの実装",
+    "メインギャラリーページの実装",
+    "ストーリーページの実装",
+    "キャラクターページの実装",
+    "スペシャルコンテンツページの実装"
+  ],
+  "referenceSite": {
+    "title": "真愛の百合は赤く染まる",
+    "url": "http://bug-system.com/product/04_mk/",
+    "analyzed": true,
+    "analysisDate": "2025-11-06"
+  },
+  "designPalette": {
+    "base": "#1A1A1A",
+    "accent": "#8B0000",
+    "secondary": "#D4AF37",
+    "background": "#2C1810",
+    "text": "#F5F5F5"
+  },
+  "fonts": {
+    "serif": "Noto Serif JP",
+    "sansSerif": "Noto Sans JP"
+  }
+}

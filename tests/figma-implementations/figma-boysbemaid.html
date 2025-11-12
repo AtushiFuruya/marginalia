@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOYS be MAID! - Figma Design Implementation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            background-color: #EEE6E2;
+            overflow-x: hidden;
+        }
+
+        /* Main Section - exact dimensions from Figma */
+        .main-section {
+            position: relative;
+            width: 1920px;
+            height: 2181.02px;
+            margin: 0 auto;
+            background-color: #EEE6E2;
+            overflow: hidden;
+        }
+
+        /* Background images layer */
+        .background-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .bg-image-1 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1920px;
+            height: 2181.02px;
+            object-fit: cover;
+            opacity: 1;
+        }
+
+        .bg-image-2 {
+            position: absolute;
+            top: 0.49px;
+            left: 0;
+            width: 1920px;
+            height: 2181.02px;
+            object-fit: cover;
+            opacity: 1;
+        }
+
+        /* Main Visual Container - from Figma node 288:31 */
+        .main-visual-container {
+            position: absolute;
+            top: 110px;
+            left: 320px;
+            width: 1230px;
+            height: 1740px;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .main-visual {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        /* Logo Container - from Figma node 288:32 */
+        .logo-container {
+            position: absolute;
+            top: 2010px;
+            left: 550px;
+            width: 820px;
+            height: 171.02px;
+            z-index: 3;
+        }
+
+        .logo-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Introduction Heading Section - from Figma node 288:33 */
+        .introduction-section {
+            position: absolute;
+            bottom: 441px;
+            left: 0;
+            width: 1920px;
+            z-index: 4;
+        }
+
+        /* Heading Container - from Figma node 288:34 */
+        .heading-container {
+            position: relative;
+            width: 1092.69px;
+            height: 102.81px;
+            margin: 0 auto;
+        }
+
+        .heading-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Decorative Background - from Figma node 288:54 */
+        .decorative-background {
+            position: absolute;
+            bottom: 295px;
+            left: 0;
+            width: 1920px;
+            height: 100px;
+            z-index: 0;
+        }
+
+        .decorative-bg-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Responsive container */
+        @media (max-width: 1920px) {
+            .main-section {
+                transform-origin: top center;
+                transform: scale(calc(100vw / 1920));
+            }
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .main-section {
+                width: 100vw;
+                height: auto;
+                min-height: 100vh;
+            }
+
+            .main-visual-container {
+                width: 80%;
+                height: auto;
+                aspect-ratio: 1230 / 1740;
+                left: 10%;
+                top: 5%;
+            }
+
+            .logo-container {
+                width: 70%;
+                height: auto;
+                left: 15%;
+                top: auto;
+                bottom: 20%;
+            }
+
+            .heading-container {
+                width: 90%;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="main-section">
+        <!-- Background Layer -->
+        <div class="background-layer">
+            <img src="images/figma-boysbemaid/bg-image-1.png" alt="Background 1" class="bg-image-1">
+            <img src="images/figma-boysbemaid/bg-image-2.png" alt="Background 2" class="bg-image-2">
+        </div>
+
+        <!-- Decorative Background Pattern -->
+        <div class="decorative-background">
+            <img src="images/figma-boysbemaid/decorative-bg.png" alt="Decorative Background" class="decorative-bg-image">
+        </div>
+
+        <!-- Main Visual Image -->
+        <div class="main-visual-container">
+            <img src="images/figma-boysbemaid/main-visual.png" alt="BOYS be MAID Main Visual" class="main-visual">
+        </div>
+
+        <!-- Logo -->
+        <div class="logo-container">
+            <img src="images/figma-boysbemaid/logo.png" alt="BOYS be MAID! 〜御曹司メイドボーイ部の日日〜" class="logo-image">
+        </div>
+
+        <!-- Introduction Heading -->
+        <section class="introduction-section">
+            <div class="heading-container">
+                <img src="images/figma-boysbemaid/introduction-heading.png" alt="INTRODUCTION" class="heading-image">
+            </div>
+        </section>
+    </main>
+</body>
+</html>

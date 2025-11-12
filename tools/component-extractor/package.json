@@ -1,0 +1,47 @@
+{
+  "name": "@global/component-extractor",
+  "version": "1.0.0",
+  "description": "Automated component extraction tool using Playwright/Puppeteer + CDP for DOM/CSS/JS analysis",
+  "main": "src/index.js",
+  "bin": {
+    "component-extract": "./bin/component-extract.js"
+  },
+  "scripts": {
+    "extract": "node bin/component-extract.js",
+    "test": "node src/test-extractor.js",
+    "install-global": "npm link",
+    "uninstall-global": "npm unlink -g @global/component-extractor"
+  },
+  "keywords": [
+    "component",
+    "extraction",
+    "cdp",
+    "playwright",
+    "puppeteer",
+    "dom",
+    "css",
+    "javascript",
+    "automation",
+    "web-scraping"
+  ],
+  "author": "Karin_gamesite",
+  "license": "MIT",
+  "dependencies": {
+    "@puppeteer/replay": "^1.0.0",
+    "chalk": "^4.1.2",
+    "commander": "^11.1.0",
+    "ora": "^5.4.1",
+    "playwright": "^1.56.1",
+    "puppeteer": "^21.11.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "local"
+  }
+}

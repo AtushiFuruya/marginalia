@@ -197,7 +197,7 @@ Karin_gamesite/
 OpenMemoryをセットアップしてください
 
 ### [14:35] Claude
-OpenMemoryの設定が完了しました。APIキー: om-7r7v2424hjijeg0j05zftbengq4qo15r
+OpenMemoryの設定が完了しました。APIキー: m0-r0Q6tu9mlIIN2FHseHc3cnZenf4atIJ0ci97WBgZ
 
 ## 重要な決定
 - Vanilla JavaScriptを使用
@@ -255,6 +255,21 @@ node .memory-scripts/save-memory.js --type "project" --data "プロジェクト�
 # OpenMemoryに同期
 node .memory-scripts/sync-openmemory.js --mode "push"
 ```
+
+#### 現在のタスクをOpenMemoryに送る
+```bash
+# TODO & Issueをまとめて同期（dry-runで内容確認可能）
+node .memory-scripts/sync-openmemory.js --source todos,issues --dry-run
+
+# 実際に送信
+OPENMEMORY_API_KEY=xxxxx \
+  node .memory-scripts/sync-openmemory.js --source todos,issues
+```
+- `--source` で入力元を指定（`todos`, `issues`。カンマ区切り指定可）
+- `--limit` で送信件数を制限（例: `--limit 5`）
+- `--dry-run` で送信せずにメモリ化される本文を確認
+- APIキーは環境変数か `.memory-config.json` の `openmemory.apiKey` を利用
+- 成功時は `.memory/sync/sync-log.json` と `last-sync.json` に結果が追記される
 
 ### 検索コマンド
 ```bash

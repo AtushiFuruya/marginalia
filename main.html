@@ -11,190 +11,224 @@
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-  <header class="site-header" aria-label="グローバルヘッダー">
-    <a class="brand" href="index.html" aria-label="トップページへ戻る">
-      <img class="brand__logo" src="images/age-verification/Logo.png" alt="Karin Project ロゴ">
-    </a>
-    <button class="hamburger" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="ナビゲーションを開閉する">
-      <span></span><span></span><span></span>
-    </button>
-    <nav id="site-nav" class="main-nav" aria-hidden="true">
-      <a href="#story">Story</a>
-      <a href="#character">Character</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#news">News</a>
-      <a href="pages/special.html">Special</a>
-      <a href="pages/download.html">Download</a>
-      <a href="pages/spec.html">Spec</a>
-    </nav>
-  </header>
+  <div class="page-container">
+    <header class="site-header" aria-label="グローバルヘッダー">
+      <a class="brand" href="index.html" aria-label="トップページへ戻る">
+        <img class="brand__logo" src="images/logo/Logo.png" alt="Karin Project ロゴ">
+      </a>
+      <button class="hamburger" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="ナビゲーションを開閉する">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="site-nav" class="main-nav" aria-hidden="true">
+        <a href="#story">Story</a>
+        <a href="#character">Character</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#news">News</a>
+        <a href="pages/special.html">Special</a>
+        <a href="pages/download.html">Download</a>
+        <a href="pages/spec.html">Spec</a>
+      </nav>
+    </header>
 
-  <section class="hero" aria-labelledby="hero-title">
-    <div class="hero__overlay"></div>
-    <div class="hero__content">
-      <p class="eyebrow">Marginalia</p>
-      <h1 id="hero-title">その傷は悦楽か、贖罪か。</h1>
-      <p>静寂な大聖堂で繰り広げられる、宗教的モチーフと百合をテーマにした残酷な物語。感情値と記録データが真実を左右します。</p>
-    </div>
-  </section>
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero__media" aria-hidden="true">
+          <picture class="hero__picture">
+            <source srcset="images/eyecatch/eyecatch_sp.jpg" media="(max-width: 767px)">
+            <img src="images/eyecatch/eyecatch_pc.jpg" alt="" class="hero__image" loading="eager" decoding="async">
+          </picture>
+        </div>
+      </section>
 
-  <section id="story" class="section story" aria-labelledby="story-title">
-    <div class="section__inner story__grid">
-      <div class="story__text">
-        <p class="eyebrow">Story</p>
-        <h2 id="story-title">大聖堂に響く祈りは、誰のために。</h2>
-        <p>長い宗教戦争が続く時代――</p>
-        <p>
-          新人神父モンテファルコは、悪魔憑きの噂が絶えない女子修道院に赴任する。前任の神父は修道女たちに告発され、魔術師として火刑に処されていた。モンテファルコは典礼と告解を重ねるうち、修道院長マリィをはじめ、修道女たちの奇行と狂気を目の当たりにしていく。
-        </p>
-        <p>
-          一方、街では不合理な魔女裁判が続き、女たちが拷問され、正義の名のもとに焼かれていく。その光景の中で、モンテファルコは次第に、信仰と疑念、善と悪の境界を見失っていく。
-        </p>
-      </div>
-      <figure class="story__visual">
-        <img src="images/story/background_cathedral01.jpg" alt="薄明かりに包まれた大聖堂の内部風景">
-        <figcaption>Cathedral Laboratory</figcaption>
-      </figure>
-    </div>
-  </section>
+      <section id="story" class="section story" aria-labelledby="story-title">
+        <div class="section__inner">
+          <p class="eyebrow center" id="story-title">Story</p>
+          <h2>罪と信仰の狭間で</h2>
+          <div class="story__text">
+            <p>長い宗教戦争が続く時代――新人神父モンテファルコは、悪魔憑きの噂が絶えない女子修道院に赴任する。前任の神父は修道女たちに告発され、魔術師として火刑に処されていた。</p>
+            <p>典礼と告解を重ねるうち、修道院長マリィをはじめ、修道女たちの奇行と狂気が浮かび上がる。街では不合理な魔女裁判が続き、女たちが拷問され、正義の名のもとに焼かれていく。</p>
+            <p>信仰と疑念、善と悪の境界が崩れゆくなか、モンテファルコは残酷な儀式と甘美な悦びに飲み込まれていく。</p>
+          </div>
+        </div>
+      </section>
 
-  <section id="character" class="section character" aria-labelledby="character-title">
-    <div class="section__inner">
-      <p class="eyebrow">Character</p>
-      <h2 id="character-title">彼女たちの誓いと背徳。</h2>
-      <p class="character__note">背景ステージは 1920×1080px 以上のシネマティックなシーン画像、キャラクターは 900×1200px / 200dpi / 背景透過PNG を推奨しています。</p>
-    </div>
-    <div class="character-slider" data-autoplay="true">
-      <div class="character-slider__track">
-        <article class="character-slide is-active" data-index="0">
-          <a class="character-slide__link" href="pages/characters.html">
-            <div class="character-slide__image">
-              <img src="https://placehold.co/900x1200/5D0C6B/FFFFFF?text=Mary" alt="キャラクター Mary のビジュアル" loading="lazy">
-              <span class="character-slide__placeholder">01</span>
-            </div>
-            <div class="character-slide__meta">
-              <p class="character-slide__name">Mary</p>
-              <p class="character-slide__role">修道院長</p>
-            </div>
-          </a>
-        </article>
-        <article class="character-slide" data-index="1">
-          <a class="character-slide__link" href="pages/characters.html">
-            <div class="character-slide__image">
-              <img src="https://placehold.co/900x1200/800889/FFFFFF?text=Elaine" alt="キャラクター Elaine のビジュアル" loading="lazy">
-              <span class="character-slide__placeholder">02</span>
-            </div>
-            <div class="character-slide__meta">
-              <p class="character-slide__name">Elaine</p>
-              <p class="character-slide__role">審問官</p>
-            </div>
-          </a>
-        </article>
-        <article class="character-slide" data-index="2">
-          <a class="character-slide__link" href="pages/characters.html">
-            <div class="character-slide__image">
-              <img src="https://placehold.co/900x1200/3C044B/FFFFFF?text=Luna" alt="キャラクター Luna のビジュアル" loading="lazy">
-              <span class="character-slide__placeholder">03</span>
-            </div>
-            <div class="character-slide__meta">
-              <p class="character-slide__name">Luna</p>
-              <p class="character-slide__role">儀式筆記者</p>
-            </div>
-          </a>
-        </article>
-        <article class="character-slide" data-index="3">
-          <a class="character-slide__link" href="pages/characters.html">
-            <div class="character-slide__image">
-              <img src="https://placehold.co/900x1200/8B5A5A/FFFFFF?text=Celeste" alt="キャラクター Celeste のビジュアル" loading="lazy">
-              <span class="character-slide__placeholder">04</span>
-            </div>
-            <div class="character-slide__meta">
-              <p class="character-slide__name">Celeste</p>
-              <p class="character-slide__role">星読みの巫女</p>
-            </div>
-          </a>
-        </article>
-      </div>
-      <div class="character-slider__nav" role="tablist">
-        <button class="character-slider__nav__item is-active" type="button" data-slide="0" aria-label="Mary">
-          <span>01</span>
-        </button>
-        <button class="character-slider__nav__item" type="button" data-slide="1" aria-label="Elaine">
-          <span>02</span>
-        </button>
-        <button class="character-slider__nav__item" type="button" data-slide="2" aria-label="Luna">
-          <span>03</span>
-        </button>
-        <button class="character-slider__nav__item" type="button" data-slide="3" aria-label="Celeste">
-          <span>04</span>
-        </button>
-      </div>
-    </div>
-  </section>
+      <section id="character" class="section character" aria-labelledby="character-title">
+        <div class="section__inner">
+          <p class="eyebrow" id="character-title">MEMBER</p>
+          <h2>キャラクター紹介</h2>
+        </div>
+        <div class="member-slider" data-autoplay="true">
+          <div class="member-slider__viewport">
+            <div class="member-slider__track">
+              <article class="member-card">
+                <figure class="member-card__figure">
+                  <img src="images/character_thumbnail/Thumbnail_03_mary.png" alt="マリィ">
+                </figure>
+                <div class="member-card__meta">
+                  <p class="name-vertical">マリィ</p>
+                  <p class="role-vertical">&nbsp;</p>
+                </div>
+                <p class="member-card__desc">女子修道院の修道委員長を務める信仰深い修道女。集団悪魔憑きの中心人物。</p>
+              </article>
 
-  <section id="gallery" class="section gallery" aria-labelledby="gallery-title">
-    <div class="section__inner">
-      <p class="eyebrow">Gallery</p>
-      <h2 id="gallery-title">禁断の瞬間を垣間見る。</h2>
-      <div class="gallery__grid">
-        <figure>
-          <img src="images/gallery/scene_blowjob.jpg" alt="密やかな儀式のワンシーン">
-          <figcaption>囁きは甘美な戒律。</figcaption>
-        </figure>
-        <figure>
-          <img src="images/gallery/scene_caning.jpg" alt="鞭の軌跡が描く軌道">
-          <figcaption>疼く傷は忠誠の証。</figcaption>
-        </figure>
-        <figure>
-          <img src="images/gallery/scene_daily.jpg" alt="静謐な日常の一幕">
-          <figcaption>嵐の前の安息。</figcaption>
-        </figure>
-      </div>
-      <div class="section__action">
-        <a class="btn cta" href="pages/gallery.html">More</a>
-      </div>
-    </div>
-  </section>
+              <article class="member-card">
+                <figure class="member-card__figure">
+                  <img src="images/character_thumbnail/Thumbnail_01_Elaine.png" alt="イレーヌ">
+                </figure>
+                <div class="member-card__meta">
+                  <p class="name-vertical">イレーヌ</p>
+                  <p class="role-vertical">&nbsp;</p>
+                </div>
+                <p class="member-card__desc">村の山奥で娘クリスタと暮らす美しい女性。洋裁の仕事をしながら家事をしている。</p>
+              </article>
 
-  <section id="news" class="section news" aria-labelledby="news-title">
-    <div class="section__inner">
-      <p class="eyebrow">News</p>
-      <h2 id="news-title">最新情報</h2>
-      <ul class="news__list">
-        <li>
-          <a href="pages/news/article-001.html">
-            <time datetime="2025-11-08">2025.11.08</time>
-            <span>オープニングアニメーション実装完了</span>
-          </a>
-        </li>
-        <li>
-          <a href="pages/news/article-002.html">
-            <time datetime="2025-11-07">2025.11.07</time>
-            <span>キャラクターページ更新</span>
-          </a>
-        </li>
-        <li>
-          <a href="pages/news/article-003.html">
-            <time datetime="2025-11-06">2025.11.06</time>
-            <span>ギャラリー画像追加</span>
-          </a>
-        </li>
-      </ul>
-      <div class="section__action">
-        <a class="btn cta" href="pages/news.html">More News</a>
-      </div>
-    </div>
-  </section>
+              <article class="member-card">
+                <figure class="member-card__figure">
+                  <img src="images/character_thumbnail/Thumbnail_02_Christa.png" alt="クリスタ">
+                </figure>
+                <div class="member-card__meta">
+                  <p class="name-vertical">クリスタ</p>
+                  <p class="role-vertical">&nbsp;</p>
+                </div>
+                <p class="member-card__desc">雑用係の見習い修道女。元々マリィの侍女であり、常にそばで付き従っている。</p>
+              </article>
 
-  <footer class="site-footer">
-    <p>© 2025 Karin Project. All Rights Reserved.</p>
-    <nav aria-label="フッターナビゲーション">
-      <a href="pages/spec.html">Spec</a>
-      <a href="pages/download.html">Download</a>
-      <a href="pages/special.html">Special</a>
-    </nav>
-  </footer>
+              <article class="member-card">
+                <figure class="member-card__figure">
+                  <img src="images/character_thumbnail/Thumbnail_04_Pauline.png" alt="ポーリン">
+                </figure>
+                <div class="member-card__meta">
+                  <p class="name-vertical">ポーリン</p>
+                  <p class="role-vertical">&nbsp;</p>
+                </div>
+                <p class="member-card__desc">雑用係の見習い修道女。元々マリィの侍女であり、常にそばで付き従っている。</p>
+              </article>
 
+              <article class="member-card">
+                <figure class="member-card__figure">
+                  <img src="images/character_thumbnail/Thumbnail_05_InquisitorGeese.png" alt="Coming soon...">
+                </figure>
+                <div class="member-card__meta">
+                  <p class="name-vertical">Coming soon...</p>
+                  <p class="role-vertical">&nbsp;</p>
+                </div>
+                <p class="member-card__desc">Coming soon...</p>
+              </article>
+
+              <article class="member-card">
+                <figure class="member-card__figure">
+                  <img src="images/character_thumbnail/Thumbnail_06_bishop.png" alt="Coming soon...">
+                </figure>
+                <div class="member-card__meta">
+                  <p class="name-vertical">Coming soon...</p>
+                  <p class="role-vertical">&nbsp;</p>
+                </div>
+                <p class="member-card__desc">Coming soon...</p>
+              </article>
+
+              <article class="member-card">
+                <figure class="member-card__figure">
+                  <img src="images/character_thumbnail/Thumbnail_07.png" alt="Coming soon...">
+                </figure>
+                <div class="member-card__meta">
+                  <p class="name-vertical">Coming soon...</p>
+                  <p class="role-vertical">&nbsp;</p>
+                </div>
+                <p class="member-card__desc">Coming soon...</p>
+              </article>
+            </div>
+          </div>
+
+          <div class="member-slider__controls">
+            <button class="member-slider__control" type="button" data-action="prev" aria-label="前のメンバー">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button class="member-slider__control" type="button" data-action="next" aria-label="次のメンバー">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+
+          <div class="member-slider__dots" role="tablist" aria-label="メンバースライダーインジケーター">
+            <button class="member-slider__dot is-active" type="button" aria-label="1枚目"></button>
+            <button class="member-slider__dot" type="button" aria-label="2枚目"></button>
+            <button class="member-slider__dot" type="button" aria-label="3枚目"></button>
+            <button class="member-slider__dot" type="button" aria-label="4枚目"></button>
+            <button class="member-slider__dot" type="button" aria-label="5枚目"></button>
+          </div>
+        </div>
+      </section>
+
+      <section id="gallery" class="section gallery" aria-labelledby="gallery-title">
+        <div class="section__inner">
+          <p class="eyebrow">Gallery</p>
+          <h2 id="gallery-title">禁断の瞬間を垣間見る。</h2>
+          <div class="gallery__grid">
+            <figure>
+              <img src="images/gallery/scene_blowjob.jpg" alt="密やかな儀式のワンシーン">
+              <figcaption>囁きは甘美な戒律。</figcaption>
+            </figure>
+            <figure>
+              <img src="images/gallery/scene_caning.jpg" alt="鞭の軌跡が描く軌道">
+              <figcaption>疼く傷は忠誠の証。</figcaption>
+            </figure>
+            <figure>
+              <img src="images/gallery/scene_daily.jpg" alt="静謐な日常の一幕">
+              <figcaption>嵐の前の安息。</figcaption>
+            </figure>
+          </div>
+          <div class="section__action">
+            <a class="btn cta" href="pages/gallery.html">More</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="news" class="section news" aria-labelledby="news-title">
+        <div class="section__inner">
+          <p class="eyebrow">News</p>
+          <h2 id="news-title">最新情報</h2>
+          <ul class="news__list">
+            <li>
+              <a href="pages/news/article-001.html">
+                <time datetime="2025-11-08">2025.11.08</time>
+                <span>オープニングアニメーション実装完了</span>
+              </a>
+            </li>
+            <li>
+              <a href="pages/news/article-002.html">
+                <time datetime="2025-11-07">2025.11.07</time>
+                <span>キャラクターページ更新</span>
+              </a>
+            </li>
+            <li>
+              <a href="pages/news/article-003.html">
+                <time datetime="2025-11-06">2025.11.06</time>
+                <span>ギャラリー画像追加</span>
+              </a>
+            </li>
+          </ul>
+          <div class="section__action">
+            <a class="btn cta" href="pages/news.html">More News</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© 2025 Karin Project. All Rights Reserved.</p>
+      <nav aria-label="フッターナビゲーション">
+        <a href="pages/spec.html">Spec</a>
+        <a href="pages/download.html">Download</a>
+        <a href="pages/special.html">Special</a>
+      </nav>
+    </footer>
+  </div>
+
+  <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js" defer></script>
   <script src="js/main.js" defer></script>
 </body>
 </html>
+<!-- Deploy timestamp: 2025-11-12 21:26:15 -->

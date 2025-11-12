@@ -1,0 +1,15 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-11-12T00:51:18Z",
+  "components": [
+    {
+      "id": "age-gate-button",
+      "name": "Age verification CTA",
+      "tech": "HTML/CSS",
+      "description": "ARIA-aware button markup with focus ring and data-action hooks.",
+      "markup": "<button class=\"cta\" data-action=\"enter\" aria-label=\"サイトへ入場する\">ENTER</button>",
+      "styles": ".cta {\n  letter-spacing: 0.15em;\n  border: 1px solid rgba(255,255,255,.4);\n  background: rgba(0,0,0,.35);\n}\n",
+      "notes": "Use data-action to wire JS handlers in age-verification.js."
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-11-12T00:51:18Z",
+  "style": {
+    "language": "ja-JP",
+    "indent": 2,
+    "semicolons": true,
+    "quotes": "double",
+    "cssUnits": ["rem", "clamp", "dvh"],
+    "accessibilityBaseline": "WCAG 2.1 AA",
+    "notes": "Prefer semantic HTML, minimal utility classes, and explicit aria-* annotations."
+  }
+}

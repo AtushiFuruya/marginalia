@@ -1,0 +1,206 @@
+{
+  "timestamp": "2025-11-09T11:48:06.275Z",
+  "url": "https://boysbemaid.jp/",
+  "measurements": [
+    {
+      "viewport": "Mobile",
+      "width": 375,
+      "height": 667,
+      "data": {
+        "section": {
+          "width": 360,
+          "height": 822,
+          "padding": "0px",
+          "paddingTop": "0px",
+          "paddingBottom": "0px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "maxWidth": "none"
+        },
+        "character": {
+          "link": {
+            "width": 0,
+            "height": 0,
+            "padding": "0px",
+            "margin": "0px",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "transform": "none",
+            "transition": "all"
+          },
+          "imageContainer": {
+            "width": 0,
+            "height": 0,
+            "borderRadius": "0px",
+            "overflow": "visible",
+            "clipPath": "none",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "aspectRatio": "NaN"
+          },
+          "image": {
+            "width": 0,
+            "height": 0,
+            "naturalWidth": 1041,
+            "naturalHeight": 832,
+            "objectFit": "fill",
+            "aspectRatio": "NaN"
+          },
+          "text": null,
+          "totalLinks": 12
+        },
+        "gap": {
+          "horizontalGap": 0,
+          "verticalGap": 0
+        }
+      }
+    },
+    {
+      "viewport": "Tablet",
+      "width": 768,
+      "height": 1024,
+      "data": {
+        "section": {
+          "width": 753,
+          "height": 1406,
+          "padding": "0px",
+          "paddingTop": "0px",
+          "paddingBottom": "0px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "maxWidth": "none"
+        },
+        "character": {
+          "link": {
+            "width": 0,
+            "height": 0,
+            "padding": "0px",
+            "margin": "0px",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "transform": "none",
+            "transition": "all"
+          },
+          "imageContainer": {
+            "width": 0,
+            "height": 0,
+            "borderRadius": "0px",
+            "overflow": "visible",
+            "clipPath": "none",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "aspectRatio": "NaN"
+          },
+          "image": {
+            "width": 0,
+            "height": 0,
+            "naturalWidth": 1041,
+            "naturalHeight": 832,
+            "objectFit": "fill",
+            "aspectRatio": "NaN"
+          },
+          "text": null,
+          "totalLinks": 12
+        },
+        "gap": {
+          "horizontalGap": 0,
+          "verticalGap": 0
+        }
+      }
+    },
+    {
+      "viewport": "Desktop",
+      "width": 1024,
+      "height": 768,
+      "data": {
+        "section": {
+          "width": 1009,
+          "height": 568,
+          "padding": "0px",
+          "paddingTop": "0px",
+          "paddingBottom": "0px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "maxWidth": "none"
+        },
+        "character": {
+          "link": {
+            "width": 192,
+            "height": 19,
+            "padding": "0px",
+            "margin": "0px",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "transform": "none",
+            "transition": "all"
+          },
+          "imageContainer": {
+            "width": 192,
+            "height": 19,
+            "borderRadius": "0px",
+            "overflow": "visible",
+            "clipPath": "none",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "aspectRatio": "10.392"
+          },
+          "image": {
+            "width": 192,
+            "height": 154,
+            "naturalWidth": 1040,
+            "naturalHeight": 832,
+            "objectFit": "fill",
+            "aspectRatio": "1.250"
+          },
+          "text": null,
+          "totalLinks": 12
+        },
+        "gap": {
+          "horizontalGap": 80,
+          "verticalGap": -18
+        }
+      }
+    },
+    {
+      "viewport": "Large",
+      "width": 1440,
+      "height": 900,
+      "data": {
+        "section": {
+          "width": 1425,
+          "height": 722,
+          "padding": "0px",
+          "paddingTop": "0px",
+          "paddingBottom": "0px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "maxWidth": "none"
+        },
+        "character": {
+          "link": {
+            "width": 296,
+            "height": 20,
+            "padding": "0px",
+            "margin": "0px",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "transform": "none",
+            "transition": "all"
+          },
+          "imageContainer": {
+            "width": 296,
+            "height": 20,
+            "borderRadius": "0px",
+            "overflow": "visible",
+            "clipPath": "none",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "aspectRatio": "14.813"
+          },
+          "image": {
+            "width": 296,
+            "height": 237,
+            "naturalWidth": 1040,
+            "naturalHeight": 832,
+            "objectFit": "fill",
+            "aspectRatio": "1.250"
+          },
+          "text": null,
+          "totalLinks": 12
+        },
+        "gap": {
+          "horizontalGap": 80,
+          "verticalGap": -20
+        }
+      }
+    }
+  ]
+}

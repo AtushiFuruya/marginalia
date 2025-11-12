@@ -74,7 +74,7 @@ for memorize context in this conversation history and so on
 ### 9. APIキーを使ったセットアップ
 （推定時刻: 2025-11-06 11:20）
 ```
-npx @openmemory/install --client claude --env OPENMEMORY_API_KEY=om-7r7v2424hjijeg0j05zftbengq4qo15r
+npx @openmemory/install --client claude --env OPENMEMORY_API_KEY=m0-r0Q6tu9mlIIN2FHseHc3cnZenf4atIJ0ci97WBgZ
 ```
 
 ---
