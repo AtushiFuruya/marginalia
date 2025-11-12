@@ -1,0 +1,15 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-11-12T00:51:18Z",
+  "snippets": [
+    {
+      "id": "layout-grid",
+      "title": "Responsive gallery grid",
+      "description": "Base grid used on main galleries with responsive gap scaling via clamp().",
+      "language": "css",
+      "code": ".gallery-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));\n  gap: clamp(1rem, 2.5vw, 2.5rem);\n}\n",
+      "tags": ["layout", "responsive", "gallery"],
+      "usage": "Import into .memory whenever gallery layout tweaks are needed."
+    }
+  ]
+}

@@ -8,7 +8,7 @@
    ```
 
 2. **APIキーの取得完了**
-   - API Key: `om-7r7v2424hjijeg0j05zftbengq4qo15r`
+   - API Key: `m0-r0Q6tu9mlIIN2FHseHc3cnZenf4atIJ0ci97WBgZ`
 
 ---
 
@@ -51,7 +51,7 @@ Claude Desktopの設定ファイルは通常以下の場所にあります：
         "@openmemory/server"
       ],
       "env": {
-        "OPENMEMORY_API_KEY": "om-7r7v2424hjijeg0j05zftbengq4qo15r"
+        "OPENMEMORY_API_KEY": "m0-r0Q6tu9mlIIN2FHseHc3cnZenf4atIJ0ci97WBgZ"
       }
     }
   }
@@ -76,7 +76,7 @@ Claude Desktopの設定ファイルは通常以下の場所にあります：
         "@openmemory/server"
       ],
       "env": {
-        "OPENMEMORY_API_KEY": "om-7r7v2424hjijeg0j05zftbengq4qo15r"
+        "OPENMEMORY_API_KEY": "m0-r0Q6tu9mlIIN2FHseHc3cnZenf4atIJ0ci97WBgZ"
       }
     }
   }
@@ -106,7 +106,7 @@ VSCode拡張機能版のClaude Codeを使用している場合：
       "command": "npx",
       "args": ["-y", "@openmemory/server"],
       "env": {
-        "OPENMEMORY_API_KEY": "om-7r7v2424hjijeg0j05zftbengq4qo15r"
+        "OPENMEMORY_API_KEY": "m0-r0Q6tu9mlIIN2FHseHc3cnZenf4atIJ0ci97WBgZ"
       }
     }
   }
@@ -124,7 +124,7 @@ VSCode拡張機能版のClaude Codeを使用している場合：
       "command": "npx",
       "args": ["-y", "@openmemory/server"],
       "env": {
-        "OPENMEMORY_API_KEY": "om-7r7v2424hjijeg0j05zftbengq4qo15r"
+        "OPENMEMORY_API_KEY": "m0-r0Q6tu9mlIIN2FHseHc3cnZenf4atIJ0ci97WBgZ"
       }
     }
   }

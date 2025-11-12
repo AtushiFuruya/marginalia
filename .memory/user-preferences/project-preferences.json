@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-11-12T00:51:18Z",
+  "project": {
+    "name": "Karin_gamesite",
+    "workflow": "Issues derive from reference/issues.md; always cross-check before coding",
+    "deployment": "Static hosting + WordPress news endpoint",
+    "assets": "High-contrast noir palette, blood-red accents",
+    "testing": "Manual smoke first, Playwright (Issue #010) next"
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-11-08T00:00:00Z",
+  "architecture": {
+    "type": "Multi-Page Application",
+    "pages": 13,
+    "structure": {
+      "entryPoint": "index.html (age verification)",
+      "mainPages": [
+        "opening.html",
+        "main.html",
+        "pages/story.html",
+        "pages/characters.html",
+        "pages/gallery.html",
+        "pages/special.html",
+        "pages/download.html",
+        "pages/spec.html",
+        "pages/news.html"
+      ]
+    },
+    "directories": {
+      "css": "Organized by page/component",
+      "js": "Organized by functionality",
+      "assets": {
+        "images": "Categorized by usage",
+        "videos": "Opening animations",
+        "fonts": "Web fonts"
+      }
+    }
+  },
+  "techStack": {
+    "frontend": {
+      "html": "HTML5 (semantic tags)",
+      "css": "CSS3 (Container Queries, clamp(), dvh)",
+      "javascript": "Vanilla ES6+ (no frameworks)"
+    },
+    "libraries": {
+      "imageModal": "Custom lightbox (no jQuery)",
+      "animations": "CSS Animations + Intersection Observer"
+    },
+    "responsive": {
+      "approach": "2025 standards",
+      "techniques": [
+        "Container Queries (@container)",
+        "Fluid Typography (clamp())",
+        "Dynamic Viewport Units (dvh, lvh, svh)",
+        "CSS Grid + Flexbox",
+        "aspect-ratio property"
+      ],
+      "breakpoints": {
+        "mobile": "< 768px",
+        "tablet": "768px - 1024px",
+        "desktop": "> 1024px"
+      }
+    }
+  },
+  "referenceSiteAnalysis": {
+    "site": "真愛の百合は赤く染まる",
+    "url": "http://bug-system.com/product/04_mk/",
+    "adoptedFeatures": [
+      "Dark theme with gold accents",
+      "Modal image gallery",
+      "Smooth scrolling",
+      "Character switching UI",
+      "Loading screen"
+    ],
+    "improvedFeatures": [
+      "Multi-page instead of SPA (for SEO)",
+      "Vanilla JS instead of jQuery",
+      "Modern responsive design (2025 standards)",
+      "Better accessibility (ARIA attributes)",
+      "Performance optimization (lazy loading, aspect-ratio)"
+    ]
+  },
+  "developmentPhases": [
+    {
+      "phase": 1,
+      "name": "Age Verification Page",
+      "priority": "Critical",
+      "files": ["index.html", "css/age-verification.css", "js/age-verification.js"]
+    },
+    {
+      "phase": 2,
+      "name": "Opening Animation Page",
+      "priority": "High",
+      "files": ["opening.html", "css/opening.css", "js/opening-animation.js"]
+    },
+    {
+      "phase": 3,
+      "name": "Main Gallery Page",
+      "priority": "High",
+      "files": ["main.html", "css/main.css", "js/gallery.js", "js/modal.js"]
+    },
+    {
+      "phase": 4,
+      "name": "Additional Pages",
+      "priority": "Medium",
+      "files": ["pages/*.html", "css/pages/*.css", "js/pages/*.js"]
+    }
+  ],
+  "performance": {
+    "targets": {
+      "fcp": "< 1.8s",
+      "lcp": "< 2.5s",
+      "cls": "< 0.1",
+      "fid": "< 100ms"
+    },
+    "optimization": [
+      "Image lazy loading",
+      "CSS aspect-ratio for CLS prevention",
+      "Preload critical fonts",
+      "Defer non-critical JS",
+      "Optimize image sizes"
+    ]
+  }
+}

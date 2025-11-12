@@ -1,0 +1,112 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-11-08T00:00:00Z",
+  "mvpRequirements": {
+    "pages": [
+      {
+        "name": "Age Verification",
+        "file": "index.html",
+        "purpose": "18歳未満アクセス制限",
+        "features": [
+          "年齢確認ボタン（はい/いいえ）",
+          "警告メッセージ表示",
+          "Cookie保存（7日間有効）",
+          "ロゴ表示"
+        ],
+        "priority": "Critical"
+      },
+      {
+        "name": "Opening Animation",
+        "file": "opening.html",
+        "purpose": "オープニング演出",
+        "features": [
+          "扉が開くアニメーション（動画 or CSS）",
+          "フェードイン効果",
+          "スキップボタン",
+          "自動遷移（5秒後）"
+        ],
+        "priority": "High"
+      },
+      {
+        "name": "Main Gallery",
+        "file": "main.html",
+        "purpose": "メインビジュアル・ギャラリー",
+        "features": [
+          "背景画像（大聖堂）",
+          "グローバルナビゲーション",
+          "画像ギャラリー（モーダル表示）",
+          "キャラクター切り替え",
+          "レスポンシブ対応"
+        ],
+        "priority": "High"
+      }
+    ],
+    "totalPages": 3,
+    "fullSitePages": 13
+  },
+  "design": {
+    "theme": "Dark & Elegant",
+    "colors": {
+      "primary": "#8B0000 (Deep Red)",
+      "secondary": "#D4AF37 (Gold)",
+      "background": "#2C1810 (Dark Brown)",
+      "base": "#1A1A1A (Charcoal)",
+      "text": "#F5F5F5 (Off-white)"
+    },
+    "fonts": {
+      "headings": "Noto Serif JP (serif)",
+      "body": "Noto Sans JP (sans-serif)"
+    },
+    "mood": "重厚感、高級感、神秘的"
+  },
+  "technicalRequirements": {
+    "browser": [
+      "Chrome 100+",
+      "Firefox 100+",
+      "Safari 15+",
+      "Edge 100+"
+    ],
+    "responsive": true,
+    "devices": ["Desktop (1920px)", "Tablet (768px)", "Mobile (375px)"],
+    "accessibility": {
+      "wcag": "AA",
+      "features": ["Keyboard navigation", "ARIA labels", "Alt text"]
+    },
+    "performance": {
+      "pageLoad": "< 3s",
+      "imageOptimization": true,
+      "lazyLoading": true
+    }
+  },
+  "assets": {
+    "images": {
+      "total": 23,
+      "totalSize": "~29MB",
+      "categories": {
+        "ageVerification": "1 file (3.3MB)",
+        "characters": "8 files (10.1MB)",
+        "gallery": "9 files (5.4MB)",
+        "main": "2 files (11.3MB)",
+        "story": "2 files (1.7MB)"
+      }
+    },
+    "videos": {
+      "total": 1,
+      "file": "opening_movie.mp4 (669KB)"
+    }
+  },
+  "constraints": {
+    "noFrameworks": "React/Vue禁止、Vanilla JSのみ",
+    "noBackend": "静的サイト（フロントエンドのみ）",
+    "seoFriendly": "マルチページ構成（SPAではない）",
+    "modernCSS": "2025年基準の最新CSS機能を使用"
+  },
+  "deliverables": [
+    "HTML files (13 pages)",
+    "CSS files (organized by page/component)",
+    "JavaScript files (modular, ES6+)",
+    "Optimized image assets",
+    "Documentation (README, setup guide)",
+    "Performance report"
+  ]
+}

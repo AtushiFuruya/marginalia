@@ -1,0 +1,12 @@
+{
+  "url": "https://boysbemaid.jp/",
+  "selector": ".member_slide.js-scrollreveal",
+  "outputDir": "./extracted-components",
+  "headless": true,
+  "disableAnimations": false,
+  "coverage": true,
+  "events": true,
+  "screenshot": true,
+  "waitTime": 2000,
+  "description": "Boys be maid - ScrollReveal アニメーションコンポーネント抽出例"
+}

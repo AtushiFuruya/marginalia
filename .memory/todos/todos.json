@@ -1,0 +1,320 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-11-08T01:22:24.086Z",
+  "todos": [
+    {
+      "id": "TODO-001",
+      "title": "Issue分割の実施",
+      "description": "production-sitemap.mdを基にGitHub Issueを作成し、Walking Skeleton実装のタスクを細分化する",
+      "status": "pending",
+      "priority": "high",
+      "category": "planning",
+      "tags": [
+        "issue",
+        "planning",
+        "walking-skeleton"
+      ],
+      "createdAt": "2025-11-08T00:00:00Z",
+      "updatedAt": "2025-11-08T00:00:00Z",
+      "dueDate": null,
+      "assignee": null,
+      "relatedFiles": [
+        "reference/production-docs/production-sitemap.md",
+        "reference/production-docs/implementation-plan.md"
+      ],
+      "notes": "Phase 1（年齢確認ページ）から着手予定"
+    },
+    {
+      "id": "TODO-002",
+      "title": "Gitリポジトリの初期化",
+      "description": "git initを実行し、初回コミットを作成。ドキュメント、アセット、メモリシステムをコミット対象とする",
+      "status": "pending",
+      "priority": "high",
+      "category": "setup",
+      "tags": [
+        "git",
+        "version-control",
+        "setup"
+      ],
+      "createdAt": "2025-11-08T00:00:00Z",
+      "updatedAt": "2025-11-08T00:00:00Z",
+      "dueDate": null,
+      "assignee": null,
+      "relatedFiles": [
+        ".gitignore"
+      ],
+      "notes": ".gitignoreは設定済み。メモリシステムのプライベートデータは除外される"
+    },
+    {
+      "id": "TODO-003",
+      "title": "メモリシステムの動作テスト",
+      "description": "Claude CodeとCodex CLIの両方でメモリシステムが正しく機能するか確認する",
+      "status": "pending",
+      "priority": "medium",
+      "category": "testing",
+      "tags": [
+        "memory",
+        "openmemory",
+        "testing"
+      ],
+      "createdAt": "2025-11-08T00:00:00Z",
+      "updatedAt": "2025-11-08T00:00:00Z",
+      "dueDate": null,
+      "assignee": null,
+      "relatedFiles": [
+        ".memory-config.json",
+        ".memory/MEMORY-SYSTEM-REVIEW.md"
+      ],
+      "notes": "Claude Code: 「プロジェクト名は？」と質問してテスト\nCodex CLI: codex ask \"プロジェクトのステータスは？\" でテスト"
+    },
+    {
+      "id": "TODO-004",
+      "title": "Phase 1: 年齢確認ページ実装",
+      "description": "Walking SkeletonのPhase 1として年齢確認ページ（index.html）を実装する",
+      "status": "in_progress",
+      "priority": "critical",
+      "category": "implementation",
+      "tags": [
+        "phase-1",
+        "age-verification",
+        "walking-skeleton"
+      ],
+      "createdAt": "2025-11-08T00:00:00Z",
+      "updatedAt": "2025-11-08T00:00:00Z",
+      "dueDate": null,
+      "assignee": null,
+      "relatedFiles": [
+        "index.html",
+        "css/age-verification.css",
+        "js/age-verification.js"
+      ],
+      "notes": "Codex CLIで一部実装済み（年齢確認モーダル）。オープニングとメインビューも統合済み"
+    },
+    {
+      "id": "TODO-005",
+      "title": "スライドショーのギャラリー画像指定",
+      "description": "5枚のギャラリー画像を指定し、読み込み失敗時のplaceholder表示を実装する",
+      "status": "completed",
+      "priority": "medium",
+      "category": "implementation",
+      "tags": [
+        "slideshow",
+        "gallery",
+        "ui"
+      ],
+      "createdAt": "2025-11-08T00:00:00Z",
+      "updatedAt": "2025-11-08T00:00:00Z",
+      "completedAt": "2025-11-08T00:00:00Z",
+      "dueDate": null,
+      "assignee": null,
+      "relatedFiles": [
+        "css/opening.css",
+        "js/age-verification.js"
+      ],
+      "notes": "Codex CLIで実装完了。ホワイトアウトエフェクト、Enter/Escape/Arrowキー操作対応済み"
+    },
+    {
+      "id": "TODO-006",
+      "title": "ロゴ動画演出の実装",
+      "description": "fire_logo_video.mp4を導入し、スライド完了後に自動再生。動画終了後はメインビューへ遷移",
+      "status": "completed",
+      "priority": "medium",
+      "category": "implementation",
+      "tags": [
+        "logo",
+        "video",
+        "animation"
+      ],
+      "createdAt": "2025-11-08T00:00:00Z",
+      "updatedAt": "2025-11-08T00:00:00Z",
+      "completedAt": "2025-11-08T00:00:00Z",
+      "dueDate": null,
+      "assignee": null,
+      "relatedFiles": [
+        "images/logo/fire_logo_video.mp4",
+        "js/age-verification.js"
+      ],
+      "notes": "Codex CLIで実装完了。object-fit: cover対応、ブラー＋フェードアウト演出実装済み"
+    },
+    {
+      "id": "TODO-007",
+      "title": "レスポンシブ調整（1280pxブレークポイント）",
+      "description": "スライド/動画のブレークポイントを1280pxに設定し、リアルタイムリサイズに対応",
+      "status": "completed",
+      "priority": "high",
+      "category": "implementation",
+      "tags": [
+        "responsive",
+        "breakpoint",
+        "css"
+      ],
+      "createdAt": "2025-11-08T00:00:00Z",
+      "updatedAt": "2025-11-08T00:00:00Z",
+      "completedAt": "2025-11-08T00:00:00Z",
+      "dueDate": null,
+      "assignee": null,
+      "relatedFiles": [
+        "css/opening.css",
+        "css/main.css"
+      ],
+      "notes": "Codex CLIで実装完了。モバイル（600px以下）対応、--vhカスタムプロパティ使用"
+    },
+    {
+      "id": "TODO-008",
+      "title": "GitHub Pagesへのデプロイ",
+      "description": "feature/opening → main → gh-pagesの順でマージ＆プッシュし、公開サイトを更新",
+      "status": "completed",
+      "priority": "medium",
+      "category": "deployment",
+      "tags": [
+        "github-pages",
+        "deployment",
+        "production"
+      ],
+      "createdAt": "2025-11-08T00:00:00Z",
+      "updatedAt": "2025-11-08T00:00:00Z",
+      "completedAt": "2025-11-08T00:00:00Z",
+      "dueDate": null,
+      "assignee": null,
+      "relatedFiles": [],
+      "notes": "デプロイ完了: https://atushifuruya.github.io/marginalia/"
+    },
+    {
+      "id": "TODO-009",
+      "title": "ギャラリー画像ファイル名のスペース除去",
+      "description": "scene_pear of anguish.jpg のスペースをアンダースコアに置換",
+      "status": "pending",
+      "priority": "low",
+      "category": "maintenance",
+      "tags": [
+        "assets",
+        "file-naming",
+        "cleanup"
+      ],
+      "createdAt": "2025-11-08T00:00:00Z",
+      "updatedAt": "2025-11-08T00:00:00Z",
+      "dueDate": null,
+      "assignee": null,
+      "relatedFiles": [
+        "images/gallery/scene_pear of anguish.jpg"
+      ],
+      "notes": "ファイル名: scene_pear of anguish.jpg → scene_pear_of_anguish.jpg に変更"
+    },
+    {
+      "id": "TODO-010",
+      "title": "Phase 2: ストーリーページ実装",
+      "description": "pages/story.htmlを実装し、ストーリー紹介とシーン画像を表示",
+      "status": "pending",
+      "priority": "medium",
+      "category": "implementation",
+      "tags": [
+        "phase-2",
+        "story",
+        "pages"
+      ],
+      "createdAt": "2025-11-08T00:00:00Z",
+      "updatedAt": "2025-11-08T00:00:00Z",
+      "dueDate": null,
+      "assignee": null,
+      "relatedFiles": [
+        "pages/story.html",
+        "css/pages/story.css",
+        "images/story/"
+      ],
+      "notes": "Phase 1完了後に着手"
+    },
+    {
+      "id": "TODO-011",
+      "title": "Phase 2: キャラクターページ実装",
+      "description": "pages/characters.htmlを実装し、キャラクター紹介と縦長画像を表示",
+      "status": "pending",
+      "priority": "medium",
+      "category": "implementation",
+      "tags": [
+        "phase-2",
+        "characters",
+        "pages"
+      ],
+      "createdAt": "2025-11-08T00:00:00Z",
+      "updatedAt": "2025-11-08T00:00:00Z",
+      "dueDate": null,
+      "assignee": null,
+      "relatedFiles": [
+        "pages/characters.html",
+        "css/pages/characters.css",
+        "images/characters/"
+      ],
+      "notes": "Phase 1完了後に着手"
+    },
+    {
+      "id": "TODO-012",
+      "title": "メモリ管理スクリプトの実装",
+      "description": ".memory-scripts/配下にメモリ管理スクリプトを実装（save, sync, query, export）",
+      "status": "pending",
+      "priority": "low",
+      "category": "tooling",
+      "tags": [
+        "memory",
+        "scripts",
+        "automation"
+      ],
+      "createdAt": "2025-11-08T00:00:00Z",
+      "updatedAt": "2025-11-08T00:00:00Z",
+      "dueDate": null,
+      "assignee": null,
+      "relatedFiles": [
+        ".memory-scripts/save-memory.js",
+        ".memory-scripts/sync-openmemory.js",
+        ".memory-scripts/query-memory.js",
+        ".memory-scripts/export-memory.js"
+      ],
+      "notes": "shared-memory-architecture.mdに仕様記載あり"
+    },
+    {
+      "id": "TODO-013",
+      "title": "一部画像の線画化",
+      "description": "プロジェクトで使用する画像の一部を線画（ラインアート）に変換する処理を実施",
+      "status": "pending",
+      "priority": "medium",
+      "category": "assets",
+      "tags": [
+        "image-processing",
+        "line-art",
+        "assets"
+      ],
+      "createdAt": "2025-11-08T01:22:15.347Z",
+      "updatedAt": "2025-11-08T01:22:24.085Z",
+      "dueDate": null,
+      "assignee": null,
+      "relatedFiles": [
+        "images/gallery/",
+        "images/characters/"
+      ],
+      "notes": "線画化の対象画像と方法（手動 or スクリプト）を決定後に実施"
+    }
+  ],
+  "metadata": {
+    "totalTodos": 13,
+    "statusCounts": {
+      "pending": 8,
+      "in_progress": 1,
+      "completed": 4
+    },
+    "priorityCounts": {
+      "high": 3,
+      "medium": 7,
+      "critical": 1,
+      "low": 2
+    },
+    "categoryCounts": {
+      "planning": 1,
+      "setup": 1,
+      "testing": 1,
+      "implementation": 6,
+      "deployment": 1,
+      "maintenance": 1,
+      "tooling": 1,
+      "assets": 1
+    }
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "tool": "Component Extractor",
+  "version": "1.0.0",
+  "globalCommand": "component-extract",
+  "createdAt": "2025-11-09",
+  "purpose": "動的Webサイトのコンポーネント構造（DOM/CSS/JS）を自動抽出",
+  "location": {
+    "local": "tools/component-extractor/",
+    "global": "~/.component-extractor/",
+    "bin": "/usr/local/bin/component-extract (npm link後)"
+  },
+  "technologies": [
+    "Playwright",
+    "Puppeteer",
+    "Chrome DevTools Protocol (CDP)",
+    "Coverage API",
+    "DOMSnapshot",
+    "CSS.getMatchedStylesForNode",
+    "DOMDebugger.getEventListeners"
+  ],
+  "capabilities": {
+    "domExtraction": "DOMSnapshot.captureSnapshot - DOM階層・属性・計算済みスタイル取得",
+    "cssExtraction": "CSS.getMatchedStylesForNode - 適用CSSルール・メディアクエリ取得",
+    "jsExtraction": "Coverage API - 実際に使用されたJSコードの最小集合",
+    "eventExtraction": "DOMDebugger.getEventListeners - イベントリスナ一覧",
+    "screenshot": "Puppeteer screenshot - フルページスクリーンショット"
+  },
+  "usage": {
+    "basic": "component-extract --url <URL> --selector <CSSセレクタ>",
+    "withConfig": "component-extract --config <設定ファイルパス>",
+    "options": {
+      "url": "ターゲットURL（必須）",
+      "selector": "CSSセレクタ（必須）",
+      "output": "出力ディレクトリ（デフォルト: ./extracted-components）",
+      "config": "設定ファイルパス（JSON）",
+      "headless": "ヘッドレスモード（デフォルト: true）",
+      "disable-animations": "アニメーション無効化（デフォルト: false）",
+      "coverage": "Coverage収集（デフォルト: true）",
+      "events": "イベントリスナ抽出（デフォルト: true）",
+      "screenshot": "スクリーンショット保存（デフォルト: true）",
+      "wait": "ページ読み込み後の待機時間（デフォルト: 2000ms）"
+    }
+  },
+  "outputFiles": [
+    "component.html - 抽出されたHTML構造",
+    "styles.css - 適用されたCSSルール",
+    "scripts.js - 使用されたJavaScriptコード",
+    "metadata.json - 抽出メタデータ",
+    "screenshot.png - ページスクリーンショット"
+  ],
+  "examples": [
+    {
+      "name": "Boys be maid ScrollReveal抽出",
+      "command": "component-extract --url https://boysbemaid.jp/ --selector \".member_slide.js-scrollreveal\"",
+      "purpose": "ScrollReveal.jsアニメーションの実装パターン学習"
+    },
+    {
+      "name": "設定ファイル使用",
+      "command": "component-extract --config ./config/extract-config.json",
+      "purpose": "複雑な設定を再利用可能な形で管理"
+    },
+    {
+      "name": "ブラウザ表示で確認",
+      "command": "component-extract --url <URL> --selector <セレクタ> --headless false",
+      "purpose": "抽出対象を目視確認"
+    }
+  ],
+  "installation": {
+    "local": "cd tools/component-extractor && npm install",
+    "global": "cd tools/component-extractor && npm link",
+    "verify": "component-extract --version",
+    "uninstall": "npm unlink -g @global/component-extractor"
+  },
+  "workflow": [
+    "1. ブラウザ起動（Puppeteer）",
+    "2. CDPセッション接続",
+    "3. Coverage開始（JS/CSS使用範囲記録）",
+    "4. ページアクセス",
+    "5. 要素待機・確認",
+    "6. スクリーンショット取得",
+    "7. DOMSnapshot取得",
+    "8. CSS適用ルール取得",
+    "9. イベントリスナ取得",
+    "10. Coverage停止",
+    "11. 結果保存（HTML/CSS/JS/メタデータ）",
+    "12. ブラウザクローズ"
+  ],
+  "legalConsiderations": {
+    "allowed": [
+      "構造・パターンの学習",
+      "設計参考",
+      "自分の実装への抽象的応用"
+    ],
+    "prohibited": [
+      "コードの無断複製・再配布",
+      "他サイトの完全コピー"
+    ],
+    "recommendation": "抽出結果を参考に、独自の命名規則・構造で再実装"
+  },
+  "documentation": {
+    "readme": "tools/component-extractor/README.md",
+    "quickstart": "tools/component-extractor/docs/QUICKSTART.md",
+    "exampleConfig": "tools/component-extractor/config/example-config.json",
+    "sourceCode": "tools/component-extractor/src/index.js"
+  },
+  "integration": {
+    "karinProject": {
+      "extractBoysbemaid": "component-extract --url https://boysbemaid.jp/ --selector \".js-scrollreveal\" --output ./reference/extracted-components/boysbemaid",
+      "extractBugSystem": "component-extract --url http://bug-system.com/product/04_mk/ --selector \".product-detail\" --output ./reference/extracted-components/bug-system",
+      "applyToProject": "抽出結果を reference/analyzed-sites/ と統合し、Karin実装の参考にする"
+    }
+  }
+}

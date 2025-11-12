@@ -1,0 +1,55 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-11-08T00:00:00Z",
+  "decisions": [
+    {
+      "id": "001",
+      "date": "2025-11-06",
+      "title": "Vanilla JavaScriptを使用",
+      "description": "React/Vue等のフレームワークは使わず、Vanilla JSで実装",
+      "reason": "シンプルさと学習コスト削減、パフォーマンス最適化",
+      "status": "confirmed"
+    },
+    {
+      "id": "002",
+      "date": "2025-11-06",
+      "title": "マルチページ構成を採用",
+      "description": "参考サイトは単一ページアプリだが、本番環境ではマルチページ構成を採用",
+      "reason": "SEO対策、パフォーマンス向上、メンテナンス性向上",
+      "status": "confirmed"
+    },
+    {
+      "id": "003",
+      "date": "2025-11-06",
+      "title": "Walking Skeleton アプローチでMVP開発",
+      "description": "最小限の機能で動作する骨格を先に実装",
+      "reason": "早期フィードバック、リスク軽減、段階的な機能追加",
+      "status": "confirmed"
+    },
+    {
+      "id": "004",
+      "date": "2025-11-07",
+      "title": "2025年基準のレスポンシブデザイン採用",
+      "description": "Container Queries、clamp()、dvh等の最新CSS機能を使用",
+      "reason": "モダンなブラウザ対応、保守性向上、将来性",
+      "status": "confirmed"
+    },
+    {
+      "id": "005",
+      "date": "2025-11-07",
+      "title": "OpenMemory導入でコンテキスト永続化",
+      "description": "Claude CodeとCodex CLI間で共有メモリを使用",
+      "reason": "会話履歴の共有、効率的な開発ワークフロー",
+      "status": "confirmed",
+      "apiKey": "om-7r7v2424hjijeg0j05zftbengq4qo15r"
+    },
+    {
+      "id": "006",
+      "date": "2025-11-07",
+      "title": "計画完成後にIssue分割を実施",
+      "description": "ワークフロー完成 → Issue分割 → 実装着手の段取り",
+      "reason": "明確な実装計画、タスクの可視化、進捗管理",
+      "status": "confirmed"
+    }
+  ]
+}

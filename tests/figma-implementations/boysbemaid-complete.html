@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOYS be MAID! - Complete Page from Figma</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            background-color: #EEE6E2;
+            overflow-x: hidden;
+        }
+
+        /* Page Container - Full 8935px height */
+        .page-container {
+            position: relative;
+            width: 100%;
+            max-width: 1920px;
+            min-height: 8935px;
+            margin: 0 auto;
+            background-color: #EEE6E2;
+        }
+
+        /* Section Base Styles */
+        .section {
+            position: relative;
+            width: 100%;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        /* Section 1: Hero / Main Visual - 2181px height, y=3196 */
+        .section-hero {
+            height: 2181px;
+            position: relative;
+            background-color: #EEE6E2;
+        }
+
+        .section-hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+        }
+
+        /* Section 2: Introduction - 2030px height, y=5277 */
+        .section-introduction {
+            height: 2030px;
+            position: relative;
+            background-color: #EEE6E2;
+        }
+
+        .section-introduction-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+        }
+
+        /* Section 3: Content Section - 935px height, y=7307 */
+        .section-content-1 {
+            height: 935px;
+            position: relative;
+            background-color: #EEE6E2;
+        }
+
+        .section-content-1-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+        }
+
+        /* Section 4: Content Section - 1462px height, y=8402 */
+        .section-content-2 {
+            height: 1462px;
+            position: relative;
+            background-color: #EEE6E2;
+        }
+
+        .section-content-2-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+        }
+
+        /* Section 5: Footer Section - 1647px height, y=9804 */
+        .section-footer {
+            height: 1647px;
+            position: relative;
+            background-color: #EEE6E2;
+        }
+
+        .section-footer-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+        }
+
+        /* Desktop - maintain aspect ratio */
+        @media (min-width: 1921px) {
+            .page-container {
+                max-width: 1920px;
+            }
+        }
+
+        /* Tablet and below */
+        @media (max-width: 1920px) {
+            .section-hero {
+                height: auto;
+            }
+            .section-introduction {
+                height: auto;
+            }
+            .section-content-1 {
+                height: auto;
+            }
+            .section-content-2 {
+                height: auto;
+            }
+            .section-footer {
+                height: auto;
+            }
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .page-container {
+                width: 100%;
+                min-height: auto;
+            }
+
+            .section {
+                width: 100%;
+                height: auto !important;
+            }
+
+            .section img {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading state */
+        .section img {
+            display: block;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <!-- Section 1: Hero / Main Visual -->
+        <section class="section section-hero">
+            <img src="images/figma-boysbemaid/section1-hero.png"
+                 alt="BOYS be MAID! Hero Section - Main Visual"
+                 class="section-hero-image"
+                 loading="eager">
+        </section>
+
+        <!-- Section 2: Introduction -->
+        <section class="section section-introduction">
+            <img src="images/figma-boysbemaid/section2-introduction.png"
+                 alt="Introduction Section"
+                 class="section-introduction-image"
+                 loading="lazy">
+        </section>
+
+        <!-- Section 3: Content Section 1 -->
+        <section class="section section-content-1">
+            <img src="images/figma-boysbemaid/section3.png"
+                 alt="Content Section 1"
+                 class="section-content-1-image"
+                 loading="lazy">
+        </section>
+
+        <!-- Section 4: Content Section 2 -->
+        <section class="section section-content-2">
+            <img src="images/figma-boysbemaid/section4.png"
+                 alt="Content Section 2"
+                 class="section-content-2-image"
+                 loading="lazy">
+        </section>
+
+        <!-- Section 5: Footer Section -->
+        <section class="section section-footer">
+            <img src="images/figma-boysbemaid/section5.png"
+                 alt="Footer Section"
+                 class="section-footer-image"
+                 loading="lazy">
+        </section>
+    </div>
+
+    <script>
+        // Image loading optimization
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('img[loading="lazy"]');
+
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.src; // Trigger load
+                            observer.unobserve(img);
+                        }
+                    });
+                }, {
+                    rootMargin: '50px 0px'
+                });
+
+                images.forEach(img => imageObserver.observe(img));
+            }
+
+            // Smooth scroll enhancement
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

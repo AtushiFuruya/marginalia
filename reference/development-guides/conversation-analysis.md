@@ -4,7 +4,7 @@
 
 ### ✅ 設定状況
 - **設定ファイル**: 作成済み (`~/Library/Application Support/Claude/claude_desktop_config.json`)
-- **API Key**: 設定済み (`om-7r7v2424hjijeg0j05zftbengq4qo15r`)
+- **API Key**: 設定済み (`m0-r0Q6tu9mlIIN2FHseHc3cnZenf4atIJ0ci97WBgZ`)
 - **MCPサーバー**: 設定済み (`npx -y @openmemory/server`)
 
 ### ⚠️ 現在の状態
