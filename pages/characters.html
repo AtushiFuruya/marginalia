@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <!-- Force GitHub Pages cache refresh: 2025-11-13T10:30:00Z -->
+  <title>キャラクター紹介 | Karin Project</title>
+  <meta name="description" content="Karin Project に登場する主要キャラクターの紹介ページです。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/pages/characters.css">
+</head>
+<body class="characters-page">
+  <div class="page-container">
+    <header class="site-header" aria-label="グローバルヘッダー">
+      <a class="brand" href="../index.html" aria-label="トップページへ戻る">
+        <img class="brand__logo" src="../images/logo/Logo.png" alt="Karin Project ロゴ">
+      </a>
+      <button class="hamburger" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="ナビゲーションを開閉する">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="site-nav" class="main-nav" aria-hidden="true">
+        <a href="../index.html#story">Story</a>
+        <a href="../index.html#character">Character</a>
+        <a href="../index.html#gallery">Gallery</a>
+        <a href="../index.html#news">News</a>
+        <a href="special.html">Special</a>
+        <a href="download.html">Download</a>
+        <a href="spec.html">Spec</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero hero--characters section" aria-labelledby="characters-title">
+        <div class="hero__media" aria-hidden="true">
+          <picture class="hero__picture">
+            <source srcset="../images/characters/character_05_mary_02.png" media="(max-width: 767px)">
+            <img src="../images/characters/character_05_mary_02.png" alt="キャラクターシルエット" class="hero__image" loading="eager" decoding="async">
+          </picture>
+        </div>
+        <div class="hero__content">
+          <p class="eyebrow">Members</p>
+          <h1 id="characters-title">審問都市を彩る面々</h1>
+          <p>修道院で蠢く陰謀と信仰を象徴する 4 人の視点から、物語の輪郭をたどる。<br class="c-visible_wide">トーンとマナーはメインページと統一しつつ、各キャラクターの息遣いを感じられる構成に仕立てた。</p>
+        </div>
+      </section>
+
+      <section class="character-directory" aria-label="キャラクターナビゲーション">
+        <div class="character-directory__inner">
+          <p class="character-directory__label">Quick Access</p>
+          <ul class="character-directory__list">
+            <li><button type="button" data-profile-link="#mary">Mary</button></li>
+            <li><button type="button" data-profile-link="#irene">Irene</button></li>
+            <li><button type="button" data-profile-link="#christa">Christa</button></li>
+            <li><button type="button" data-profile-link="#pauline">Pauline</button></li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="mary" class="character-profile" aria-labelledby="mary-name">
+        <div class="character-profile__media">
+          <img src="../images/characters/character_05_mary_02.png" alt="修道院長マリィ" loading="lazy">
+        </div>
+        <div class="character-profile__body">
+          <p class="character-profile__role">修道院長 / 訓戒者</p>
+          <h2 id="mary-name" class="character-profile__name">マリィ</h2>
+          <p class="character-profile__quote">「信仰が揺らいだ瞬間、わたしたちは最も人間らしくなる。」</p>
+          <dl class="character-profile__meta">
+            <div>
+              <dt>所属</dt>
+              <dd>聖ラフィーナ女子修道院</dd>
+            </div>
+            <div>
+              <dt>役割</dt>
+              <dd>修道委員長 / 儀式管理</dd>
+            </div>
+          </dl>
+          <div class="character-profile__text">
+            <p>長年にわたり修道院の秩序と儀式を束ねてきた中心人物。厳格さの裏で、信徒を守るためならば禁忌にも手を伸ばす覚悟を秘める。街を覆う集団悪魔憑きの噂も、彼女の存在を抜きに語れない。</p>
+            <p>マリィの視線は常に都市全体に向いており、神父モンテファルコにも試練を課す。彼女の決断が物語の均衡を揺らし、プレイヤーに「信仰」と「救済」の境界を突き付ける。</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="irene" class="character-profile" aria-labelledby="irene-name">
+        <div class="character-profile__media">
+          <img src="../images/characters/character_01_Elaine.png" alt="イレーヌ" loading="lazy">
+        </div>
+        <div class="character-profile__body">
+          <p class="character-profile__role">洋裁師 / 独り暮らしの母</p>
+          <h2 id="irene-name" class="character-profile__name">イレーヌ</h2>
+          <p class="character-profile__quote">「糸を織るように、噂もまた誰かの手で紡がれていく。」</p>
+          <dl class="character-profile__meta">
+            <div>
+              <dt>居住</dt>
+              <dd>村外れの山間</dd>
+            </div>
+            <div>
+              <dt>家族</dt>
+              <dd>娘・クリスタ</dd>
+            </div>
+          </dl>
+          <div class="character-profile__text">
+            <p>静かな山小屋でクリスタと暮らす洋裁師。街へ降りるたびに噂と好奇の視線を受けるが、穏やかな微笑みで受け流す芯の強さを持つ。彼女のアトリエで語られる断片は、修道院の謎に微かな光を落とす。</p>
+            <p>衣服と祈りを結び合わせる技巧は、戦火に荒れた時代を生き抜いてきた彼女自身の歴史そのもの。モンテファルコにとっても、イレーヌの言葉は都市の歪みを知る手がかりとなる。</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="christa" class="character-profile" aria-labelledby="christa-name">
+        <div class="character-profile__media">
+          <img src="../images/characters/character_02.png" alt="クリスタ" loading="lazy">
+        </div>
+        <div class="character-profile__body">
+          <p class="character-profile__role">見習い修道女</p>
+          <h2 id="christa-name" class="character-profile__name">クリスタ</h2>
+          <p class="character-profile__quote">「私はただ、マリィ様のそばにいたいだけなのに。」</p>
+          <dl class="character-profile__meta">
+            <div>
+              <dt>所属</dt>
+              <dd>雑務局 / 侍女補佐</dd>
+            </div>
+            <div>
+              <dt>性格</dt>
+              <dd>従順だが観察眼が鋭い</dd>
+            </div>
+          </dl>
+          <div class="character-profile__text">
+            <p>幼い頃からマリィに仕え、修道院の裏側を知る唯一の存在。普段は物静かだが、誰よりも院内の変化に敏感で、小さな異変を見逃さない。</p>
+            <p>クリスタの視点はプレイヤーにとって「内部からの証言」として機能し、陰で進む儀式や拷問の片鱗を語る。揺れる忠誠心と母への想いが、物語を複雑に交差させる。</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="pauline" class="character-profile" aria-labelledby="pauline-name">
+        <div class="character-profile__media">
+          <img src="../images/characters/character_04_Pauline.png" alt="ポーリン" loading="lazy">
+        </div>
+        <div class="character-profile__body">
+          <p class="character-profile__role">見習い修道女 / 元侍女</p>
+          <h2 id="pauline-name" class="character-profile__name">ポーリン</h2>
+          <p class="character-profile__quote">「痛みより怖いのは、祈りを失うこと。」</p>
+          <dl class="character-profile__meta">
+            <div>
+              <dt>得意</dt>
+              <dd>典礼補助 / 調薬</dd>
+            </div>
+            <div>
+              <dt>関係</dt>
+              <dd>クリスタの旧友</dd>
+            </div>
+          </dl>
+          <div class="character-profile__text">
+            <p>かつては上流階級の侍女だったが、ある事件を機に修道院へ身を寄せた。柔らかな物腰とは裏腹に、典礼で用いる薬品や拘束具に精通しており、暗部での役割を担わされている。</p>
+            <p>ポーリンが開く小さな帳面には、審問の記録と個人的な祈りが交互に綴られている。彼女の証言は、修道院が抱える罪を暴く鍵となる。</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© 2025 Karin Project. All Rights Reserved.</p>
+      <nav aria-label="フッターナビゲーション">
+        <a href="spec.html">Spec</a>
+        <a href="download.html">Download</a>
+        <a href="special.html">Special</a>
+      </nav>
+    </footer>
+  </div>
+
+  <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js" defer></script>
+  <script src="../js/main.js" defer></script>
+  <script src="../js/pages/characters.js" defer></script>
+</body>
+</html>

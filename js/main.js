@@ -89,6 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
       this.autoplayDelay = 5200;
       this.autoplayEnabled = root?.dataset.autoplay !== 'false';
       this.isEnabled = false;
+      this.hasClones = false;
       this.metrics = {
         slideWidth:0,
         gap:0,
@@ -105,7 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     init(){
       if(!this.track || !this.viewport || !this.logicalCount) return;
-      this.setupClones();
       this.bindControls();
       window.addEventListener('resize', this.handleResize);
       if('ResizeObserver' in window){
@@ -117,10 +117,11 @@ document.addEventListener('DOMContentLoaded', () => {
       this.handleResize();
     }
 
-    setupClones(){
-      if(this.logicalCount === 0) return;
+    createClonesIfNeeded(){
+      if(this.hasClones || this.logicalCount === 0) return;
       const first = this.originalSlides[0];
       const last = this.originalSlides[this.logicalCount - 1];
+      if(!first || !last) return;
       const firstClone = first.cloneNode(true);
       const lastClone = last.cloneNode(true);
       [firstClone, lastClone].forEach(clone => {
@@ -130,6 +131,16 @@ document.addEventListener('DOMContentLoaded', () => {
       this.track.appendChild(firstClone);
       this.track.insertBefore(lastClone, first);
       this.slides = Array.from(this.track.children);
+      this.hasClones = true;
+      this.indexOffset = 1;
+    }
+
+    removeClones(){
+      if(!this.hasClones) return;
+      this.track.querySelectorAll('.member-card--clone').forEach(clone => clone.remove());
+      this.hasClones = false;
+      this.slides = Array.from(this.track.children);
+      this.indexOffset = 0;
     }
 
     bindControls(){
@@ -163,6 +174,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     enableSlider(){
       if(this.isEnabled) return;
+      this.createClonesIfNeeded();
+      this.slides = this.slides.length ? this.slides : Array.from(this.track.children);
+      if(!this.hasClones){
+        // クローンが作れなかった場合はスライダー化できない
+        return;
+      }
       this.isEnabled = true;
       this.root.classList.add('is-slider-enabled');
       this.root.classList.remove('is-slider-disabled');
@@ -178,6 +195,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if(!this.isEnabled){
         this.root.classList.add('is-slider-disabled');
         this.root.classList.remove('is-slider-enabled');
+        this.removeClones();
+        this.slides = Array.from(this.track?.children || []);
         return;
       }
       this.isEnabled = false;
@@ -190,6 +209,8 @@ document.addEventListener('DOMContentLoaded', () => {
       this.prevBtn?.setAttribute('disabled','true');
       this.nextBtn?.setAttribute('disabled','true');
       this.dots.forEach(dot => dot.classList.remove('is-active'));
+      this.removeClones();
+      this.slides = Array.from(this.track?.children || []);
     }
 
     handleViewportResize(){
