@@ -43,7 +43,7 @@ img{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:0.75rem 1.5rem;
+  padding:0.5rem 1.5rem;
   z-index:1000;
   background:none;
   transition:box-shadow 0.3s ease;
@@ -59,7 +59,7 @@ img{
 }
 
 .brand__logo{
-  height:104px;
+  height:69px;
   width:auto;
   max-width:200px;
   object-fit:contain;
@@ -144,6 +144,7 @@ img{
   margin:0;
 }
 
+
 .hero__picture{
   display:block;
   width:100%;
@@ -201,6 +202,16 @@ img{
 .section__inner{
   max-width:1200px;
   margin:0 auto;
+}
+
+.section.hero{
+  padding:0;
+  margin-top:5rem;
+  margin-bottom:0;
+}
+
+.section.hero + .section{
+  padding-top:0;
 }
 
 .section h2{
@@ -338,7 +349,7 @@ img{
 }
 
 .member-card__meta{
-  margin-top:1.5rem;
+  margin-top:1rem;
   display:flex;
   justify-content:center;
   gap:0.5rem;
@@ -358,11 +369,14 @@ img{
 }
 
 .member-card__desc{
-  margin-top:1.5rem;
+  margin:1rem auto 0;
   text-align:center;
   font-size:0.95rem;
   color:#675d74;
   line-height:1.8;
+  max-width:26rem;
+  overflow-wrap:anywhere;
+  word-break:break-word;
 }
 
 .member-slider__controls{
@@ -442,6 +456,34 @@ img{
 }
 
 @media (max-width:767px){
+  .site-header{
+    height:76px;
+    padding:0 1rem;
+    background:rgba(238,230,226,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(0,0,0,0.05);
+  }
+  .brand__logo{
+    height:58px;
+    width:auto;
+  }
+  .main-nav{
+    top:76px;
+    height:calc(100vh - 76px);
+    padding:2rem;
+  }
+  .hamburger{
+    padding:0.5rem;
+  }
+  .hamburger span{
+    width:24px;
+  }
+  html{
+    scroll-padding-top:80px;
+  }
+  main{
+    padding-top:0;
+  }
   .character{
     padding:4rem 0 3rem;
   }
@@ -461,14 +503,29 @@ img{
   .member-card{
     flex:0 0 calc(50% - 0.625rem);
     max-width:calc(50% - 0.625rem);
-    padding:0;
+    padding:0 0.75rem 1.5rem;
   }
   .member-card__figure{
     box-shadow:0 18px 35px rgba(18,8,32,0.12);
   }
+  .member-card__desc{
+    max-width:100%;
+    font-size:0.92rem;
+    line-height:1.7;
+  }
   .member-slider__controls,
   .member-slider__dots{
     display:none;
+  }
+}
+
+@media (max-width:480px){
+  .hero{
+    margin-top:3rem;
+  }
+  .member-card{
+    flex:0 0 100%;
+    max-width:100%;
   }
 }
   border-radius:14px;
