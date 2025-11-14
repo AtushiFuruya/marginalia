@@ -59,7 +59,7 @@ img{
 }
 
 .brand__logo{
-  height:69px;
+  height:120px;
   width:auto;
   max-width:200px;
   object-fit:contain;
@@ -464,7 +464,7 @@ img{
     border-bottom:1px solid rgba(0,0,0,0.05);
   }
   .brand__logo{
-    height:58px;
+    height:120px;
     width:auto;
   }
   .main-nav{
