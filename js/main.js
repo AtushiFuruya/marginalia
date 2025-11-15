@@ -326,4 +326,90 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.member-slider').forEach(sliderEl => {
     new MemberSlider(sliderEl);
   });
+
+  const initGalleryPreview = () => {
+    const gallery = document.querySelector('[data-gallery]');
+    if(!gallery) return;
+    const previewImg = gallery.querySelector('[data-gallery-preview]');
+    const captionEl = document.getElementById('gallery-preview-caption');
+    const thumbs = Array.from(gallery.querySelectorAll('.gallery-thumb'));
+
+    const swap = (target) => {
+      if(!previewImg || !target) return;
+      const src = target.getAttribute('data-image');
+      const alt = target.getAttribute('data-alt') || '';
+      const caption = target.getAttribute('data-caption') || '';
+      thumbs.forEach(btn => {
+        btn.classList.toggle('is-active', btn === target);
+        btn.removeAttribute('aria-current');
+      });
+      target.setAttribute('aria-current','true');
+      previewImg.style.opacity = '0';
+      window.requestAnimationFrame(()=>{
+        previewImg.src = src || previewImg.src;
+        previewImg.alt = alt;
+        captionEl && (captionEl.textContent = caption);
+        previewImg.style.opacity = '1';
+      });
+    };
+
+    thumbs.forEach(btn => {
+      btn.addEventListener('click', ()=> swap(btn));
+    });
+  };
+
+  initGalleryPreview();
+
+  const initLibraryModal = () => {
+    const cards = document.querySelectorAll('.library-card');
+    const modal = document.querySelector('[data-library-modal]');
+    if(!cards.length || !modal) return;
+
+    const body = document.body;
+    const modalImage = modal.querySelector('[data-modal-image]');
+    const modalLabel = modal.querySelector('[data-modal-label]');
+    const modalStory = modal.querySelector('[data-modal-story]');
+    const closeBtn = modal.querySelector('[data-modal-close]');
+
+    const renderStory = (text) => {
+      if(!modalStory) return;
+      const fragments = (text || '').split('|').map(str => str.trim()).filter(Boolean);
+      modalStory.innerHTML = fragments.map(fragment => `<p>${fragment}</p>`).join('');
+    };
+
+    const openModal = (card) => {
+      const imageSrc = card.dataset.image;
+      const label = card.dataset.label || '';
+      const story = card.dataset.story || '';
+      const img = card.querySelector('img');
+
+      if(modalImage && imageSrc){
+        modalImage.src = imageSrc;
+        modalImage.alt = img?.getAttribute('alt') || '';
+      }
+      if(modalLabel){
+        modalLabel.textContent = label;
+      }
+      renderStory(story);
+
+      modal.classList.add('is-open');
+      body.classList.add('modal-open');
+      closeBtn?.focus();
+      modal.setAttribute('aria-hidden','false');
+    };
+
+    const closeModal = () => {
+      modal.classList.remove('is-open');
+      body.classList.remove('modal-open');
+      modal.setAttribute('aria-hidden','true');
+    };
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => openModal(card));
+    });
+
+    closeBtn?.addEventListener('click', closeModal);
+  };
+
+  initLibraryModal();
 });

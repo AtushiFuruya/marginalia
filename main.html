@@ -8,7 +8,7 @@
   <meta name="description" content="暴力と耽美が交差する Karin Project の公式メインページです。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=IM+Fell+DW+Pica+SC&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
@@ -43,8 +43,9 @@
 
       <section id="story" class="section story" aria-labelledby="story-title">
         <div class="section__inner">
-          <p class="eyebrow center" id="story-title">Story</p>
-          <h2>罪と信仰の狭間で</h2>
+          <header class="section-heading">
+            <p class="eyebrow center" id="story-title">Story</p>
+          </header>
           <div class="story__text">
             <p>長い宗教戦争が続く時代――新人神父モンテファルコは、悪魔憑きの噂が絶えない女子修道院に赴任する。前任の神父は修道女たちに告発され、魔術師として火刑に処されていた。</p>
             <p>典礼と告解を重ねるうち、修道院長マリィをはじめ、修道女たちの奇行と狂気が浮かび上がる。街では不合理な魔女裁判が続き、女たちが拷問され、正義の名のもとに焼かれていく。</p>
@@ -55,8 +56,9 @@
 
       <section id="character" class="section character" aria-labelledby="character-title">
         <div class="section__inner">
-          <p class="eyebrow" id="character-title">MEMBER</p>
-          <h2>キャラクター紹介</h2>
+          <header class="section-heading">
+            <p class="eyebrow" id="character-title">MEMBER</p>
+          </header>
         </div>
         <div class="member-slider" data-autoplay="true">
           <div class="member-slider__viewport">
@@ -164,25 +166,39 @@
       </section>
 
       <section id="gallery" class="section gallery" aria-labelledby="gallery-title">
-        <div class="section__inner">
-          <p class="eyebrow">Gallery</p>
-          <h2 id="gallery-title">禁断の瞬間を垣間見る。</h2>
-          <div class="gallery__grid">
-            <figure>
-              <img src="images/gallery/scene_blowjob.jpg" alt="密やかな儀式のワンシーン">
-              <figcaption>囁きは甘美な戒律。</figcaption>
+        <div class="gallery__layout">
+          <div class="gallery__visual" data-gallery>
+            <figure class="gallery-preview" aria-live="polite">
+              <img src="images/gallery/scene_blowjob.jpg" alt="密やかな儀式のワンシーン" data-gallery-preview>
+              <figcaption id="gallery-preview-caption">囁きは甘美な戒律。</figcaption>
             </figure>
-            <figure>
-              <img src="images/gallery/scene_caning.jpg" alt="鞭の軌跡が描く軌道">
-              <figcaption>疼く傷は忠誠の証。</figcaption>
-            </figure>
-            <figure>
-              <img src="images/gallery/scene_daily.jpg" alt="静謐な日常の一幕">
-              <figcaption>嵐の前の安息。</figcaption>
-            </figure>
+            <div class="gallery-thumbs" role="list">
+              <button class="gallery-thumb is-active" type="button" aria-current="true" role="listitem" data-image="images/gallery/scene_blowjob.jpg" data-caption="囁きは甘美な戒律。" data-alt="密やかな儀式のワンシーン">
+                <img src="images/gallery/scene_blowjob.jpg" alt="">
+              </button>
+              <button class="gallery-thumb" type="button" role="listitem" data-image="images/gallery/scene_caning.jpg" data-caption="疼く傷は忠誠の証。" data-alt="鞭の軌跡が描く軌道">
+                <img src="images/gallery/scene_caning.jpg" alt="">
+              </button>
+              <button class="gallery-thumb" type="button" role="listitem" data-image="images/gallery/scene_daily.jpg" data-caption="嵐の前の安息。" data-alt="静謐な日常の一幕">
+                <img src="images/gallery/scene_daily.jpg" alt="">
+              </button>
+              <button class="gallery-thumb" type="button" role="listitem" data-image="images/gallery/scene_mary_onTop.jpg" data-caption="夜明け前の懺悔。" data-alt="マリィが覆いかぶさる姿">
+                <img src="images/gallery/scene_mary_onTop.jpg" alt="">
+              </button>
+              <button class="gallery-thumb" type="button" role="listitem" data-image="images/gallery/scene_mary_smile.jpg" data-caption="慈悲にも似た微笑。" data-alt="微笑を浮かべるマリィ">
+                <img src="images/gallery/scene_mary_smile.jpg" alt="">
+              </button>
+              <button class="gallery-thumb" type="button" role="listitem" data-image="images/gallery/scene_orgy.jpg" data-caption="集団儀式の終わらない熱。" data-alt="儀式で絡み合う姿">
+                <img src="images/gallery/scene_orgy.jpg" alt="">
+              </button>
+            </div>
           </div>
-          <div class="section__action">
-            <a class="btn cta" href="pages/gallery.html">More</a>
+          <div class="gallery__content">
+            <header class="section-heading">
+              <p class="eyebrow gallery__eyebrow" id="gallery-title">EVENT ILLUST</p>
+            </header>
+            <p class="gallery__lead">密室の儀式、甘い告解、静謐な余韻――修道院を巡る瞬間を抜き出し、胸の内にしまったままの湿度をそのまま閉じ込めたピース。</p>
+            <a class="gallery__cta" href="pages/gallery.html">VIEW ALL</a>
           </div>
         </div>
       </section>
