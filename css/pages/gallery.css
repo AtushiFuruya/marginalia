@@ -4,8 +4,7 @@
 }
 
 .library{
-  padding-top:8rem;
-  padding-bottom:6rem;
+  padding:0;
   background:radial-gradient(ellipse at top,#1f1924 0%,#0b070c 100%);
 }
 
