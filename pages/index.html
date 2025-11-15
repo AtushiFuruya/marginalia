@@ -5,28 +5,28 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>かりんのゲームサイト | 年齢確認</title>
   <meta name="description" content="成人向けゲームサイトの入り口です。１８歳以上のみ入場できます。">
-  <link rel="preload" href="assets/videos/intro.mp4" as="video" type="video/mp4">
-  <link rel="preload" href="assets/images/age-verification/background.jpg" as="image">
-  <link rel="stylesheet" href="css/age-verification.css">
-  <link rel="stylesheet" href="css/opening.css">
+  <link rel="preload" href="../assets/videos/intro.mp4" as="video" type="video/mp4">
+  <link rel="preload" href="../assets/images/age-verification/background.jpg" as="image">
+  <link rel="stylesheet" href="../css/age-verification.css">
+  <link rel="stylesheet" href="../css/opening.css">
 </head>
 <body>
   <div class="media-bg" aria-hidden="true">
     <video
       id="bg-video"
       class="bg-media"
-      poster="assets/images/age-verification/background.jpg"
+      poster="../assets/images/age-verification/background.jpg"
       autoplay
       muted
       playsinline
       preload="auto"
       aria-hidden="true"
       tabindex="-1">
-      <source src="assets/videos/intro.mp4" type="video/mp4">
+      <source src="../assets/videos/intro.mp4" type="video/mp4">
     </video>
-    <img src="assets/images/age-verification/background.jpg" alt="" class="bg-media bg-fallback" aria-hidden="true">
+    <img src="../assets/images/age-verification/background.jpg" alt="" class="bg-media bg-fallback" aria-hidden="true">
     <div id="bg-slideshow" class="slideshow" aria-hidden="true">
-      <img id="slideshow-img" src="assets/images/age-verification/background.jpg" alt="">
+      <img id="slideshow-img" src="../assets/images/age-verification/background.jpg" alt="">
       <div id="slideshow-flash" class="slideshow-flash"></div>
     </div>
   </div>
@@ -51,7 +51,7 @@
       <button id="skip-opening" class="skip-btn" type="button" aria-label="スキップしてメインページへ進む">SKIP</button>
     </div>
     <div class="opening__visual" aria-hidden="true">
-      <img id="opening-slide" class="opening__img" src="images/gallery/scene_caning.jpg" alt="オープニングスライド" decoding="async">
+      <img id="opening-slide" class="opening__img" src="../images/gallery/scene_caning.jpg" alt="オープニングスライド" decoding="async">
       <div class="opening__vignette"></div>
       <div id="opening-flash" class="opening__flash" aria-hidden="true"></div>
       <div class="progress-track" aria-hidden="true">
@@ -72,7 +72,7 @@
       muted
       preload="auto"
       aria-label="プロジェクトロゴの演出動画">
-      <source src="images/logo/fire_logo_video.mp4" type="video/mp4">
+      <source src="../images/logo/fire_logo_video.mp4" type="video/mp4">
     </video>
   </div>
 
@@ -82,6 +82,6 @@
     </p>
   </noscript>
 
-  <script src="js/age-verification.js" defer></script>
+  <script src="../js/age-verification.js" defer></script>
 </body>
 </html>
