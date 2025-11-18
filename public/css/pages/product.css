@@ -89,13 +89,40 @@
 }
 
 .product-header-image{
+  position:relative;
   margin:2.5rem auto;
   max-width:100%;
-  border:2px solid;
-  border-image:linear-gradient(135deg,rgba(139,0,0,0.5),rgba(218,165,32,0.4),rgba(139,0,0,0.5)) 1;
-  clip-path:polygon(16px 0,100% 0,100% calc(100% - 16px),calc(100% - 16px) 100%,0 100%,0 16px);
-  overflow:hidden;
-  background:rgba(0,0,0,0.3);
+  padding:0;
+}
+
+.product-header-image::before{
+  content:"";
+  position:absolute;
+  inset:-8px;
+  background:
+    linear-gradient(45deg,transparent 30%,rgba(218,165,32,0.15) 50%,transparent 70%),
+    linear-gradient(135deg,#8b6914 0%,#daa520 15%,#b8860b 30%,#daa520 50%,#8b6914 70%,#daa520 85%,#8b6914 100%);
+  clip-path:polygon(
+    0 24px,24px 0,calc(100% - 24px) 0,100% 24px,
+    100% calc(100% - 24px),calc(100% - 24px) 100%,24px 100%,0 calc(100% - 24px)
+  );
+  z-index:-1;
+  filter:drop-shadow(0 0 12px rgba(218,165,32,0.4));
+}
+
+.product-header-image::after{
+  content:"";
+  position:absolute;
+  inset:-4px;
+  background:
+    repeating-linear-gradient(90deg,transparent,transparent 3px,rgba(139,0,0,0.3) 3px,rgba(139,0,0,0.3) 4px),
+    repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(139,0,0,0.3) 3px,rgba(139,0,0,0.3) 4px),
+    linear-gradient(135deg,rgba(0,0,0,0.8),rgba(20,15,10,0.9));
+  clip-path:polygon(
+    0 20px,20px 0,calc(100% - 20px) 0,100% 20px,
+    100% calc(100% - 20px),calc(100% - 20px) 100%,20px 100%,0 calc(100% - 20px)
+  );
+  z-index:-1;
 }
 
 .product-header-image img{
@@ -105,10 +132,14 @@
   object-fit:cover;
   transition:transform 0.5s ease,filter 0.5s ease;
   filter:brightness(0.85) contrast(1.1);
+  clip-path:polygon(
+    0 16px,16px 0,calc(100% - 16px) 0,100% 16px,
+    100% calc(100% - 16px),calc(100% - 16px) 100%,16px 100%,0 calc(100% - 16px)
+  );
 }
 
 .product-header-image:hover img{
-  transform:scale(1.03);
+  transform:scale(1.02);
   filter:brightness(0.95) contrast(1.15);
 }
 
@@ -465,9 +496,27 @@
     display:none;
   }
 
-  .product-header-image{
-    margin:2rem auto;
-    clip-path:polygon(12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%,0 12px);
+  .product-header-image::before{
+    inset:-6px;
+    clip-path:polygon(
+      0 18px,18px 0,calc(100% - 18px) 0,100% 18px,
+      100% calc(100% - 18px),calc(100% - 18px) 100%,18px 100%,0 calc(100% - 18px)
+    );
+  }
+
+  .product-header-image::after{
+    inset:-3px;
+    clip-path:polygon(
+      0 15px,15px 0,calc(100% - 15px) 0,100% 15px,
+      100% calc(100% - 15px),calc(100% - 15px) 100%,15px 100%,0 calc(100% - 15px)
+    );
+  }
+
+  .product-header-image img{
+    clip-path:polygon(
+      0 12px,12px 0,calc(100% - 12px) 0,100% 12px,
+      100% calc(100% - 12px),calc(100% - 12px) 100%,12px 100%,0 calc(100% - 12px)
+    );
   }
 
   .product-meta {
