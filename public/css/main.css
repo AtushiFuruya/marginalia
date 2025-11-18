@@ -535,6 +535,86 @@ img{
     max-width:100%;
   }
 }
+
+.action-links{
+  padding:4rem 2rem 3rem;
+  background:linear-gradient(180deg,var(--beige-bg),#f5f0e8);
+}
+
+.action-links__inner{
+  max-width:900px;
+  margin:0 auto;
+  display:flex;
+  gap:2rem;
+  justify-content:center;
+  align-items:center;
+}
+
+.action-btn{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:1.2rem 3rem;
+  border-radius:8px;
+  font-family:"IM Fell DW Pica SC","Noto Serif JP",serif;
+  font-size:1.05rem;
+  font-weight:600;
+  letter-spacing:0.12em;
+  text-decoration:none;
+  transition:transform 0.3s ease,box-shadow 0.3s ease,background 0.3s ease;
+  border:2px solid;
+  min-width:280px;
+}
+
+.action-btn--primary{
+  background:linear-gradient(135deg,#1a0a1f,#2a1535);
+  color:#f7f3ff;
+  border-color:var(--boys-purple);
+  box-shadow:0 8px 24px rgba(60,50,190,0.25);
+}
+
+.action-btn--primary:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 32px rgba(60,50,190,0.35);
+  background:linear-gradient(135deg,#2a1535,#3c32be);
+}
+
+.action-btn--secondary{
+  background:rgba(238,230,226,0.9);
+  color:var(--boys-purple);
+  border-color:var(--boys-purple);
+  box-shadow:0 6px 18px rgba(60,50,190,0.15);
+}
+
+.action-btn--secondary:hover{
+  transform:translateY(-3px);
+  background:var(--boys-purple);
+  color:#fff;
+  box-shadow:0 10px 28px rgba(60,50,190,0.3);
+}
+
+.action-btn__text{
+  position:relative;
+  z-index:1;
+}
+
+@media (max-width:767px){
+  .action-links{
+    padding:3rem 1.5rem 2.5rem;
+  }
+  .action-links__inner{
+    flex-direction:column;
+    gap:1.25rem;
+  }
+  .action-btn{
+    width:100%;
+    max-width:400px;
+    min-width:0;
+    padding:1.1rem 2rem;
+    font-size:1rem;
+  }
+}
   border-radius:14px;
   border:2px solid rgba(60,50,190,0.4);
   background:linear-gradient(135deg,#2a1a2a,#1a0a1f);
