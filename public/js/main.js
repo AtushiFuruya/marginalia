@@ -70,6 +70,25 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   initScrollReveal();
+  const initIntersectionReveal = () => {
+    const targets = document.querySelectorAll('.reveal-item');
+    if(!targets.length || typeof IntersectionObserver === 'undefined') return;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          const delay = parseFloat(entry.target.dataset.revealDelay || '0');
+          entry.target.style.transitionDelay = `${Math.max(delay, 0)}s`;
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold:0.4,
+      rootMargin:'0px 0px -5%'
+    });
+    targets.forEach(el => observer.observe(el));
+  };
+  initIntersectionReveal();
 
   class MemberSlider {
     constructor(root){
