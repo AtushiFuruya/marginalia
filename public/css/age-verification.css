@@ -20,11 +20,7 @@ body{
 }
 
 .media-bg{
-  position:fixed;
-  inset:0;
-  overflow:hidden;
-  z-index:0;
-  height:calc(var(--vh, 100vh));
+  display:none;
 }
 .media-bg::before{
   content:"";
