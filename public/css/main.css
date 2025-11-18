@@ -64,7 +64,7 @@ main{
 }
 
 .site-header.scrolled{
-  box-shadow:0 2px 20px rgba(139,0,0,0.15);
+  /* box-shadow:0 2px 20px rgba(139,0,0,0.15); */
 }
 
 .brand{
@@ -115,14 +115,14 @@ main{
 .main-nav{
   position:fixed;
   top:0;
-  right:0;
-  width:260px;
+  right:clamp(0.75rem, 2.5vw, 1.75rem);
+  width:min(300px, calc(100vw - 1.5rem));
   height:100vh;
-  /* padding:6rem 2rem; */
+  padding:clamp(4rem, 8vh, 5.5rem) clamp(1.25rem, 3vw, 2.5rem) clamp(2rem, 5vh, 2.75rem);
   background:rgba(238,230,226,0.98);
   display:flex;
   flex-direction:column;
-  gap:1.25rem;
+  gap:1.5rem;
   transform:translateX(100%);
   transition:transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94);
   box-shadow:-5px 0 30px rgba(139,0,0,0.12);
@@ -130,10 +130,11 @@ main{
 }
 
 .main-nav a{
-  font-size:1.05rem;
+  font-size:clamp(0.95rem, 0.85rem + 0.4vw, 1.15rem);
   padding-bottom:0.35rem;
   border-bottom:1px solid rgba(139,0,0,0.15);
   color:var(--coffee);
+  letter-spacing:0.08em;
   transition:color 0.3s ease, padding-left 0.3s ease;
 }
 
@@ -555,7 +556,13 @@ main{
   .main-nav{
     top:76px;
     height:calc(100vh - 76px);
-    padding:2rem;
+    right:clamp(0.5rem, 4vw, 1.25rem);
+    width:min(85vw, 340px);
+    padding:clamp(1.5rem, 6vw, 2.5rem) clamp(1rem, 7vw, 2rem) clamp(2rem, 7vw, 2.75rem);
+    gap:clamp(1rem, 4vw, 1.75rem);
+  }
+  .main-nav a{
+    font-size:clamp(1rem, 4.5vw, 1.35rem);
   }
   .hamburger{
     padding:0.5rem;
@@ -1067,9 +1074,6 @@ main{
 }
 
 @media (max-width:767px){
-  .main-nav{
-    width:80%;
-  }
   .hero__content{
     padding:1.5rem;
   }
@@ -1116,6 +1120,13 @@ main{
 }
 
 @media (min-width:1200px){
+  .main-nav{
+    width:320px;
+    padding:5.5rem 2.75rem 3rem;
+  }
+  .main-nav a{
+    font-size:1.15rem;
+  }
   .character-slider{
     --card-width:420px;
     --card-height:520px;
