@@ -1,285 +1,496 @@
+@keyframes bloodDrip{
+  0%{transform:scaleY(0);opacity:0;}
+  50%{opacity:0.6;}
+  100%{transform:scaleY(1);opacity:0;}
+}
+
+@keyframes illuminateText{
+  0%,100%{text-shadow:0 0 10px rgba(218,165,32,0.3);}
+  50%{text-shadow:0 0 25px rgba(218,165,32,0.6),0 0 40px rgba(218,165,32,0.3);}
+}
+
+@keyframes unfoldParchment{
+  from{opacity:0;transform:perspective(1000px) rotateX(-15deg) translateY(30px);}
+  to{opacity:1;transform:perspective(1000px) rotateX(0) translateY(0);}
+}
+
 .product-page {
-  background: linear-gradient(180deg, var(--beige-bg), #f0ebe4);
-  padding-top: 5rem;
+  background:
+    radial-gradient(ellipse at 20% 30%,rgba(139,0,0,0.06),transparent 50%),
+    radial-gradient(ellipse at 80% 70%,rgba(218,165,32,0.04),transparent 50%),
+    linear-gradient(180deg,#0a0806 0%,#120e0c 30%,#0d0908 70%,#080604 100%);
+  padding-top:5rem;
+  min-height:100vh;
 }
 
 .product-section {
-  padding: 4rem 2rem;
+  position:relative;
+  padding:5rem 2rem;
 }
 
-.product-section + .product-section {
-  border-top: 1px solid rgba(60, 50, 190, 0.1);
+.product-section::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:50%;
+  width:80%;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(139,0,0,0.3) 50%,transparent);
+  transform:translateX(-50%);
+}
+
+.product-section:first-child::before{
+  display:none;
 }
 
 .product-summary {
-  background: linear-gradient(180deg, #faf8f5, var(--beige-bg));
+  background:
+    radial-gradient(ellipse at 50% 20%,rgba(139,0,0,0.1),transparent 60%),
+    linear-gradient(180deg,rgba(10,8,6,0.8),rgba(18,14,12,0.9));
 }
 
 .product-summary__content {
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
+  max-width:900px;
+  margin:0 auto;
+  text-align:center;
+  animation:unfoldParchment 1s ease-out;
 }
 
 .product-title {
-  font-family: "Crimson Pro", "Noto Serif JP", serif;
-  font-size: clamp(2.2rem, 5vw, 3.2rem);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: var(--coffee);
-  margin-bottom: 1.5rem;
-  line-height: 1.4;
+  position:relative;
+  font-family:"Cormorant Garamond","Noto Serif JP",serif;
+  font-size:clamp(2.5rem,6vw,4rem);
+  font-weight:600;
+  font-style:italic;
+  letter-spacing:0.05em;
+  color:#f4e4c1;
+  margin-bottom:2rem;
+  line-height:1.3;
+  animation:illuminateText 4s ease-in-out infinite;
+}
+
+.product-title::before,
+.product-title::after{
+  content:"❦";
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:2rem;
+  color:#8b0000;
+  opacity:0.6;
+}
+
+.product-title::before{
+  left:-3rem;
+}
+
+.product-title::after{
+  right:-3rem;
 }
 
 .product-lead {
-  font-size: 1.05rem;
-  line-height: 2;
-  color: var(--coffee-muted);
-  margin-bottom: 3rem;
-  text-align: left;
+  font-family:"Noto Serif JP",serif;
+  font-size:1.05rem;
+  line-height:2.2;
+  color:#c9a961;
+  margin:0 auto 4rem;
+  max-width:700px;
+  text-align:justify;
+  padding:0 1rem;
+  opacity:0.9;
 }
 
 .product-meta {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2.5rem;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:2rem;
+  margin-top:3rem;
 }
 
 .product-meta__item {
-  background: rgba(255, 255, 255, 0.6);
-  padding: 1.5rem;
-  border-radius: 12px;
-  border: 1px solid rgba(60, 50, 190, 0.12);
-  box-shadow: 0 4px 12px rgba(26, 10, 31, 0.05);
+  position:relative;
+  background:
+    linear-gradient(135deg,rgba(20,15,10,0.8),rgba(15,12,8,0.9)),
+    radial-gradient(circle at 70% 30%,rgba(139,0,0,0.1),transparent);
+  padding:2rem 1.5rem;
+  border:1px solid;
+  border-image:linear-gradient(180deg,rgba(139,0,0,0.4),rgba(218,165,32,0.3)) 1;
+  clip-path:polygon(12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%,0 12px);
+  transition:all 0.4s ease;
+}
+
+.product-meta__item::before{
+  content:"✦";
+  position:absolute;
+  top:0.75rem;
+  right:0.75rem;
+  color:#daa520;
+  font-size:0.9rem;
+  opacity:0.5;
+}
+
+.product-meta__item:hover{
+  transform:translateY(-6px);
+  box-shadow:0 0 40px rgba(139,0,0,0.3);
+  border-image:linear-gradient(180deg,rgba(139,0,0,0.7),rgba(218,165,32,0.5)) 1;
 }
 
 .product-meta__item dt {
-  font-size: 0.85rem;
-  letter-spacing: 0.15em;
-  color: var(--boys-purple);
-  margin-bottom: 0.5rem;
-  text-transform: uppercase;
+  font-family:"IM Fell DW Pica SC",serif;
+  font-size:0.8rem;
+  letter-spacing:0.25em;
+  color:#daa520;
+  margin-bottom:0.75rem;
+  text-transform:uppercase;
+  opacity:0.85;
 }
 
 .product-meta__item dd {
-  font-family: "Crimson Pro", "Noto Serif JP", serif;
-  font-size: 1.15rem;
-  font-weight: 600;
-  color: var(--coffee);
-  margin: 0;
+  font-family:"Cormorant Garamond","Noto Serif JP",serif;
+  font-size:1.3rem;
+  font-weight:600;
+  color:#f4e4c1;
+  margin:0;
+  letter-spacing:0.05em;
 }
 
 .product-spec {
-  background: var(--beige-soft);
+  background:rgba(12,10,8,0.6);
 }
 
 .spec-table {
-  max-width: 900px;
-  margin: 2rem auto;
-  background: rgba(255, 255, 255, 0.7);
-  border-radius: 16px;
-  padding: 2rem;
-  box-shadow: 0 6px 20px rgba(26, 10, 31, 0.06);
+  max-width:1000px;
+  margin:3rem auto;
+  background:
+    linear-gradient(135deg,rgba(25,20,15,0.6),rgba(18,15,10,0.8)),
+    repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(139,0,0,0.02) 10px,rgba(139,0,0,0.02) 20px);
+  border:2px solid;
+  border-image:linear-gradient(135deg,rgba(139,0,0,0.5),rgba(218,165,32,0.4),rgba(139,0,0,0.5)) 1;
+  padding:3rem 2.5rem;
+  clip-path:polygon(20px 0,100% 0,100% calc(100% - 20px),calc(100% - 20px) 100%,0 100%,0 20px);
 }
 
 .spec-row {
-  display: grid;
-  grid-template-columns: 160px 1fr;
-  gap: 2rem;
-  padding: 1.25rem 0;
-  margin: 0;
-  border-bottom: 1px solid rgba(60, 50, 190, 0.08);
+  display:grid;
+  grid-template-columns:200px 1fr;
+  gap:3rem;
+  padding:1.5rem 0;
+  margin:0;
+  border-bottom:1px solid rgba(139,0,0,0.2);
+  position:relative;
+}
+
+.spec-row::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  width:3px;
+  height:100%;
+  background:linear-gradient(180deg,transparent,rgba(139,0,0,0.4) 50%,transparent);
+  animation:bloodDrip 3s ease-in-out infinite;
+  animation-delay:calc(var(--index,0) * 0.3s);
 }
 
 .spec-row:last-child {
-  border-bottom: none;
+  border-bottom:none;
 }
 
 .spec-row dt {
-  font-weight: 600;
-  color: var(--boys-purple);
-  letter-spacing: 0.05em;
+  font-family:"IM Fell DW Pica SC",serif;
+  font-weight:400;
+  font-size:1.05rem;
+  color:#daa520;
+  letter-spacing:0.08em;
 }
 
 .spec-row dd {
-  margin: 0;
-  color: var(--coffee-muted);
-  line-height: 1.7;
+  margin:0;
+  font-family:"Cormorant Garamond","Noto Serif JP",serif;
+  color:#c9a961;
+  line-height:1.8;
+  font-size:1.05rem;
 }
 
 .spec-note {
-  text-align: center;
-  margin-top: 2rem;
-  font-size: 0.9rem;
-  color: var(--coffee-muted);
+  text-align:center;
+  margin-top:2.5rem;
+  font-family:"Noto Serif JP",serif;
+  font-size:0.85rem;
+  color:#8b6f47;
+  font-style:italic;
 }
 
 .product-download {
-  background: linear-gradient(135deg, #f9f6f2, #ede8e0);
+  background:
+    radial-gradient(ellipse at 50% 50%,rgba(218,165,32,0.08),transparent 60%),
+    linear-gradient(135deg,rgba(12,10,8,0.7),rgba(18,14,12,0.8));
 }
 
 .download-content {
-  max-width: 600px;
-  margin: 2rem auto;
+  max-width:700px;
+  margin:3rem auto;
 }
 
 .download-card {
-  background: rgba(255, 255, 255, 0.8);
-  padding: 3rem 2.5rem;
-  border-radius: 20px;
-  text-align: center;
-  border: 2px solid rgba(60, 50, 190, 0.15);
-  box-shadow: 0 8px 24px rgba(26, 10, 31, 0.08);
+  position:relative;
+  background:
+    linear-gradient(135deg,rgba(30,22,15,0.9),rgba(20,16,10,0.95)),
+    radial-gradient(circle at 40% 40%,rgba(218,165,32,0.12),transparent);
+  padding:4rem 3rem;
+  border:2px solid;
+  border-image:linear-gradient(135deg,rgba(218,165,32,0.6),rgba(139,0,0,0.4),rgba(218,165,32,0.6)) 1;
+  clip-path:polygon(24px 0,100% 0,100% calc(100% - 24px),calc(100% - 24px) 100%,0 100%,0 24px);
+  text-align:center;
+  transition:all 0.5s ease;
+  overflow:hidden;
+}
+
+.download-card::before{
+  content:"";
+  position:absolute;
+  top:-50%;
+  left:-50%;
+  width:200%;
+  height:200%;
+  background:conic-gradient(from 0deg,transparent,rgba(218,165,32,0.1),transparent 30%);
+  animation:rotate 8s linear infinite;
+  opacity:0;
+  transition:opacity 0.5s ease;
+}
+
+@keyframes rotate{
+  to{transform:rotate(360deg);}
+}
+
+.download-card:hover::before{
+  opacity:1;
 }
 
 .download-card__title {
-  font-family: "Crimson Pro", "Noto Serif JP", serif;
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  color: var(--boys-purple);
-  margin-bottom: 1rem;
+  position:relative;
+  z-index:1;
+  font-family:"Cormorant Garamond",serif;
+  font-size:2.5rem;
+  font-weight:600;
+  font-style:italic;
+  letter-spacing:0.12em;
+  color:#f4e4c1;
+  margin-bottom:1.5rem;
+  text-shadow:0 0 30px rgba(218,165,32,0.4);
 }
 
 .download-card__status {
-  display: inline-block;
-  padding: 0.5rem 1.5rem;
-  background: linear-gradient(135deg, #1a0a1f, #2a1535);
-  color: #f7f3ff;
-  border-radius: 6px;
-  font-size: 0.95rem;
-  letter-spacing: 0.15em;
-  margin-bottom: 1.5rem;
+  position:relative;
+  z-index:1;
+  display:inline-block;
+  padding:0.75rem 2rem;
+  background:linear-gradient(135deg,rgba(139,0,0,0.8),rgba(100,0,0,0.9));
+  color:#f4e4c1;
+  border:1px solid rgba(139,0,0,0.6);
+  font-family:"Noto Serif JP",serif;
+  font-size:0.95rem;
+  letter-spacing:0.2em;
+  margin-bottom:2rem;
+  clip-path:polygon(6px 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%,0 6px);
 }
 
 .download-card__desc {
-  color: var(--coffee-muted);
-  line-height: 1.9;
-  font-size: 1rem;
+  position:relative;
+  z-index:1;
+  color:#c9a961;
+  line-height:2;
+  font-family:"Noto Serif JP",serif;
+  font-size:1rem;
 }
 
 .product-special {
-  background: var(--beige-bg);
+  background:rgba(10,8,6,0.8);
 }
 
 .special-content {
-  max-width: 900px;
-  margin: 0 auto;
+  max-width:1000px;
+  margin:0 auto;
 }
 
 .special-lead {
-  font-size: 1.05rem;
-  line-height: 1.9;
-  color: var(--coffee-muted);
-  margin-bottom: 2.5rem;
-  text-align: center;
+  font-family:"Noto Serif JP",serif;
+  font-size:1.1rem;
+  line-height:2;
+  color:#c9a961;
+  margin-bottom:3.5rem;
+  text-align:center;
+  max-width:800px;
+  margin-left:auto;
+  margin-right:auto;
 }
 
 .special-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  list-style:none;
+  padding:0;
+  margin:0;
+  display:flex;
+  flex-direction:column;
+  gap:2.5rem;
 }
 
 .special-item {
-  background: rgba(255, 255, 255, 0.75);
-  padding: 2rem 2.5rem;
-  border-radius: 16px;
-  border-left: 4px solid var(--boys-purple);
-  box-shadow: 0 6px 18px rgba(26, 10, 31, 0.06);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position:relative;
+  background:
+    linear-gradient(135deg,rgba(25,20,15,0.7),rgba(18,14,10,0.85)),
+    radial-gradient(circle at 10% 20%,rgba(139,0,0,0.08),transparent 60%);
+  padding:2.5rem 3rem;
+  border-left:4px solid;
+  border-image:linear-gradient(180deg,rgba(139,0,0,0.8),rgba(218,165,32,0.6),rgba(139,0,0,0.8)) 1;
+  clip-path:polygon(0 0,100% 0,100% calc(100% - 16px),calc(100% - 16px) 100%,0 100%);
+  transition:all 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+  overflow:hidden;
 }
 
+.special-item::before{
+  content:"";
+  position:absolute;
+  right:2rem;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:4rem;
+  opacity:0.08;
+  color:#daa520;
+  font-family:"IM Fell DW Pica SC",serif;
+}
+
+.special-item:nth-child(1)::before{content:"I";}
+.special-item:nth-child(2)::before{content:"II";}
+.special-item:nth-child(3)::before{content:"III";}
+
 .special-item:hover {
-  transform: translateX(8px);
-  box-shadow: 0 8px 24px rgba(60, 50, 190, 0.12);
+  transform:translateX(12px);
+  box-shadow:
+    -8px 0 40px rgba(139,0,0,0.3),
+    inset 0 0 60px rgba(139,0,0,0.08);
+  border-image:linear-gradient(180deg,rgba(139,0,0,1),rgba(218,165,32,0.8),rgba(139,0,0,1)) 1;
 }
 
 .special-item h3 {
-  font-family: "Crimson Pro", "Noto Serif JP", serif;
-  font-size: 1.4rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: var(--boys-purple);
-  margin: 0 0 1rem;
+  font-family:"Cormorant Garamond","Noto Serif JP",serif;
+  font-size:1.6rem;
+  font-weight:600;
+  letter-spacing:0.08em;
+  color:#daa520;
+  margin:0 0 1.25rem;
+  position:relative;
+}
+
+.special-item h3::after{
+  content:"";
+  display:block;
+  width:60px;
+  height:2px;
+  background:linear-gradient(90deg,rgba(139,0,0,0.6),transparent);
+  margin-top:0.75rem;
 }
 
 .special-item p {
-  color: var(--coffee-muted);
-  line-height: 1.85;
-  margin: 0;
+  color:#c9a961;
+  line-height:2;
+  margin:0;
+  font-family:"Noto Serif JP",serif;
+  font-size:1rem;
+  position:relative;
+  z-index:1;
 }
 
 .special-note {
-  text-align: center;
-  margin-top: 2.5rem;
-  font-size: 0.9rem;
-  color: var(--coffee-muted);
+  text-align:center;
+  margin-top:3rem;
+  font-family:"Noto Serif JP",serif;
+  font-size:0.85rem;
+  color:#8b6f47;
+  font-style:italic;
 }
 
-@media (max-width: 767px) {
+@media (max-width:767px) {
   .product-page {
-    padding-top: 76px;
+    padding-top:76px;
   }
 
   .product-section {
-    padding: 3rem 1.5rem;
+    padding:3.5rem 1.5rem;
+  }
+
+  .product-title::before,
+  .product-title::after{
+    display:none;
   }
 
   .product-meta {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    grid-template-columns:1fr;
+    gap:1.5rem;
   }
 
   .spec-table {
-    padding: 1.5rem;
+    padding:2rem 1.5rem;
   }
 
   .spec-row {
-    grid-template-columns: 1fr;
-    gap: 0.5rem;
-    padding: 1rem 0;
+    grid-template-columns:1fr;
+    gap:0.5rem;
+    padding:1.25rem 0;
   }
 
   .spec-row dt {
-    font-size: 0.9rem;
+    font-size:0.95rem;
   }
 
   .spec-row dd {
-    font-size: 0.95rem;
+    font-size:1rem;
   }
 
   .download-card {
-    padding: 2rem 1.5rem;
+    padding:3rem 2rem;
+  }
+
+  .download-card__title{
+    font-size:2rem;
   }
 
   .special-item {
-    padding: 1.5rem 1.25rem;
+    padding:2rem 1.5rem;
+  }
+
+  .special-item::before{
+    font-size:3rem;
+    right:1rem;
   }
 
   .special-item:hover {
-    transform: translateY(-4px);
+    transform:translateY(-8px) translateX(0);
+  }
+
+  .special-item h3{
+    font-size:1.4rem;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width:480px) {
   .product-title {
-    font-size: 1.8rem;
+    font-size:2rem;
   }
 
   .product-lead {
-    font-size: 0.95rem;
+    font-size:0.95rem;
+    text-align:left;
   }
 
   .download-card__title {
-    font-size: 1.6rem;
+    font-size:1.8rem;
   }
 
   .special-item h3 {
-    font-size: 1.2rem;
+    font-size:1.3rem;
+  }
+
+  .special-item p{
+    font-size:0.95rem;
   }
 }

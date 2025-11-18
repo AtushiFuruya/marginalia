@@ -536,83 +536,187 @@ img{
   }
 }
 
-.action-links{
-  padding:4rem 2rem 3rem;
-  background:linear-gradient(180deg,var(--beige-bg),#f5f0e8);
+@keyframes flicker{
+  0%,100%{opacity:1;}
+  50%{opacity:0.92;}
 }
 
-.action-links__inner{
-  max-width:900px;
+@keyframes parchmentFade{
+  from{opacity:0;transform:translateY(20px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+.altar-links{
+  position:relative;
+  padding:5rem 2rem 4.5rem;
+  background:
+    radial-gradient(ellipse at 50% 0%,rgba(139,0,0,0.08),transparent 60%),
+    linear-gradient(180deg,#120f0e 0%,#1a1512 40%,#0d0a08 100%);
+  overflow:hidden;
+}
+
+.altar-links::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,255,255,0.015) 2px,rgba(255,255,255,0.015) 4px),
+    repeating-linear-gradient(90deg,transparent,transparent 2px,rgba(255,255,255,0.015) 2px,rgba(255,255,255,0.015) 4px);
+  opacity:0.4;
+  pointer-events:none;
+}
+
+.altar-links::after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:50%;
+  width:1px;
+  height:100%;
+  background:linear-gradient(180deg,transparent,rgba(139,0,0,0.3) 50%,transparent);
+  animation:flicker 3s ease-in-out infinite;
+}
+
+.altar-links__inner{
+  position:relative;
+  max-width:1100px;
   margin:0 auto;
   display:flex;
-  gap:2rem;
+  gap:clamp(2rem,5vw,4rem);
   justify-content:center;
-  align-items:center;
+  align-items:stretch;
+  animation:parchmentFade 0.8s ease-out;
 }
 
-.action-btn{
+.sacrament-link{
   position:relative;
-  display:inline-flex;
+  flex:1;
+  max-width:480px;
+  display:flex;
   align-items:center;
-  justify-content:center;
-  padding:1.2rem 3rem;
-  border-radius:8px;
-  font-family:"IM Fell DW Pica SC","Noto Serif JP",serif;
-  font-size:1.05rem;
-  font-weight:600;
-  letter-spacing:0.12em;
+  justify-content:space-between;
+  gap:1rem;
+  padding:2rem 2.5rem;
+  background:
+    linear-gradient(135deg,rgba(30,20,15,0.9),rgba(20,15,12,0.95)),
+    radial-gradient(circle at 30% 40%,rgba(139,0,0,0.08),transparent);
+  border:1px solid;
+  border-image:linear-gradient(135deg,rgba(139,0,0,0.4),rgba(218,165,32,0.25),rgba(139,0,0,0.4)) 1;
   text-decoration:none;
-  transition:transform 0.3s ease,box-shadow 0.3s ease,background 0.3s ease;
-  border:2px solid;
-  min-width:280px;
+  transition:all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+  clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px);
 }
 
-.action-btn--primary{
-  background:linear-gradient(135deg,#1a0a1f,#2a1535);
-  color:#f7f3ff;
-  border-color:var(--boys-purple);
-  box-shadow:0 8px 24px rgba(60,50,190,0.25);
+.sacrament-link::before{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  opacity:0;
+  background:radial-gradient(circle at var(--mouse-x,50%) var(--mouse-y,50%),rgba(139,0,0,0.2),transparent 60%);
+  transition:opacity 0.3s ease;
+  pointer-events:none;
+  clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px);
 }
 
-.action-btn--primary:hover{
-  transform:translateY(-3px);
-  box-shadow:0 12px 32px rgba(60,50,190,0.35);
-  background:linear-gradient(135deg,#2a1535,#3c32be);
+.sacrament-link:hover::before{
+  opacity:1;
 }
 
-.action-btn--secondary{
-  background:rgba(238,230,226,0.9);
-  color:var(--boys-purple);
-  border-color:var(--boys-purple);
-  box-shadow:0 6px 18px rgba(60,50,190,0.15);
+.sacrament-link--blood{
+  border-image:linear-gradient(135deg,rgba(139,0,0,0.6),rgba(218,165,32,0.3),rgba(139,0,0,0.6)) 1;
 }
 
-.action-btn--secondary:hover{
-  transform:translateY(-3px);
-  background:var(--boys-purple);
+.sacrament-link--blood:hover{
+  transform:translateY(-4px);
+  box-shadow:
+    0 0 30px rgba(139,0,0,0.4),
+    inset 0 0 20px rgba(139,0,0,0.1);
+}
+
+.sacrament-link--ink{
+  border-image:linear-gradient(135deg,rgba(218,165,32,0.5),rgba(139,0,0,0.3),rgba(218,165,32,0.5)) 1;
+}
+
+.sacrament-link--ink:hover{
+  transform:translateY(-4px);
+  box-shadow:
+    0 0 30px rgba(218,165,32,0.3),
+    inset 0 0 20px rgba(218,165,32,0.08);
+}
+
+.sacrament-link__ornament{
+  font-size:1.4rem;
+  color:#daa520;
+  opacity:0.7;
+  transition:all 0.4s ease;
+  animation:flicker 4s ease-in-out infinite;
+}
+
+.sacrament-link:hover .sacrament-link__ornament{
+  opacity:1;
+  transform:scale(1.2);
+}
+
+.sacrament-link__text{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:0.25rem;
+  flex:1;
+}
+
+.sacrament-link__ruby{
+  font-family:"Noto Serif JP",serif;
+  font-size:0.75rem;
+  letter-spacing:0.3em;
+  color:#c9a961;
+  opacity:0.85;
+  font-weight:400;
+}
+
+.sacrament-link__main{
+  font-family:"IM Fell DW Pica SC",serif;
+  font-size:1.5rem;
+  letter-spacing:0.15em;
+  color:#f4e4c1;
+  font-weight:400;
+  text-shadow:0 0 20px rgba(139,0,0,0.5);
+  transition:all 0.3s ease;
+}
+
+.sacrament-link--blood .sacrament-link__main{
+  text-shadow:0 0 20px rgba(139,0,0,0.6);
+}
+
+.sacrament-link--ink .sacrament-link__main{
+  text-shadow:0 0 20px rgba(218,165,32,0.5);
+}
+
+.sacrament-link:hover .sacrament-link__main{
   color:#fff;
-  box-shadow:0 10px 28px rgba(60,50,190,0.3);
-}
-
-.action-btn__text{
-  position:relative;
-  z-index:1;
+  text-shadow:0 0 30px currentColor;
 }
 
 @media (max-width:767px){
-  .action-links{
-    padding:3rem 1.5rem 2.5rem;
+  .altar-links{
+    padding:4rem 1.5rem 3.5rem;
   }
-  .action-links__inner{
+  .altar-links__inner{
     flex-direction:column;
-    gap:1.25rem;
+    gap:1.75rem;
   }
-  .action-btn{
-    width:100%;
-    max-width:400px;
-    min-width:0;
-    padding:1.1rem 2rem;
-    font-size:1rem;
+  .sacrament-link{
+    max-width:100%;
+    padding:1.75rem 2rem;
+  }
+  .sacrament-link__ornament{
+    font-size:1.2rem;
+  }
+  .sacrament-link__ruby{
+    font-size:0.7rem;
+  }
+  .sacrament-link__main{
+    font-size:1.3rem;
   }
 }
   border-radius:14px;
