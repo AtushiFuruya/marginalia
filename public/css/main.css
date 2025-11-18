@@ -44,9 +44,12 @@ img{
   position:relative;
   background:linear-gradient(180deg,#0b0608 0%,#120a0f 35%,#180f12 100%);
   min-height:100vh;
+  display:flex;
+  flex-direction:column;
 }
 main{
   position:relative;
+  flex:1 0 auto;
 }
 
 .site-header{
@@ -1060,17 +1063,22 @@ main{
 }
 
 .site-footer{
-  padding:1.5rem 2rem;
-  border-top:1px solid rgba(139,0,0,0.15);
+  padding:0.75rem 1.5rem;
+  border-top:1px solid rgba(139,0,0,0.25);
   display:flex;
-  flex-wrap:wrap;
-  gap:1rem;
+  align-items:center;
   justify-content:space-between;
+  gap:0.75rem;
+  min-height:56px;
+  background:rgba(12,6,8,0.75);
+  backdrop-filter:blur(6px);
 }
 
 .site-footer nav{
   display:flex;
-  gap:1.5rem;
+  gap:1rem;
+  font-size:0.9rem;
+  letter-spacing:0.08em;
 }
 
 @media (max-width:767px){

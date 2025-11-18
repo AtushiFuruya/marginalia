@@ -1,16 +1,4 @@
 document.addEventListener('DOMContentLoaded', function(){
-  // === Temporarily disable remembering age-confirmation ===
-  try{
-    localStorage.removeItem('ageVerified');
-    sessionStorage.removeItem('ageVerified');
-    document.cookie = 'ageVerified=; Max-Age=0; path=/;';
-
-    const _origLSSet = localStorage.setItem.bind(localStorage);
-    const _origSSSet = sessionStorage.setItem.bind(sessionStorage);
-    localStorage.setItem = function(k,v){ if(/age/i.test(k)) return; return _origLSSet(k,v); };
-    sessionStorage.setItem = function(k,v){ if(/age/i.test(k)) return; return _origSSSet(k,v); };
-  }catch(e){ /* ignore in restricted contexts */ }
-
   const docEl = document.documentElement;
   const bodyEl = document.body;
   const ageGate = document.querySelector('.age-gate');
@@ -29,6 +17,14 @@ document.addEventListener('DOMContentLoaded', function(){
   const fireVideoLayer = document.getElementById('fire-video-layer');
   const fireVideo = document.getElementById('fire-video');
   const MAIN_PAGE = 'main.html';
+  const ageGateState = window.KarinAgeGate || {};
+  const rememberAgeVerification = typeof ageGateState.setVerified === 'function'
+    ? ageGateState.setVerified
+    : function(){};
+  const isAgePreviouslyVerified = typeof ageGateState.isVerified === 'function'
+    ? ageGateState.isVerified
+    : function(){ return false; };
+  const alreadyVerified = isAgePreviouslyVerified();
 
   const prefersReducedMotion = window.matchMedia ?
     window.matchMedia('(prefers-reduced-motion: reduce)') :
@@ -65,9 +61,13 @@ document.addEventListener('DOMContentLoaded', function(){
     setTimeout(()=>{ revealOpeningSequence(); }, delayMs);
   }
 
-  function redirectToOpening(){
+  function redirectToOpening(options = {}){
+    const { immediate = false, skipPersist = false } = options;
+    if(!skipPersist){
+      rememberAgeVerification();
+    }
     overlay && overlay.classList.add('fade-out');
-    beginOpeningFlow(520);
+    beginOpeningFlow(immediate ? 0 : 520);
   }
 
   function exitToExternal(){
@@ -387,6 +387,12 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 
     mediaBg.appendChild(embersContainer);
+  }
+
+  if(alreadyVerified){
+    requestAnimationFrame(()=>{
+      redirectToOpening({ immediate:true, skipPersist:true });
+    });
   }
 
   createEmbers();
