@@ -17,7 +17,15 @@ body{
   font-size:16px;
   line-height:1.8;
   color:var(--coffee);
-  background:var(--beige-bg);
+  background:#0b0608;
+}
+
+p{
+  font-family:"Noto Serif JP",serif;
+  letter-spacing:0.3em;
+  /* color:#c9a961; */
+  opacity:0.85;
+  font-weight:400;
 }
 
 a{
@@ -30,9 +38,14 @@ img{
   display:block;
 }
 
+
 .page-container{
-  background:var(--beige-bg);
+  position:relative;
+  background:linear-gradient(180deg,#0b0608 0%,#120a0f 35%,#180f12 100%);
   min-height:100vh;
+}
+main{
+  position:relative;
 }
 
 .site-header{
@@ -104,7 +117,7 @@ img{
   right:0;
   width:260px;
   height:100vh;
-  padding:6rem 2rem;
+  /* padding:6rem 2rem; */
   background:rgba(238,230,226,0.98);
   display:flex;
   flex-direction:column;
@@ -119,6 +132,7 @@ img{
   font-size:1.05rem;
   padding-bottom:0.35rem;
   border-bottom:1px solid rgba(60,50,190,0.15);
+  color:var(--coffee);
   transition:color 0.3s ease, padding-left 0.3s ease;
 }
 
@@ -173,7 +187,7 @@ img{
   font-size:clamp(0.9rem,2.5vw,1.125rem);
   letter-spacing:0.3em;
   text-transform:uppercase;
-  color:var(--boys-purple);
+  /* color:var(--boys-purple); */
   margin-bottom:1rem;
   word-break:break-word;
   hyphens:auto;
@@ -227,17 +241,21 @@ img{
   font-size:clamp(2.4rem,5vw,3.8rem);
   letter-spacing:0.3em;
   margin-bottom:1rem;
-  text-align:center;
+}
+
+.section-heading{
+  color:#f4e4c1;
+  text-shadow:0 0 20px rgba(218,165,32,0.5);
 }
 
 .story{
-  background:linear-gradient(180deg,var(--beige-bg),#e8e4dc);
+  background:none;
 }
 
 .story__text{
   max-width:800px;
   margin:0 auto;
-  color:var(--coffee-muted);
+  color:#c9a961;
   line-height:2.2;
 }
 
@@ -250,7 +268,7 @@ img{
   --member-shadow:0 30px 70px rgba(18,8,32,0.15);
   --member-card-width:420px;
   --member-card-gap:80px;
-  background:linear-gradient(180deg,#faf8f5 0%,#efe9e0 100%);
+  background:none;
   padding-bottom:4rem;
 }
 
@@ -262,7 +280,7 @@ img{
 
 .character .eyebrow{
   letter-spacing:0.3em;
-  color:var(--member-lavender);
+  /* color:#f4e4c1; */
 }
 
 .character h2{
@@ -293,30 +311,7 @@ img{
 
 .member-slider::before,
 .member-slider::after{
-  content:"";
-  position:absolute;
-  top:0;
-  bottom:0;
-  width:110px;
-  pointer-events:none;
-  z-index:2;
-  background:linear-gradient(90deg,rgba(250,248,245,1),rgba(250,248,245,0));
-  transition:opacity 0.3s ease;
-}
-
-.member-slider::after{
-  right:0;
-  left:auto;
-  transform:scaleX(-1);
-}
-
-.member-slider::before{
-  left:0;
-}
-
-.member-slider.is-slider-disabled::before,
-.member-slider.is-slider-disabled::after{
-  opacity:0;
+  content:none;
 }
 
 .member-slider__track{
@@ -330,7 +325,7 @@ img{
   flex:0 0 var(--member-card-width);
   width:var(--member-card-width);
   position:relative;
-  padding:0 1.5rem;
+  /* padding:0 1.5rem; */
 }
 
 .member-card__figure{
@@ -366,8 +361,8 @@ img{
 
 .name-vertical{
   letter-spacing:0.12em;
-  font-size:1.1rem;
-  color:var(--member-lavender);
+  font-size:1.5rem;
+  color:#c9a961;
 }
 
 .role-vertical{
@@ -381,8 +376,8 @@ img{
   margin:1rem auto 0;
   text-align:center;
   font-size:0.95rem;
-  color:#675d74;
-  line-height:1.8;
+  color:var(--coffee-muted);
+  line-height:2.2;
   max-width:26rem;
   overflow-wrap:anywhere;
   word-break:break-word;
@@ -468,9 +463,8 @@ img{
   .site-header{
     height:76px;
     padding:0 1rem;
-    background:rgba(238,230,226,0.92);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid rgba(0,0,0,0.05);
+    border-bottom:none;
+    backdrop-filter:none;
   }
   .brand__logo{
     height:120px;
@@ -493,6 +487,9 @@ img{
   main{
     padding-top:0;
   }
+  .section{
+    padding:3rem 1rem;
+  }
   .character{
     padding:4rem 0 3rem;
   }
@@ -512,7 +509,15 @@ img{
   .member-card{
     flex:0 0 calc(50% - 0.625rem);
     max-width:calc(50% - 0.625rem);
-    padding:0 0.75rem 1.5rem;
+    /* padding:0 0.75rem 1.5rem; */
+  }
+
+  .section.story{
+    width:90%;
+    margin-left:auto;
+    margin-right:auto;
+    padding-left:0;
+    padding-right:0;
   }
   .member-card__figure{
     box-shadow:0 18px 35px rgba(18,8,32,0.12);
@@ -537,6 +542,7 @@ img{
     max-width:100%;
   }
 }
+
 
 @keyframes flicker{
   0%,100%{opacity:1;}
@@ -695,7 +701,7 @@ img{
   }
   .sacrament-link{
     max-width:100%;
-    padding:1.75rem 2rem;
+    padding:0.875rem 1rem;
   }
   .sacrament-link__ruby{
     font-size:0.7rem;
@@ -778,22 +784,13 @@ img{
 }
 
 .gallery{
-  background:linear-gradient(180deg,#edf2fb 0%,#fdfdfd 60%,#ffffff 100%);
+  background:none;
   position:relative;
   overflow:hidden;
 }
 
 .gallery::after{
-  content:"";
-  position:absolute;
-  top:-80px;
-  right:-120px;
-  width:280px;
-  height:280px;
-  border-radius:50%;
-  background:rgba(255,255,255,0.5);
-  filter:blur(12px);
-  pointer-events:none;
+  content:none;
 }
 
 .gallery__layout{
@@ -881,8 +878,9 @@ img{
 .gallery__eyebrow{
   letter-spacing:0.4em;
   font-size:0.85rem;
-  color:#b69e74;
+  color:#f4e4c1;
   margin-bottom:1rem;
+  text-shadow:0 0 20px rgba(139,0,0,0.5);
 }
 
 .gallery__content h2{
@@ -893,8 +891,8 @@ img{
 }
 
 .gallery__lead{
-  color:rgba(26,10,31,0.7);
-  line-height:1.8;
+  color:var(--coffee-muted);
+  line-height:2.2;
   max-width:420px;
   margin:0 auto 2.5rem;
 }
@@ -1041,51 +1039,4 @@ img{
     --card-height:520px;
     --card-gap:80px;
   }
-}
-
-/* 火の粉アニメーション（main.html用） */
-.page-embers{
-  position:fixed;
-  inset:0;
-  z-index:1;
-  pointer-events:none;
-  overflow:hidden;
-}
-.page-ember{
-  position:absolute;
-  width:4px;
-  height:4px;
-  border-radius:50%;
-  background:radial-gradient(circle,rgba(218,165,32,0.9),rgba(139,0,0,0.6));
-  box-shadow:0 0 8px rgba(218,165,32,0.8),0 0 16px rgba(139,0,0,0.5);
-  animation:pageEmberRise var(--duration) linear infinite;
-  animation-delay:var(--delay);
-  opacity:0;
-  filter:blur(1px);
-}
-@keyframes pageEmberRise{
-  0%{
-    transform:translateY(0) translateX(0) scale(0);
-    opacity:0;
-  }
-  10%{
-    opacity:1;
-    transform:translateY(-10vh) translateX(calc(var(--drift) * 5px)) scale(1);
-  }
-  50%{
-    opacity:0.8;
-    transform:translateY(-50vh) translateX(calc(var(--drift) * 25px)) scale(1.2);
-  }
-  90%{
-    opacity:0.3;
-    transform:translateY(-90vh) translateX(calc(var(--drift) * 40px)) scale(0.8);
-  }
-  100%{
-    opacity:0;
-    transform:translateY(-100vh) translateX(calc(var(--drift) * 50px)) scale(0);
-  }
-}
-
-@media (prefers-reduced-motion: reduce){
-  .page-ember{animation:none;display:none}
 }

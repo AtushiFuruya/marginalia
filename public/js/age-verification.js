@@ -372,12 +372,16 @@ document.addEventListener('DOMContentLoaded', function(){
       const duration = 8 + Math.random() * 12;
       const delay = Math.random() * 10;
       const drift = (Math.random() - 0.5) * 2;
+      const width = 2 + Math.random() * 4;
+      const height = width * (1.5 + Math.random() * 0.8);
 
       ember.style.left = `${left}%`;
       ember.style.bottom = '-20px';
       ember.style.setProperty('--duration', `${duration}s`);
       ember.style.setProperty('--delay', `${delay}s`);
       ember.style.setProperty('--drift', drift);
+      ember.style.setProperty('--ember-width', `${width}px`);
+      ember.style.setProperty('--ember-height', `${height}px`);
 
       embersContainer.appendChild(ember);
     }
