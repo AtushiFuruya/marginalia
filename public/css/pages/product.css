@@ -313,6 +313,24 @@
   margin:0 auto;
 }
 
+.special-content--preparing{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:200px;
+}
+
+.special-preparing{
+  font-family:"Cormorant Garamond","Noto Serif JP",serif;
+  font-size:2rem;
+  font-weight:600;
+  font-style:italic;
+  color:#c9a961;
+  letter-spacing:0.2em;
+  text-align:center;
+  opacity:0.7;
+}
+
 .special-lead {
   font-family:"Noto Serif JP",serif;
   font-size:1.1rem;
