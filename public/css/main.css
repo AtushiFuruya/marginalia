@@ -170,11 +170,13 @@ img{
 }
 
 .eyebrow{
-  font-size:1.125rem;
+  font-size:clamp(0.9rem,2.5vw,1.125rem);
   letter-spacing:0.3em;
   text-transform:uppercase;
   color:var(--boys-purple);
   margin-bottom:1rem;
+  word-break:break-word;
+  hyphens:auto;
 }
 
 .eyebrow.center{
