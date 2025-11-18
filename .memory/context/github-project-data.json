@@ -1,23 +1,7 @@
 {
   "key": "GITHUB_PROJECT_DATA",
-  "last_updated": "2025-11-13T02:18:44.521Z",
-  "repository": "git@github.com:AtushiFuruya/marginalia.git",
-  "latest_commit_sha": "d027835",
-  "deployed_url": "https://atushifuruya.github.io/marginalia/",
-  "main_branch": "main",
-  "deploy_branch": "gh-pages",
-  "last_deployment": "2025-11-12T12:25:00Z",
-  "project_name": "Karin_gamesite",
-  "tech_stack": [
-    "HTML5",
-    "CSS3",
-    "Vanilla JS"
-  ],
-  "pages": {
-    "production": [
-      "index.html",
-      "main.html"
-    ],
-    "total": 13
-  }
+  "captured_at": "2025-11-13T02:23:46.195Z",
+  "default_branch": "main",
+  "latest_commit_sha": "abc123",
+  "repository": "https://github.com/example/karin"
 }

@@ -410,7 +410,7 @@ this.slider.addEventListener('mouseleave', () => this.startAutoplay());
 
 リンク先を実際のページに変更：
 ```html
-<a href="./pages/characters/irene.html" class="character-slide__link">
+<a href="./characters/irene.html" class="character-slide__link">
 ```
 
 ---
@@ -425,7 +425,7 @@ this.slider.addEventListener('mouseleave', () => this.startAutoplay());
 
 #### フェーズ4: 統合
 
-1. `pages/characters.html` に統合
+1. `characters.html` に統合
 2. `main.html` からのリンク設定
 3. グローバルナビゲーションへの組み込み
 
@@ -460,7 +460,7 @@ this.slider.addEventListener('mouseleave', () => this.startAutoplay());
 
 **検証完了日**: 2025-11-09
 **検証者**: Claude Code (Sonnet 4.5)
-**次のアクション**: アセット置き換え → リンク設定 → `pages/characters.html` への統合
+**次のアクション**: アセット置き換え → リンク設定 → `characters.html` への統合
 
 ---
 
