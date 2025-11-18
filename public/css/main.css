@@ -594,8 +594,7 @@ img{
   max-width:480px;
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  gap:1rem;
+  justify-content:center;
   padding:2rem 2.5rem;
   background:
     linear-gradient(135deg,rgba(30,20,15,0.9),rgba(20,15,12,0.95)),
@@ -642,19 +641,6 @@ img{
   box-shadow:
     0 0 30px rgba(218,165,32,0.3),
     inset 0 0 20px rgba(218,165,32,0.08);
-}
-
-.sacrament-link__ornament{
-  font-size:1.4rem;
-  color:#daa520;
-  opacity:0.7;
-  transition:all 0.4s ease;
-  animation:flicker 4s ease-in-out infinite;
-}
-
-.sacrament-link:hover .sacrament-link__ornament{
-  opacity:1;
-  transform:scale(1.2);
 }
 
 .sacrament-link__text{
@@ -708,9 +694,6 @@ img{
   .sacrament-link{
     max-width:100%;
     padding:1.75rem 2rem;
-  }
-  .sacrament-link__ornament{
-    font-size:1.2rem;
   }
   .sacrament-link__ruby{
     font-size:0.7rem;
