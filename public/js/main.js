@@ -412,4 +412,41 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   initLibraryModal();
+
+  // ---- 火の粉アニメーション生成（main.html用） ----
+  const createPageEmbers = () => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(prefersReducedMotion) return;
+
+    const pageContainer = document.querySelector('.page-container');
+    if(!pageContainer) return;
+
+    const embersContainer = document.createElement('div');
+    embersContainer.className = 'page-embers';
+    embersContainer.setAttribute('aria-hidden', 'true');
+
+    const emberCount = window.innerWidth < 768 ? 25 : 50;
+
+    for(let i = 0; i < emberCount; i++){
+      const ember = document.createElement('div');
+      ember.className = 'page-ember';
+
+      const left = Math.random() * 100;
+      const duration = 8 + Math.random() * 12;
+      const delay = Math.random() * 10;
+      const drift = (Math.random() - 0.5) * 2;
+
+      ember.style.left = `${left}%`;
+      ember.style.bottom = '-20px';
+      ember.style.setProperty('--duration', `${duration}s`);
+      ember.style.setProperty('--delay', `${delay}s`);
+      ember.style.setProperty('--drift', drift);
+
+      embersContainer.appendChild(ember);
+    }
+
+    document.body.appendChild(embersContainer);
+  };
+
+  createPageEmbers();
 });
