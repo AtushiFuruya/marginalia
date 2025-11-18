@@ -267,7 +267,7 @@ reference/analyzed-sites/boysbemaid/
 
 2. **実装開始**
    - [ANALYSIS-SUMMARY.md](ANALYSIS-SUMMARY.md)の実装コードをKarin_gamesiteに統合
-   - `pages/characters.html`から開始推奨
+   - `characters.html`から開始推奨
 
 3. **TODO追加**
    ```bash

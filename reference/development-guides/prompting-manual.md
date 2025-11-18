@@ -1,10 +1,10 @@
 
-# Karin Gamesite プロンプティングマニュアル（MVP/Walking Skeleton設計・WordPress運用対応）
+# Karin Gamesite プロンプティングマニュアル（MVP/Walking Skeleton設計）
 
 ## 📋 このマニュアルについて
 
 このマニュアルは、Karin Gamesite（エロゲサイトMVP/Walking Skeleton）開発のためのAIプロンプティング・設計・運用ガイドです。
-静的Webページ＋WordPressによる最新情報更新（news.html階層）を前提とし、実装・運用・テスト・拡張までの全工程をカバーします。
+全ページ静的HTMLで構築する前提で、実装・運用・テスト・拡張までの全工程をカバーします。
 
 ---
 
@@ -14,25 +14,20 @@
 2. サイトマップ・要件・実装計画の整理
 3. Issue分割（各ページ・機能単位、優先度・依存関係明記）
 4. 静的Webページ実装（HTML/CSS/JS/画像）
-5. WordPress運用部分（news.html階層）設計・連携
+5. ニュースページ（news.html）静的実装
 6. テスト（機能・表示・アクセシビリティ・SEO・画像最適化）
-7. 統合・デプロイ（静的：Netlify/Vercel等、WP：推奨ホスティング）
+7. 統合・デプロイ（Netlify/Vercel/GitHub Pages 等の静的ホスティング）
 
 ---
 
 ## 📚 Section 1: サイト構成・運用方針
 
-### 1-1. 静的Webページ vs WordPress運用
+### 1-1. 静的Webページ構成
 
-- **静的Webページ**：index.html, opening.html, main.html, pages/story.html, pages/characters.html, pages/gallery.html, pages/special.html, pages/download.html, pages/spec.html
-- **WordPress運用**：pages/news.html（最新情報・お知らせのみWPで管理）
+- index.html, opening.html, main.html（story/charactersセクションを内包）
+- gallery.html, characters.html, special.html, download.html, spec.html, news.html（静的ニュースページ）
 
-### 1-2. WordPress連携方法（推奨）
-
-- **WP REST API連携**：静的サイト側でWPのREST API（例：/wp-json/wp/v2/posts）を定期フェッチし、news.htmlに最新情報を自動反映
-- **RSS連携**：WPのRSSフィードを静的側でパースして表示
-- **手動エクスポート/インポート**：WP管理画面からエクスポート→静的サイトに反映（初期MVPでは手動でも可）
-- **ヘッドレスWP**：将来的にAPI連携強化時に検討
+> 将来的に更新頻度が高くなった場合は WordPress 等のヘッドレスCMSを別途検討する
 
 ### ✅ あなたのワークフローは正しい
 
@@ -113,7 +108,7 @@ Issue #001: 年齢確認ページのHTML構造作成
 
 ### 2-2. 利用規約・プライバシーポリシー
 - 成人向けコンテンツのため、利用規約・プライバシーポリシーのプレースホルダーを設置（footer等にリンク）
-- 保存場所：`pages/privacy.html` `pages/terms.html`（内容は後日追加）
+- 保存場所：`privacy.html` `terms.html`（内容は後日追加）
 
 ### 2-3. アクセシビリティ受入基準（Definition of Doneに追加）
 - ボタンはキーボード操作可能（tab/enter）
@@ -132,8 +127,9 @@ Issue #001: 年齢確認ページのHTML構造作成
 - Netlify/Vercel：自動デプロイ・SSL・フォーム・画像最適化
 - GitHub Pages：無料・静的のみ
 - S3+CloudFront：大規模配信向け
-### 3-2. WordPressホスティング案
-- さくらWP/ConoHaWP/ロリポWP等（管理画面・API利用可）
+### 3-2. ニュース更新フロー
+- 現状は `news.html` を直編集し、必要に応じて `news/archive.html` 等へ過去記事を退避
+- CMS化が必要になった場合は WordPress/Sanity 等を別Issueで評価
 ### 3-3. CI/CDフロー例
 - GitHub Actions/Netlify/Vercelで「プルリク→ビルド→ステージング→本番」
 - package.json例：

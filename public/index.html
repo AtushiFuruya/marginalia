@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>かりんのゲームサイト | 年齢確認</title>
+  <meta name="description" content="成人向けゲームサイトの入り口です。１８歳以上のみ入場できます。">
+  <link rel="preload" href="assets/videos/intro.mp4" as="video" type="video/mp4">
+  <link rel="preload" href="assets/images/age-verification/background.jpg" as="image">
+  <link rel="stylesheet" href="css/age-verification.css">
+  <link rel="stylesheet" href="css/opening.css">
+</head>
+<body>
+  <div class="media-bg" aria-hidden="true">
+    <video
+      id="bg-video"
+      class="bg-media"
+      poster="../assets/images/age-verification/background.jpg"
+      autoplay
+      muted
+      playsinline
+      preload="auto"
+      aria-hidden="true"
+      tabindex="-1">
+      <source src="assets/videos/intro.mp4" type="video/mp4">
+    </video>
+    <img src="assets/images/age-verification/background.jpg" alt="" class="bg-media bg-fallback" aria-hidden="true">
+    <div id="bg-slideshow" class="slideshow" aria-hidden="true">
+      <img id="slideshow-img" src="assets/images/age-verification/background.jpg" alt="">
+      <div id="slideshow-flash" class="slideshow-flash"></div>
+    </div>
+  </div>
+
+  <main class="age-gate" role="main">
+    <section class="overlay" role="dialog" aria-modal="true" aria-labelledby="age-title" aria-describedby="age-desc">
+      <p class="eyebrow" aria-hidden="true">ADULTS ONLY / 18+</p>
+      <h1 id="age-title">年齢確認</h1>
+      <p id="age-desc" class="lead">
+        このサイトは成人向けゲーム作品を扱っています。１８歳未満の方、もしくは閲覧が法律で制限されている地域にお住まいの方はご退出ください。
+      </p>
+      <div class="controls" role="group" aria-label="年齢確認の選択肢">
+        <button id="enter-btn" class="btn primary" type="button" aria-label="18歳以上なので入場する" autofocus>入場する (ENTER)</button>
+        <button id="exit-btn" class="btn" type="button" aria-label="18歳未満なので退出する">退出する (EXIT)</button>
+      </div>
+    </section>
+  </main>
+
+  <section id="opening-sequence" class="opening opening--hidden" aria-hidden="true" hidden>
+    <div class="opening__hud">
+      <p class="opening__tagline">Karin Game Project</p>
+      <button id="skip-opening" class="skip-btn" type="button" aria-label="スキップしてメインページへ進む">SKIP</button>
+    </div>
+    <div class="opening__visual" aria-hidden="true">
+      <img id="opening-slide" class="opening__img" src="images/gallery/scene_caning.jpg" alt="オープニングスライド" decoding="async">
+      <div class="opening__vignette"></div>
+      <div id="opening-flash" class="opening__flash" aria-hidden="true"></div>
+      <div class="progress-track" aria-hidden="true">
+        <div id="progress-bar" class="progress-bar"></div>
+      </div>
+    </div>
+    <div class="opening__caption" aria-live="polite">
+      <p id="slide-caption">痛みと恥辱の中で微笑むあなた。</p>
+    </div>
+    <p id="slide-status" class="sr-only" aria-live="polite">スライド 1 / 5</p>
+  </section>
+
+  <div id="fire-video-layer" class="fire-video fire-video--hidden" aria-hidden="true">
+    <video
+      id="fire-video"
+      class="fire-video__media"
+      playsinline
+      muted
+      preload="auto"
+      aria-label="プロジェクトロゴの演出動画">
+      <source src="images/logo/fire_logo_video.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <noscript>
+    <p class="noscript-message">
+      このサイトを利用するには JavaScript を有効にしてください。無効な場合は <a href="main.html">こちら</a> からメインページへ進めます。
+    </p>
+  </noscript>
+
+  <script src="js/age-verification.js" defer></script>
+</body>
+</html>

@@ -13,17 +13,15 @@
 
 ```
 /
-├── index.html                    # 年齢確認＋オープニング＋メインビュー
-│
-├── pages/                        # サブページ
-│   ├── story.html               # ストーリー紹介
-│   ├── characters.html          # キャラクター紹介
-│   ├── gallery.html             # ギャラリー
-│   ├── special.html             # 特典情報
-│   ├── download.html            # ダウンロード
-│   ├── spec.html                # 製品スペック
-│   └── news.html                # ニュース/お知らせ
-│
+├── index.html                    # 年齢確認＋オープニング
+├── main.html                     # メインビュー（Story/Charactersセクションを内包）
+├── gallery.html                  # ギャラリー
+├── characters.html               # キャラクター紹介
+├── special.html                  # 特典情報
+├── download.html                 # ダウンロード
+├── spec.html                     # 製品スペック
+└── news.html                     # ニュース/お知らせ
+
 ├── css/                          # スタイルシート
 │   ├── reset.css                # CSSリセット
 │   ├── variables.css            # CSS変数（カラーパレット等）
@@ -104,16 +102,16 @@
 
 ---
 
-### 2. サブページ（pages/ ディレクトリ）
+### 2. サブページ（ルート直下 HTML）
 
-#### 2.1 pages/story.html - ストーリー紹介
+#### 2.1 main.html#story - ストーリー紹介
 - **コンテンツ**:
   - ゲームのあらすじ
   - 世界観説明
   - キーワード（ルビ付き）
 - **デザイン**: テキスト中心、雰囲気のある背景
 
-#### 2.2 pages/characters.html - キャラクター紹介
+#### 2.2 characters.html - キャラクター紹介
 - **コンテンツ**:
   - キャラクター一覧（4名）
   - キャラクター選択UI
@@ -125,7 +123,7 @@
   - JS: `js/pages/characters.js`
   - 画像: `assets/images/characters/`
 
-#### 2.3 pages/gallery.html - ギャラリー
+#### 2.3 gallery.html - ギャラリー
 - **コンテンツ**:
   - CG画像サムネイル（6-8枚）
   - モーダルで拡大表示
@@ -136,7 +134,7 @@
   - JS: `js/pages/gallery.js`, `js/modal.js`
   - 画像: `assets/images/gallery/`
 
-#### 2.4 pages/special.html - 特典情報
+#### 2.4 special.html - 特典情報
 - **コンテンツ**:
   - 購入特典（タペストリー等）
   - 店舗別特典情報
@@ -144,7 +142,7 @@
 - **必要リソース**:
   - 画像: `assets/images/banners/tokuten.jpg`
 
-#### 2.5 pages/download.html - ダウンロード
+#### 2.5 download.html - ダウンロード
 - **コンテンツ**:
   - 体験版ダウンロード
   - 壁紙ダウンロード（オプション）
@@ -153,7 +151,7 @@
   - ダウンロードボタン
   - ファイルサイズ表示
 
-#### 2.6 pages/spec.html - 製品スペック
+#### 2.6 spec.html - 製品スペック
 - **コンテンツ**:
   - タイトル、発売日、価格
   - 対応OS、動作環境
@@ -161,7 +159,7 @@
   - スタッフ情報（原画、シナリオ、CV）
 - **デザイン**: 定義リスト（dl/dt/dd）
 
-#### 2.7 pages/news.html - ニュース/お知らせ
+#### 2.7 news.html - ニュース/お知らせ
 - **コンテンツ**:
   - 更新履歴
   - 発売日、マスターアップ情報
@@ -185,13 +183,13 @@
 
 **リンク先**:
 - **Home**: `index.html#main-view` または `#main-view`
-- **Story**: `pages/story.html` または `#story`
-- **Characters**: `pages/characters.html` または `#characters`
-- **Gallery**: `pages/gallery.html` または `#gallery`
-- **Special**: `pages/special.html` または `#special`
-- **Download**: `pages/download.html` または `#download`
-- **Spec**: `pages/spec.html` または `#spec`
-- **News**: `pages/news.html` または `#news`
+- **Story**: `main.html#story` または `#story`
+- **Characters**: `characters.html` または `#characters`
+- **Gallery**: `gallery.html` または `#gallery`
+- **Special**: `special.html` または `#special`
+- **Download**: `download.html` または `#download`
+- **Spec**: `spec.html` または `#spec`
+- **News**: `news.html` または `#news`
 
 ### 実装方式の選択
 
@@ -225,13 +223,13 @@
 │                  │  ・メインビュー
 └────────┬─────────┘
          │
-         ├─→ pages/story.html        (ストーリー)
-         ├─→ pages/characters.html   (キャラクター)
-         ├─→ pages/gallery.html      (ギャラリー)
-         ├─→ pages/special.html      (特典)
-         ├─→ pages/download.html     (ダウンロード)
-         ├─→ pages/spec.html         (スペック)
-         └─→ pages/news.html         (ニュース)
+         ├─→ main.html#story        (ストーリー)
+         ├─→ characters.html   (キャラクター)
+         ├─→ gallery.html      (ギャラリー)
+         ├─→ special.html      (特典)
+         ├─→ download.html     (ダウンロード)
+         ├─→ spec.html         (スペック)
+         └─→ news.html         (ニュース)
 ```
 
 ---
@@ -241,15 +239,15 @@
 | 参考サイトの要素 | 本番サイトでの実装 | ファイルパス |
 |---------------|------------------|------------|
 | モーダル年齢確認+演出 | `index.html` 内に集約 | `index.html` |
-| 単一ページ（SPA） | マルチページ構成 | `index.html` + `pages/*.html` |
+| 単一ページ（SPA） | マルチページ構成 | `index.html` + `main.html` + 各 `.html` |
 | #win0 (Home) | index内メインビュー | `index.html#main-view` |
-| #win2 (Story) | ストーリーページ | `pages/story.html` |
-| #win3 (Character) | キャラクターページ | `pages/characters.html` |
-| #win4 (Gallery) | ギャラリーページ | `pages/gallery.html` |
-| #win5 (Special) | 特典ページ | `pages/special.html` |
-| #win6 (Spec) | スペックページ | `pages/spec.html` |
-| #win7 (Download) | ダウンロードページ | `pages/download.html` |
-| Topics（お知らせ） | ニュースページ | `pages/news.html` |
+| #win2 (Story) | ストーリーページ | `main.html#story` |
+| #win3 (Character) | キャラクターページ | `characters.html` |
+| #win4 (Gallery) | ギャラリーページ | `gallery.html` |
+| #win5 (Special) | 特典ページ | `special.html` |
+| #win6 (Spec) | スペックページ | `spec.html` |
+| #win7 (Download) | ダウンロードページ | `download.html` |
+| Topics（お知らせ） | ニュースページ | `news.html` |
 
 ---
 
@@ -342,18 +340,18 @@
 2. `index.html` (メインビュー) - 基本レイアウト
 
 ### Phase 2: コア機能（Week 2）
-4. `pages/gallery.html` - ギャラリー
-5. `pages/characters.html` - キャラクター
+4. `gallery.html` - ギャラリー
+5. `characters.html` - キャラクター
 6. グローバルナビゲーション
 
 ### Phase 3: コンテンツ充実（Week 3）
-7. `pages/story.html`
-8. `pages/special.html`
-9. `pages/spec.html`
+7. `main.html#story`
+8. `special.html`
+9. `spec.html`
 
 ### Phase 4: 補完機能（Week 4）
-10. `pages/download.html`
-11. `pages/news.html`
+10. `download.html`
+11. `news.html`
 12. パフォーマンス最適化
 
 ---

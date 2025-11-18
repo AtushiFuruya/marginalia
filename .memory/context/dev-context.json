@@ -1,5 +1,17 @@
 [
   {
+    "key": "SHARED_DEV_CONTEXT",
+    "task_type": "age-gate",
+    "status": "done",
+    "files": [
+      "index.html"
+    ],
+    "timestamp": "2025-11-13T02:23:38.307Z",
+    "token_count": 22,
+    "author": "furuyaatsushi",
+    "summary": "Task:age-gate | Status:done | Files:index.html | Ticket:none | Delta:Added CTA button"
+  },
+  {
     "timestamp": "2025-11-13T02:18:35.804Z",
     "task": "UI改善: SVG矢印アイコン + eyebrowフォントサイズ調整 + GitHub Pagesデプロイ",
     "files_changed": 3,

@@ -609,7 +609,7 @@ class CharacterSlider {
 **Karin実装**:
 ```html
 <div class="character-slide">
-  <a href="/pages/characters/irene.html">
+  <a href="/characters/irene.html">
     <div class="character-slide__image">
       <img src="/images/characters/イレーヌ.png" alt="イレーヌ">
     </div>
@@ -708,7 +708,7 @@ class CharacterSlider {
 
 ### ステップ1: HTMLファイル作成
 
-**ファイル**: `pages/characters.html`
+**ファイル**: `characters.html`
 
 ```html
 <!DOCTYPE html>

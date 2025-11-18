@@ -7,15 +7,13 @@
 
 ## 目的（短く）
 本プロジェクトは成人向けリョナゲームの販売サイトをMVPとして構築します。
-静的ページ（index/opening/main 等）をコアに、`pages/news.html` 階層のみ WordPress で運用し、最新情報は WordPress 側で管理します。
+全ページを静的HTMLで提供し、`news.html` も手動更新の静的ページとして運用します。
 
 ---
 
-## 運用方針（WordPress連携）
-- news（お知らせ/更新情報）は WordPress 管理（管理画面で投稿）。
-- 静的サイト側は WP REST API（例: `/wp-json/wp/v2/posts`）によるフェッチで最新記事を取得して表示する方式を推奨。
-  - 代替: RSS を定期パースして表示（簡易運用時）。
-- 初期（MVP）は手動でWP記事を静的に反映しても可。将来的にヘッドレスWP化を検討。
+## 運用方針（ニュース更新）
+- news（お知らせ/更新情報）は静的HTMLとして手動更新。
+- 更新頻度が高くなった場合はヘッドレスCMS（WordPress 等）連携を別Issueで検討する。
 
 ---
 
@@ -89,7 +87,7 @@
 - 推定時間: 3時間
 
 
-### Issue #004 (P1) — pages/characters.html（キャラクター紹介）
+### Issue #004 (P1) — characters.html（キャラクター紹介）
 - 目的: 背景透過PNGを使ったキャラクター紹介
 - 詳細:
   - 背景透過 PNG を利用してキャラクターカード表示
@@ -98,38 +96,40 @@
 - DoD:
   - [ ] 透過PNGが崩れず表示される
   - [ ] alt 属性、aria ラベルがある
-- 必要ファイル: `pages/characters.html`, `css/pages/characters.css`, `js/pages/characters.js`, `assets/images/characters/*`
+- 必要ファイル: `characters.html`, `css/pages/characters.css`, `js/pages/characters.js`, `assets/images/characters/*`
 - 依存: Issue #003
 - 推定時間: 4時間
 
 
-### Issue #005 (P1) — pages/story.html（ストーリー紹介）
-- 目的: ゲームのシナリオ紹介・世界観説明
+### Issue #005 (P1) — main.html ストーリー紹介セクション
+- 目的: `main.html` 内にシナリオ紹介・世界観説明セクションを統合（専用 `story.html` は不要）
 - DoD:
   - [ ] テキストが読みやすいレイアウト（読みやすさ、行間）
-- 必要ファイル: `pages/story.html`, `css/pages/story.css`
+  - [ ] セクション見出し・導線が他要素と調和する
+- 必要ファイル: `main.html`, `css/main.css`
 - 依存: none
 - 推定時間: 2時間
 
 
-### Issue #006 (P1) — pages/special.html / download / spec（特典・ダウンロード）
+### Issue #006 (P1) — special.html / download.html / spec.html（特典・ダウンロード）
 - 目的: 特典情報、ダウンロード案内、製品スペック
 - DoD: 各セクションが表示され、外部リンクが正しい
-- 必要ファイル: `pages/special.html`, `pages/download.html`, `pages/spec.html`
+- 必要ファイル: `special.html`, `download.html`, `spec.html`
 - 推定時間: 3時間
 
 
-### Issue #007 (P0) — pages/news.html の WordPress 接続設計
-- 目的: News（お知らせ）を WordPress で管理し、静的サイトで表示する
+### Issue #007 (P0) — news.html（静的ニュースページ）
+- 目的: 最新情報/更新履歴を静的HTMLとして表示する
 - 詳細:
-  - WP 管理画面で投稿を作成
-  - 静的サイトは WP REST API を利用して最新記事を取得
-  - API キャッシュ戦略（短期キャッシュ）を設計
+  - 手動更新できる記事カード/タイムラインを用意
+  - 3〜5件のニュース項目を仮配置（見出し/日付/本文/リンク）
+  - 旧記事アーカイブへの導線（例: `news/archive.html`）リンクエリア
 - DoD:
-  - [ ] WP 側で投稿が作成できる
-  - [ ] 静的サイトが API から記事を取得して表示する（ステージングで確認）
-- 必要ファイル: `pages/news.html`, `js/news-fetch.js`
-- 依存: WordPress サーバの用意
+  - [ ] 最新情報が card または list で視認性高く表示される
+  - [ ] 日付/ラベル/本文のタイポグラフィが統一されている
+  - [ ] 将来の追加更新が容易なHTML構造になっている
+- 必要ファイル: `news.html`, `css/news.css`（必要なら）
+- 依存: なし
 - 推定時間: 3時間
 
 
@@ -170,7 +170,7 @@
 
 ## 注記
 - 年齢確認の保存ポリシー: MVP は保存しない。将来的に保存する場合は暗号化・保持期間を必ず決めること。
-- WP 連携は REST API を推奨。RSS は簡易互換として利用可。
+- ニュース更新頻度が増加した場合は、別IssueでCMS連携（WordPress等）を検討する。
 
 ---
 

@@ -2,7 +2,7 @@
 
 作業日: 2025-11-07
 
-このファイルは追加要求（トップページの8秒ムービー年齢確認・SNS連携・WordPress導入手順・GitHub導入手順）をまとめた実務向け統合ノートです。
+このファイルは追加要求（トップページの8秒ムービー年齢確認・SNS連携・ニュース更新フロー・GitHub導入手順）をまとめた実務向け統合ノートです。
 
 ---
 
@@ -28,64 +28,26 @@
 
 ---
 
-## 3) WordPress の導入（news 用）
-### 目的
-- 管理画面からニュース／お知らせを更新できるようにする。
+## 3) ニュース更新フロー（静的）
+### 方針
+- `news.html` を静的HTMLで実装し、手動で記事ブロックを追加・差し替えます。
+- 更新頻度が高くなった場合だけCMS（WordPress等）を再検討します。
 
-### 選択肢
-- A: マネージドホスティング（推奨） — 管理が容易、SSL・バックアップが簡単
-- B: 自前サーバ or Docker（開発・テスト用）
+### 推奨セクション構成
+1. ヒーロー: ページ説明と「最新のお知らせ」見出し
+2. 最新3〜5件: `article` or `li` で日付・タイトル・本文・外部リンクを表示
+3. アーカイブ: `news/archive.html` など過去ログページへのリンク
+4. CTA: 「お問い合わせ」「公式X」等への導線
 
-### A: マネージドホスティング手順（概略）
-1. レンタルサーバを契約（ConoHa WING, さくらのレンタルサーバ等）
-2. 管理パネルから WordPress インストールを実行
-3. 管理者アカウントを作成し、パーマリンクを設定 (`/news/%postname%/` など)
-4. SSL を有効化
-5. 必要なプラグインを導入（セキュリティ/バックアップ/キャッシュなど）
-6. 投稿を作成して公開
+### 運用手順
+1. 更新時は `news.html` の記事ブロックを複製し、`datetime` 属性とテキストを差し替える
+2. 古い記事は別ページ（`news/archive.html`、`news/2024.html` 等）に移動
+3. 更新日を `main.html` の「最新情報」カードにも反映（必要なら）
+4. デプロイ前に必ず日付順とリンク先の動作を確認する
 
-### B: Docker でのローカル構築（テスト用）
-- 参考コマンド（プロジェクトルートに `docker-compose.yml` を用意）:
-
-```bash
-cat > docker-compose.yml <<'EOF'
-version: '3.7'
-services:
-  db:
-    image: mysql:5.7
-    environment:
-      MYSQL_ROOT_PASSWORD: example
-      MYSQL_DATABASE: wordpress
-  wordpress:
-    image: wordpress:latest
-    ports:
-      - '8000:80'
-    environment:
-      WORDPRESS_DB_HOST: db:3306
-      WORDPRESS_DB_USER: root
-      WORDPRESS_DB_PASSWORD: example
-      WORDPRESS_DB_NAME: wordpress
-    depends_on:
-      - db
-EOF
-
-docker-compose up -d
-```
-
-- ブラウザで `http://localhost:8000` にアクセスしてセットアップ
-- 投稿の公開を確認し、REST API（`/wp-json/wp/v2/posts`）で記事が取得できることを確認
-
-### 静的サイト側の実装（fetch例）
-- `js/news-fetch.js` 例:
-
-```javascript
-async function fetchNews() {
-  const res = await fetch('https://your-wp-site/wp-json/wp/v2/posts?per_page=5');
-  const posts = await res.json();
-  // DOM に描画する処理
-}
-fetchNews();
-```
+### 自動化の余地
+- Markdown など別ソースから `news.html` を生成したい場合は `tools/` にスクリプトを置き、`npm run build-news` などでHTML化する。
+- 将来的にCMS化する際はこのフローを置き換える（フェッチ処理やREST API は現時点では不要）。
 
 ---
 
@@ -120,9 +82,9 @@ git push -u origin main
 ---
 
 ## 5) 次の推奨アクション
-1. WordPress をどのホスティングで運用するか決定してください（マネージド推奨）。
+1. `news.html` のワイヤーフレームを固め、必要なダミー記事を3件以上用意する。
 2. GitHub リポジトリ名と公開方法（Pages/Netlify/Vercel）を決定してください。私がワークフロー/CI 設定（Actions/Netlify設定）を作成します。
-3. 早期に Docker ローカルの WordPress を立てて動作確認することを推奨します（テスト環境確保）。
+3. 将来CMS化する場合に備え、ニュース記事のマークアップ規則（クラス名・microdata等）をドキュメント化しておく。
 
 ---
 
