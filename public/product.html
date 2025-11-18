@@ -11,6 +11,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=IM+Fell+DW+Pica+SC&family=Cinzel+Decorative:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/pages/product.css">
+  <script src="js/age-gate-state.js"></script>
+  <script>
+    (function(){
+      var gate = window.KarinAgeGate;
+      var verified = false;
+      try{
+        verified = gate && typeof gate.isVerified === 'function' && gate.isVerified();
+      }catch(err){}
+      if(!verified){
+        window.location.replace('index.html');
+      }
+    })();
+  </script>
 </head>
 <body>
   <div class="page-container">
@@ -131,10 +144,6 @@
 
     <footer class="site-footer">
       <p>© 2025 Karin Project. All Rights Reserved.</p>
-      <nav aria-label="フッターナビゲーション">
-        <a href="spec.html">Spec</a>
-        <a href="download.html">Download</a>
-      </nav>
     </footer>
   </div>
 

@@ -390,9 +390,8 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 
   if(alreadyVerified){
-    requestAnimationFrame(()=>{
-      redirectToOpening({ immediate:true, skipPersist:true });
-    });
+    requestAnimationFrame(()=> navigateToMain());
+    return;
   }
 
   createEmbers();
