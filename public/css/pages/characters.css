@@ -67,7 +67,7 @@
 
 .character-directory__avatar:hover{
   transform:translateY(-6px);
-  border-color:rgba(60,50,190,0.35);
+  border-color:rgba(218,165,32,0.35);
 }
 
 .character-directory__avatar:hover img{

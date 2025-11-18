@@ -1,5 +1,6 @@
 :root{
-  --boys-purple:#3c32be;
+  --gothic-crimson:#8b0000;
+  --gothic-gold:#daa520;
   --beige-bg:#eee6e2;
   --beige-soft:#f5f2ed;
   --coffee:#1a0a1f;
@@ -63,7 +64,7 @@ main{
 }
 
 .site-header.scrolled{
-  box-shadow:0 2px 20px rgba(60,50,190,0.15);
+  box-shadow:0 2px 20px rgba(139,0,0,0.15);
 }
 
 .brand{
@@ -94,7 +95,7 @@ main{
 .hamburger span{
   width:25px;
   height:3px;
-  background:var(--boys-purple);
+  background:var(--gothic-gold);
   border-radius:2px;
   transition:transform 0.3s ease, opacity 0.3s ease;
 }
@@ -124,20 +125,20 @@ main{
   gap:1.25rem;
   transform:translateX(100%);
   transition:transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94);
-  box-shadow:-5px 0 30px rgba(60,50,190,0.12);
+  box-shadow:-5px 0 30px rgba(139,0,0,0.12);
   backdrop-filter:blur(18px);
 }
 
 .main-nav a{
   font-size:1.05rem;
   padding-bottom:0.35rem;
-  border-bottom:1px solid rgba(60,50,190,0.15);
+  border-bottom:1px solid rgba(139,0,0,0.15);
   color:var(--coffee);
   transition:color 0.3s ease, padding-left 0.3s ease;
 }
 
 .main-nav a:hover{
-  color:var(--boys-purple);
+  color:var(--gothic-crimson);
   padding-left:0.35rem;
 }
 
@@ -261,8 +262,8 @@ main{
 
 .character{
   --member-ink:#180c26;
-  --member-lavender:#3c32be;
-  --member-lavender-dark:#1f1475;
+  --member-crimson:#8b0000;
+  --member-crimson-dark:#5a0000;
   --member-cream:#f6f2ea;
   --member-beige:#ece6dc;
   --member-shadow:0 30px 70px rgba(18,8,32,0.15);
@@ -542,7 +543,8 @@ main{
 @media (max-width:767px){
   .site-header{
     height:76px;
-    padding:0 1rem;
+    /* padding:0 1rem; */
+    padding:0.5rem 1.5rem 0rem 0rem;
     border-bottom:none;
     backdrop-filter:none;
   }
@@ -791,7 +793,7 @@ main{
   }
 }
   border-radius:14px;
-  border:2px solid rgba(60,50,190,0.4);
+  border:2px solid rgba(139,0,0,0.4);
   background:linear-gradient(135deg,#2a1a2a,#1a0a1f);
   color:#f7f3ff;
   font-weight:700;
@@ -803,7 +805,7 @@ main{
 
 .character-slider__nav__item.is-active{
   opacity:1;
-  border-color:var(--boys-purple);
+  border-color:var(--gothic-gold);
 }
 
 .character-slider__nav__item:hover{
@@ -1006,9 +1008,9 @@ main{
   justify-content:center;
   padding:0.9rem 2.5rem;
   border-radius:50px;
-  border:2px solid var(--boys-purple);
+  border:2px solid var(--gothic-gold);
   background:transparent;
-  color:var(--boys-purple);
+  color:var(--gothic-gold);
   letter-spacing:0.15em;
   font-weight:600;
   transition:transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
@@ -1016,9 +1018,9 @@ main{
 
 .btn.cta,
 .btn:hover{
-  background:var(--boys-purple);
+  background:var(--gothic-gold);
   color:#fff;
-  box-shadow:0 15px 40px rgba(60,50,190,0.25);
+  box-shadow:0 15px 40px rgba(218,165,32,0.25);
 }
 
 .news{
@@ -1033,7 +1035,7 @@ main{
 }
 
 .news__list li+li{
-  border-top:1px solid rgba(60,50,190,0.15);
+  border-top:1px solid rgba(139,0,0,0.15);
 }
 
 .news__list a{
@@ -1047,12 +1049,12 @@ main{
 .news__list time{
   font-size:0.9rem;
   letter-spacing:0.2em;
-  color:var(--boys-purple);
+  color:var(--gothic-crimson);
 }
 
 .site-footer{
   padding:1.5rem 2rem;
-  border-top:1px solid rgba(60,50,190,0.15);
+  border-top:1px solid rgba(139,0,0,0.15);
   display:flex;
   flex-wrap:wrap;
   gap:1rem;
