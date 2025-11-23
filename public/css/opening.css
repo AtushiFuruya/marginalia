@@ -54,6 +54,36 @@
   opacity:1;
 }
 
+.opening__overlay{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+
+.opening__overlay--color{
+  background:rgba(112,66,20,0.3);
+}
+
+.opening__overlay--mesh{
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,0.28) 0,
+      rgba(255,255,255,0.28) 1px,
+      transparent 1px,
+      transparent 18px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,0.18) 0,
+      rgba(255,255,255,0.18) 1px,
+      transparent 1px,
+      transparent 18px
+    );
+  mix-blend-mode:screen;
+  opacity:0.55;
+}
+
 .opening__vignette{
   position:absolute;
   inset:0;

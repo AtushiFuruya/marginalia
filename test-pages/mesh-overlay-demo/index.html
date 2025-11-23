@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>メッシュ＋単色オーバーレイ確認用</title>
+  <style>
+    :root{
+      --flat-overlay: rgba(112,66,20,0.3);
+    }
+    body{
+      margin:0;
+      padding:24px;
+      background:#0c0a0e;
+      color:#f5f3ff;
+      font-family:"Noto Serif JP", "Yu Mincho", serif;
+      line-height:1.6;
+    }
+    h1{
+      margin:0 0 16px;
+      font-size:1.4rem;
+      letter-spacing:0.08em;
+    }
+    .description{
+      margin:0 0 20px;
+      color:rgba(245,243,255,0.8);
+    }
+    .mesh-demo{
+      max-width:960px;
+      margin:0 auto 20px;
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:12px;
+      background:#16111c;
+      padding:16px;
+      box-shadow:0 18px 40px rgba(0,0,0,0.45);
+    }
+    .mesh-demo__frame{
+      position:relative;
+      aspect-ratio:16 / 9;
+      overflow:hidden;
+      border-radius:10px;
+      isolation:isolate;
+    }
+    .mesh-demo__frame img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    .mesh-demo__overlay{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+    }
+    .mesh-demo__overlay--color{
+      background:var(--flat-overlay);
+    }
+    .mesh-demo__overlay--mesh{
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          rgba(255,255,255,0.28) 0,
+          rgba(255,255,255,0.28) 1px,
+          transparent 1px,
+          transparent 18px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          rgba(255,255,255,0.18) 0,
+          rgba(255,255,255,0.18) 1px,
+          transparent 1px,
+          transparent 18px
+        );
+      mix-blend-mode:screen;
+      opacity:0.6;
+    }
+    .mesh-demo__note{
+      margin:12px 0 0;
+      font-size:0.95rem;
+      color:rgba(245,243,255,0.8);
+    }
+  </style>
+</head>
+<body>
+  <div class="mesh-demo">
+    <h1>メッシュ＋単色オーバーレイのテスト</h1>
+    <p class="description">
+      Qiita記事のパターン重ねを真似した確認用です。写真 → フラットカラー（#704214, 30%）→ メッシュの順にレイヤーを積み、実装結果を一枚でチェックできます。
+    </p>
+    <figure class="mesh-demo__frame">
+      <img src="../../public/images/gallery/scene_caning.jpg" alt="テスト用のスライド画像">
+      <div class="mesh-demo__overlay mesh-demo__overlay--color" aria-hidden="true"></div>
+      <div class="mesh-demo__overlay mesh-demo__overlay--mesh" aria-hidden="true"></div>
+    </figure>
+    <p class="mesh-demo__note">
+      仕上がりレビュー：単色で全体のトーンを落ち着かせつつ、メッシュのスクリーン重ねで写真のハイライトを程よく浮かせています。パターンのピッチ（18px）と濃度は本番と同じなので、このまま開幕スライドに適用できます。
+    </p>
+  </div>
+</body>
+</html>

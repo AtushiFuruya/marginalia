@@ -1,0 +1,67 @@
+:root{
+  --ink:#11060b;
+  --gild:#d6c2a0;
+  --stroke:#e8d3b4;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  min-height:200vh;
+  font-family:'IM Fell DW Pica SC','Noto Serif JP',serif;
+  background:linear-gradient(180deg,#080407 0%,#180f12 100%);
+  color:var(--gild);
+}
+main{
+  width:min(960px,100%);
+  margin:0 auto;
+  padding:4rem 1.5rem;
+}
+.spacer{
+  height:60vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.25rem;
+  letter-spacing:0.3em;
+  text-transform:uppercase;
+  color:#fff;
+  opacity:0.55;
+}
+.section{
+  padding:6rem 0;
+}
+.section-heading{
+  display:flex;
+  justify-content:center;
+  margin-bottom:2rem;
+}
+.section-heading svg{
+  width:min(80vw,360px);
+  height:80px;
+}
+.section-heading text{
+  fill:transparent;
+  stroke:var(--stroke);
+  stroke-width:1.5px;
+  stroke-dasharray:600;
+  stroke-dashoffset:600;
+  font-size:2.5rem;
+  letter-spacing:0.5rem;
+}
+.section-heading.is-painted text{
+  fill:var(--gild);
+}
+.section-heading.is-visible text{
+  animation:draw 1.8s ease forwards;
+}
+.section-heading.is-painted text{
+  animation:draw 1.8s ease forwards, fill 0.8s ease 1.6s forwards;
+}
+@keyframes draw{
+  from{ stroke-dashoffset:600; }
+  to{ stroke-dashoffset:0; }
+}
+@keyframes fill{
+  from{ fill:transparent; }
+  to{ fill:var(--gild); }
+}

@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Fire Background Test</title>
+  <style>
+    :root{
+      color-scheme:dark;
+    }
+    *{box-sizing:border-box;padding:0;margin:0;}
+    body{
+      background:#050505;
+      min-height:100vh;
+      font-family:"IM Fell DW Pica SC","Noto Serif JP",serif;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+    }
+    canvas{position:fixed;inset:0;z-index:-1;display:block;}
+    .notice{
+      text-align:center;
+      color:#f4d8c1;
+      letter-spacing:0.15em;
+      font-size:clamp(1rem,2vw,1.35rem);
+      text-transform:uppercase;
+      background:rgba(5,2,2,0.6);
+      padding:1.5rem 2rem;
+      border:1px solid rgba(244,216,193,0.25);
+      box-shadow:0 10px 40px rgba(0,0,0,0.4);
+    }
+  </style>
+</head>
+<body>
+  <canvas id="fire-canvas"></canvas>
+  <div class="notice">Fire Background Test<br>Three.js + Shader Material</div>
+  <script type="module">
+    import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
+
+    const canvas = document.getElementById('fire-canvas');
+    const renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true});
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.Camera();
+
+    const uniforms = {
+      uTime: {value: 0},
+      uResolution: {value: new THREE.Vector2(window.innerWidth, window.innerHeight)}
+    };
+
+    const vertexShader = `
+      varying vec2 vUv;
+      void main(){
+        vUv = uv;
+        gl_Position = vec4(position, 1.0);
+      }
+    `;
+
+    const fragmentShader = `
+      precision highp float;
+      varying vec2 vUv;
+      uniform float uTime;
+      uniform vec2 uResolution;
+
+      vec4 permute(vec4 x){return mod(((x*34.0)+1.0)*x, 289.0);}
+      vec2 fade(vec2 t){return t*t*t*(t*(t*6.0-15.0)+10.0);}
+      float noise(vec2 P){
+        vec4 Pi = floor(vec4(P,P)+vec4(0.0,0.0,1.0,1.0));
+        vec4 Pf = fract(vec4(P,P)+vec4(0.0,0.0,1.0,1.0));
+        Pi = mod(Pi,289.0);
+        vec4 ix = vec4(Pi.x,Pi.z,Pi.x,Pi.z);
+        vec4 iy = vec4(Pi.y,Pi.y,Pi.w,Pi.w);
+        vec4 fx = vec4(Pf.x,Pf.z,Pf.x,Pf.z);
+        vec4 fy = vec4(Pf.y,Pf.y,Pf.w,Pf.w);
+        vec4 i = permute(permute(ix)+iy);
+        vec4 gx = fract(i*(1.0/41.0))*2.0-1.0;
+        vec4 gy = abs(gx)-0.5;
+        vec4 tx = floor(gx+0.5);
+        gx = gx-tx;
+        vec2 g00 = vec2(gx.x,gy.x);
+        vec2 g10 = vec2(gx.y,gy.y);
+        vec2 g01 = vec2(gx.z,gy.z);
+        vec2 g11 = vec2(gx.w,gy.w);
+        vec4 norm = 1.79284291400159 - 0.85373472095314 *
+          vec4(dot(g00,g00), dot(g01,g01), dot(g10,g10), dot(g11,g11));
+        g00 *= norm.x; g01 *= norm.y; g10 *= norm.z; g11 *= norm.w;
+        float n00 = dot(g00, vec2(fx.x, fy.x));
+        float n10 = dot(g10, vec2(fx.y, fy.y));
+        float n01 = dot(g01, vec2(fx.z, fy.z));
+        float n11 = dot(g11, vec2(fx.w, fy.w));
+        vec2 fade_xy = fade(vec2(Pf.x, Pf.y));
+        vec2 n_x = mix(vec2(n00,n01), vec2(n10,n11), fade_xy.x);
+        float n_xy = mix(n_x.x, n_x.y, fade_xy.y);
+        return 2.3 * n_xy;
+      }
+
+      float fbm(vec2 p){
+        float value = 0.0;
+        float amplitude = 0.7;
+        float frequency = 1.0;
+        for(int i = 0; i < 5; i++){
+          value += amplitude * noise(p * frequency);
+          frequency *= 1.82;
+          amplitude *= 0.58;
+          p += vec2(0.38, -0.28);
+        }
+        return value;
+      }
+
+      float calcTemperature(vec2 uv, float time){
+        vec2 flow = uv;
+        flow.y += time * 0.85;
+        float sway = sin(time * 0.28 + uv.y * 6.5) * 0.08;
+        sway += sin(time * 0.52 + uv.y * 3.4) * 0.1;
+        flow.x += sway;
+        flow.x += fbm(vec2(uv.y * 2.6, time * 0.32)) * 0.055;
+
+        float base = fbm(flow * 1.45);
+        float detail = fbm(flow * 4.8);
+        float flicker = fbm(vec2(uv.x * 1.7, time * 2.1));
+
+        float flame = base + detail * 0.58 + uv.y * 1.4 + flicker * 0.28;
+        float heightMask = smoothstep(-1.25, 0.2, uv.y);
+        flame *= heightMask;
+        return clamp(flame, 0.0, 1.2);
+      }
+
+      vec3 temperatureToColor(float temp, float height){
+        float t = clamp(smoothstep(0.05, 0.98, temp), 0.0, 1.0);
+        vec3 color = vec3(0.01,0.003,0.01);
+        color = mix(color, vec3(0.2,0.01,0.01), smoothstep(0.02,0.08,t));   // oxblood
+        color = mix(color, vec3(0.45,0.04,0.01), smoothstep(0.08,0.14,t));  // crimson
+        color = mix(color, vec3(0.85,0.12,0.0), smoothstep(0.14,0.2,t));    // vermilion
+        color = mix(color, vec3(1.0,0.3,0.05), smoothstep(0.2,0.26,t));     // orange
+        color = mix(color, vec3(1.0,0.45,0.05), smoothstep(0.26,0.32,t));   // amber
+        color = mix(color, vec3(1.0,0.65,0.08), smoothstep(0.32,0.38,t));   // golden
+        color = mix(color, vec3(1.0,0.78,0.15), smoothstep(0.38,0.45,t));   // honey
+        color = mix(color, vec3(1.0,0.9,0.3), smoothstep(0.45,0.52,t));     // pale gold
+        color = mix(color, vec3(0.98,0.82,0.55), smoothstep(0.52,0.6,t));   // champagne
+        color = mix(color, vec3(0.85,0.62,0.9), smoothstep(0.6,0.68,t));    // lilac
+        color = mix(color, vec3(0.95,0.35,0.9), smoothstep(0.68,0.74,t));   // magenta
+        color = mix(color, vec3(0.65,0.25,0.9), smoothstep(0.74,0.8,t));    // violet
+        color = mix(color, vec3(0.4,0.4,0.95), smoothstep(0.8,0.86,t));     // indigo-cyan
+        color = mix(color, vec3(0.3,0.6,0.98), smoothstep(0.86,0.92,t));    // cyan
+        color = mix(color, vec3(0.95,0.98,1.0), smoothstep(0.92,0.99,t));   // white-hot
+
+        float blueCore = smoothstep(-0.95, -0.25, height) * smoothstep(0.75, 0.98, t);
+        color = mix(color, vec3(0.25,0.55,0.98), blueCore * 0.45);
+        return clamp(color, 0.0, 1.0);
+      }
+
+      void main(){
+        vec2 uv = vUv * 2.0 - 1.0;
+        uv.x *= uResolution.x / uResolution.y;
+
+        float time = uTime * 0.36;
+        float temp = calcTemperature(uv, time);
+        vec3 col = temperatureToColor(temp, uv.y);
+
+        float alpha = clamp(temp * 1.1, 0.0, 1.0);
+        col = mix(vec3(0.01, 0.003, 0.01), col, alpha);
+        gl_FragColor = vec4(col, alpha);
+      }
+    `;
+
+    const geometry = new THREE.PlaneGeometry(2, 2);
+    const material = new THREE.ShaderMaterial({
+      uniforms,
+      vertexShader,
+      fragmentShader,
+      transparent: true
+    });
+
+    const mesh = new THREE.Mesh(geometry, material);
+    scene.add(mesh);
+
+    function resize(){
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      renderer.setSize(width, height, false);
+      uniforms.uResolution.value.set(width, height);
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    const clock = new THREE.Clock();
+    function render(){
+      uniforms.uTime.value = clock.getElapsedTime();
+      renderer.render(scene, camera);
+      requestAnimationFrame(render);
+    }
+    render();
+  </script>
+</body>
+</html>
