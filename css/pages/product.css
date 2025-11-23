@@ -1,0 +1,414 @@
+@keyframes bloodPulse{
+  0%,100%{opacity:0.3;transform:scale(1);}
+  50%{opacity:0.6;transform:scale(1.05);}
+}
+
+@keyframes illuminateGold{
+  0%,100%{text-shadow:0 0 10px rgba(218,165,32,0.3),0 0 20px rgba(139,0,0,0.2);}
+  50%{text-shadow:0 0 30px rgba(218,165,32,0.7),0 0 50px rgba(139,0,0,0.4),0 0 80px rgba(218,165,32,0.3);}
+}
+
+@keyframes unfoldManuscript{
+  from{opacity:0;transform:perspective(1200px) rotateX(-20deg) translateY(40px) scale(0.95);}
+  to{opacity:1;transform:perspective(1200px) rotateX(0) translateY(0) scale(1);}
+}
+
+.product-page {
+  background:
+    radial-gradient(ellipse at 15% 25%,rgba(139,0,0,0.08),transparent 45%),
+    radial-gradient(ellipse at 85% 75%,rgba(218,165,32,0.06),transparent 45%),
+    linear-gradient(180deg,#0a0806 0%,#140f0d 25%,#0f0b09 50%,#1a1310 75%,#080604 100%);
+  padding-top:5rem;
+  min-height:100vh;
+  position:relative;
+}
+
+.product-page::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    repeating-linear-gradient(0deg,transparent,transparent 4px,rgba(139,0,0,0.02) 4px,rgba(139,0,0,0.02) 5px),
+    repeating-linear-gradient(90deg,transparent,transparent 4px,rgba(218,165,32,0.015) 4px,rgba(218,165,32,0.015) 5px);
+  pointer-events:none;
+  opacity:0.5;
+}
+
+.product-section {
+  position:relative;
+  padding:6rem 2rem;
+}
+
+.product-section::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:50%;
+  width:90%;
+  height:2px;
+  background:
+    radial-gradient(ellipse at 10%,rgba(139,0,0,0.6),transparent 30%),
+    radial-gradient(ellipse at 50%,rgba(218,165,32,0.8),transparent 40%),
+    radial-gradient(ellipse at 90%,rgba(139,0,0,0.6),transparent 30%),
+    linear-gradient(90deg,transparent,rgba(139,0,0,0.4) 20%,rgba(218,165,32,0.6) 50%,rgba(139,0,0,0.4) 80%,transparent);
+  transform:translateX(-50%);
+  filter:drop-shadow(0 0 8px rgba(218,165,32,0.5));
+}
+
+.product-section:first-child::before{
+  display:none;
+}
+
+.product-summary {
+  background:
+    radial-gradient(ellipse at 50% 10%,rgba(139,0,0,0.12),transparent 60%),
+    linear-gradient(180deg,rgba(10,8,6,0.9),rgba(20,16,12,0.95));
+}
+
+.product-summary__content {
+  max-width:1000px;
+  margin:0 auto;
+  animation:unfoldManuscript 1.2s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+
+.product-header-image{
+  position:relative;
+  margin:0 auto 3rem;
+  max-width:100%;
+  padding:0;
+}
+
+.product-header-image img{
+  display:block;
+  width:100%;
+  height:auto;
+  object-fit:cover;
+}
+
+.product-lead {
+  font-family:"Crimson Text","Noto Serif JP",serif;
+  font-size:clamp(1rem,2.5vw,1.15rem);
+  line-height:2.4;
+  color:#d4b896;
+  margin:0 auto 4.5rem;
+  max-width:850px;
+  text-align:justify;
+  padding:0 2rem;
+  text-indent:2em;
+  position:relative;
+  font-style:italic;
+}
+
+
+.product-meta {
+  max-width:1100px;
+  margin:3.5rem auto;
+  background:
+    radial-gradient(circle at 10% 20%,rgba(139,0,0,0.1),transparent 50%),
+    linear-gradient(135deg,rgba(28,22,16,0.7),rgba(18,15,10,0.9)),
+    repeating-linear-gradient(60deg,transparent,transparent 15px,rgba(139,0,0,0.03) 15px,rgba(139,0,0,0.03) 30px);
+  border:3px solid;
+  border-image:linear-gradient(135deg,
+    rgba(139,0,0,0.6) 0%,rgba(218,165,32,0.5) 15%,rgba(139,0,0,0.4) 30%,
+    rgba(218,165,32,0.6) 50%,rgba(139,0,0,0.4) 70%,rgba(218,165,32,0.5) 85%,rgba(139,0,0,0.6) 100%
+  ) 1;
+  padding:3.5rem 3rem;
+  clip-path:polygon(
+    28px 0,100% 0,100% calc(100% - 28px),calc(100% - 28px) 100%,0 100%,0 28px
+  );
+  box-shadow:
+    0 12px 48px rgba(0,0,0,0.5),
+    inset 0 0 80px rgba(139,0,0,0.06);
+}
+
+.product-meta__item {
+  display:grid;
+  grid-template-columns:minmax(160px,250px) 1fr;
+  gap:3rem;
+  padding:2rem 0;
+  margin:0;
+  border-bottom:1px solid;
+  border-image:linear-gradient(90deg,transparent,rgba(139,0,0,0.3) 20%,rgba(218,165,32,0.4) 50%,rgba(139,0,0,0.3) 80%,transparent) 1;
+  position:relative;
+}
+
+.product-meta__item::before{
+  content:"";
+  position:absolute;
+  left:-1rem;
+  top:0;
+  width:4px;
+  height:100%;
+  background:linear-gradient(180deg,transparent,rgba(139,0,0,0.5) 30%,rgba(218,165,32,0.4) 50%,rgba(139,0,0,0.5) 70%,transparent);
+  opacity:0;
+  transition:opacity 0.3s ease;
+}
+
+.product-meta__item:hover::before{
+  opacity:1;
+}
+
+.product-meta__item:last-child {
+  border-bottom:none;
+}
+
+.product-meta__item dt {
+  font-family:"Cinzel Decorative","IM Fell DW Pica SC",serif;
+  font-weight:700;
+  font-size:clamp(0.95rem,2vw,1.1rem);
+  color:#daa520;
+  letter-spacing:0.1em;
+}
+
+.product-meta__item dd {
+  margin:0;
+  font-family:"Crimson Text","Noto Serif JP",serif;
+  color:#c9a961;
+  line-height:2;
+  font-size:clamp(1.2rem,3vw,1.5rem);
+}
+
+.product-spec {
+  background:rgba(12,10,8,0.7);
+}
+
+.spec-table {
+  max-width:1100px;
+  margin:3.5rem auto;
+  background:
+    radial-gradient(circle at 10% 20%,rgba(139,0,0,0.1),transparent 50%),
+    linear-gradient(135deg,rgba(28,22,16,0.7),rgba(18,15,10,0.9)),
+    repeating-linear-gradient(60deg,transparent,transparent 15px,rgba(139,0,0,0.03) 15px,rgba(139,0,0,0.03) 30px);
+  border:3px solid;
+  border-image:linear-gradient(135deg,
+    rgba(139,0,0,0.6) 0%,rgba(218,165,32,0.5) 15%,rgba(139,0,0,0.4) 30%,
+    rgba(218,165,32,0.6) 50%,rgba(139,0,0,0.4) 70%,rgba(218,165,32,0.5) 85%,rgba(139,0,0,0.6) 100%
+  ) 1;
+  padding:3.5rem 3rem;
+  clip-path:polygon(
+    28px 0,100% 0,100% calc(100% - 28px),calc(100% - 28px) 100%,0 100%,0 28px
+  );
+  box-shadow:
+    0 12px 48px rgba(0,0,0,0.5),
+    inset 0 0 80px rgba(139,0,0,0.06);
+}
+
+.spec-row {
+  display:grid;
+  grid-template-columns:minmax(160px,250px) 1fr;
+  gap:3rem;
+  padding:2rem 0;
+  margin:0;
+  border-bottom:1px solid;
+  border-image:linear-gradient(90deg,transparent,rgba(139,0,0,0.3) 20%,rgba(218,165,32,0.4) 50%,rgba(139,0,0,0.3) 80%,transparent) 1;
+  position:relative;
+}
+
+.spec-row::before{
+  content:"";
+  position:absolute;
+  left:-1rem;
+  top:0;
+  width:4px;
+  height:100%;
+  background:linear-gradient(180deg,transparent,rgba(139,0,0,0.5) 30%,rgba(218,165,32,0.4) 50%,rgba(139,0,0,0.5) 70%,transparent);
+  opacity:0;
+  transition:opacity 0.3s ease;
+}
+
+.spec-row:hover::before{
+  opacity:1;
+}
+
+.spec-row:last-child {
+  border-bottom:none;
+}
+
+.spec-row dt {
+  font-family:"Cinzel Decorative","IM Fell DW Pica SC",serif;
+  font-weight:700;
+  font-size:clamp(0.95rem,2vw,1.1rem);
+  color:#daa520;
+  letter-spacing:0.1em;
+}
+
+.spec-row dd {
+  margin:0;
+  font-family:"Crimson Text","Noto Serif JP",serif;
+  color:#c9a961;
+  line-height:2;
+  font-size:clamp(1.2rem,3vw,1.5rem);
+}
+
+.spec-note {
+  text-align:center;
+  margin-top:3rem;
+  font-family:"Crimson Text","Noto Serif JP",serif;
+  font-size:0.9rem;
+  color:#8b6f47;
+  font-style:italic;
+}
+
+.product-download {
+  background:
+    radial-gradient(ellipse at 50% 50%,rgba(218,165,32,0.1),transparent 60%),
+    linear-gradient(135deg,rgba(12,10,8,0.8),rgba(20,16,12,0.9));
+}
+
+.download-content {
+  max-width:800px;
+  margin:3.5rem auto;
+}
+
+.download-card {
+  position:relative;
+  background:
+    radial-gradient(circle at 50% 20%,rgba(218,165,32,0.15),transparent 60%),
+    linear-gradient(135deg,rgba(35,28,20,0.95),rgba(20,16,10,0.98));
+  padding:5rem 4rem;
+  border:3px solid;
+  border-image:linear-gradient(135deg,
+    rgba(218,165,32,0.7),rgba(139,0,0,0.5) 25%,rgba(218,165,32,0.8) 50%,rgba(139,0,0,0.5) 75%,rgba(218,165,32,0.7)
+  ) 1;
+  clip-path:polygon(
+    32px 0,100% 0,100% calc(100% - 32px),calc(100% - 32px) 100%,0 100%,0 32px
+  );
+  text-align:center;
+  transition:all 0.6s ease;
+  overflow:hidden;
+  box-shadow:
+    0 16px 60px rgba(0,0,0,0.6),
+    inset 0 0 100px rgba(218,165,32,0.05);
+}
+
+.download-card::before{
+  content:"";
+  position:absolute;
+  inset:-50%;
+  background:conic-gradient(from 0deg,transparent,rgba(218,165,32,0.12) 10%,transparent 20%,rgba(139,0,0,0.08) 30%,transparent 40%);
+  animation:rotate 12s linear infinite;
+}
+
+@keyframes rotate{
+  to{transform:rotate(360deg);}
+}
+
+.download-card:hover{
+  box-shadow:
+    0 20px 80px rgba(218,165,32,0.4),
+    0 0 100px rgba(139,0,0,0.3),
+    inset 0 0 120px rgba(218,165,32,0.1);
+}
+
+.download-card__title {
+  position:relative;
+  z-index:1;
+  font-family:"Cinzel Decorative",serif;
+  font-size:clamp(2.2rem,5vw,3rem);
+  font-weight:900;
+  letter-spacing:0.15em;
+  color:#f4e4c1;
+  margin-bottom:2rem;
+  animation:illuminateGold 4s ease-in-out infinite;
+}
+
+.download-card__status {
+  position:relative;
+  z-index:1;
+  display:inline-block;
+  padding:1rem 3rem;
+  background:linear-gradient(135deg,rgba(139,0,0,0.9),rgba(100,0,0,0.95));
+  color:#f4e4c1;
+  border:2px solid rgba(139,0,0,0.8);
+  font-family:"Crimson Text","Noto Serif JP",serif;
+  font-size:clamp(1rem,2.5vw,1.15rem);
+  letter-spacing:0.25em;
+  margin-bottom:2.5rem;
+  clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px);
+  box-shadow:0 0 30px rgba(139,0,0,0.5);
+}
+
+.download-card__desc {
+  position:relative;
+  z-index:1;
+  color:#c9a961;
+  line-height:2.2;
+  font-family:"Crimson Text","Noto Serif JP",serif;
+  font-size:clamp(1rem,2.5vw,1.1rem);
+}
+
+.product-special {
+  background:rgba(10,8,6,0.9);
+}
+
+.special-content {
+  max-width:1000px;
+  margin:0 auto;
+}
+
+.special-content--preparing{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:250px;
+}
+
+.special-preparing{
+  font-family:"Cinzel Decorative","Noto Serif JP",serif;
+  font-size:clamp(1.8rem,4vw,2.5rem);
+  font-weight:900;
+  color:#c9a961;
+  letter-spacing:0.3em;
+  text-align:center;
+  opacity:0.6;
+  animation:illuminateGold 3s ease-in-out infinite;
+}
+
+@media (max-width:767px) {
+  .product-page {
+    padding-top:80px;
+  }
+
+  .product-section {
+    padding:4rem 1.5rem;
+  }
+
+  .product-lead{
+    padding:0 1rem;
+    text-indent:1.5em;
+  }
+
+  .product-meta {
+    padding:2.5rem 1.75rem;
+  }
+
+  .product-meta__item {
+    grid-template-columns:1fr;
+    gap:0.75rem;
+    padding:1.5rem 0;
+  }
+
+  .spec-table {
+    padding:2.5rem 1.75rem;
+  }
+
+  .spec-row {
+    grid-template-columns:1fr;
+    gap:0.75rem;
+    padding:1.5rem 0;
+  }
+
+  .download-card {
+    padding:3.5rem 2.5rem;
+  }
+}
+
+@media (max-width:480px) {
+  .spec-table{
+    padding:2rem 1.25rem;
+  }
+
+  .download-card{
+    padding:3rem 1.75rem;
+  }
+}
