@@ -8,10 +8,10 @@
   <meta name="description" content="暴力と耽美が交差する Karin Project の公式メインページです。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="public/css/reset.css">
+  <link rel="stylesheet" href="css/reset.css">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=IM+Fell+DW+Pica+SC&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="public/css/main.css">
-  <script src="public/js/age-gate-state.js"></script>
+  <link rel="stylesheet" href="css/main.css">
+  <script src="js/age-gate-state.js"></script>
   <script>
     (function(){
       var gate = window.KarinAgeGate;
@@ -22,7 +22,7 @@
         hasAccess = false;
       }
       if(!hasAccess){
-        window.location.replace('public/index.html');
+        window.location.replace('index.html');
       }
     })();
   </script>
@@ -30,8 +30,8 @@
 <body>
   <div class="page-container">
     <header class="site-header" aria-label="グローバルヘッダー">
-      <a class="brand" href="public/index.html" aria-label="トップページへ戻る">
-        <img class="brand__logo" src="public/images/logo/Logo.png" alt="Karin Project ロゴ">
+      <a class="brand" href="index.html" aria-label="トップページへ戻る">
+        <img class="brand__logo" src="images/logo/Logo.png" alt="Karin Project ロゴ">
       </a>
       <button class="hamburger" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="ナビゲーションを開閉する">
         <span></span><span></span><span></span>
@@ -41,7 +41,7 @@
         <a href="#character">Character</a>
         <a href="#gallery">Gallery</a>
         <a href="#news">News</a>
-        <a href="public/product.html">Download/Spec</a>
+        <a href="product.html">Download/Spec</a>
       </nav>
     </header>
 
@@ -49,8 +49,8 @@
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero__media" aria-hidden="true">
           <picture class="hero__picture">
-            <source srcset="public/images/eyecatch/eyecatch_sp.jpg" media="(max-width: 767px)">
-            <img src="public/images/eyecatch/eyecatch_pc.jpg" alt="" class="hero__image" loading="eager" decoding="async">
+            <source srcset="images/eyecatch/eyecatch_sp.jpg" media="(max-width: 767px)">
+            <img src="images/eyecatch/eyecatch_pc.jpg" alt="" class="hero__image" loading="eager" decoding="async">
           </picture>
         </div>
       </section>
@@ -125,9 +125,9 @@
         <div class="member-slider" data-autoplay="true">
           <div class="member-slider__viewport">
             <div class="member-slider__track">
-              <a class="member-card" href="public/characters/mary.html" aria-label="マリィの詳細">
+              <a class="member-card" href="characters/mary.html" aria-label="マリィの詳細">
                 <figure class="member-card__figure">
-                  <img src="public/images/character_thumbnail/Thumbnail_03_mary.png" alt="マリィ">
+                  <img src="images/character_thumbnail/Thumbnail_03_mary.png" alt="マリィ">
                 </figure>
                 <div class="member-card__meta">
                   <p class="name-vertical">マリィ</p>
@@ -135,9 +135,9 @@
                 </div>
               </a>
 
-              <a class="member-card" href="public/characters/irene.html" aria-label="イレーヌの詳細">
+              <a class="member-card" href="characters/irene.html" aria-label="イレーヌの詳細">
                 <figure class="member-card__figure">
-                  <img src="public/images/character_thumbnail/Thumbnail_01_Elaine.png" alt="イレーヌ">
+                  <img src="images/character_thumbnail/Thumbnail_01_Elaine.png" alt="イレーヌ">
                 </figure>
                 <div class="member-card__meta">
                   <p class="name-vertical">イレーヌ</p>
@@ -145,9 +145,9 @@
                 </div>
               </a>
 
-              <a class="member-card" href="public/characters/christa.html" aria-label="クリスタの詳細">
+              <a class="member-card" href="characters/christa.html" aria-label="クリスタの詳細">
                 <figure class="member-card__figure">
-                  <img src="public/images/character_thumbnail/Thumbnail_02_Christa.png" alt="クリスタ">
+                  <img src="images/character_thumbnail/Thumbnail_02_Christa.png" alt="クリスタ">
                 </figure>
                 <div class="member-card__meta">
                   <p class="name-vertical">クリスタ</p>
@@ -155,9 +155,9 @@
                 </div>
               </a>
 
-              <a class="member-card" href="public/characters/pauline.html" aria-label="ポーリンの詳細">
+              <a class="member-card" href="characters/pauline.html" aria-label="ポーリンの詳細">
                 <figure class="member-card__figure">
-                  <img src="public/images/character_thumbnail/Thumbnail_04_Pauline.png" alt="ポーリン">
+                  <img src="images/character_thumbnail/Thumbnail_04_Pauline.png" alt="ポーリン">
                 </figure>
                 <div class="member-card__meta">
                   <p class="name-vertical">ポーリン</p>
@@ -167,7 +167,7 @@
 
               <article class="member-card">
                 <figure class="member-card__figure">
-                  <img src="public/images/character_thumbnail/Thumbnail_05_InquisitorGeese.png" alt="Coming soon...">
+                  <img src="images/character_thumbnail/Thumbnail_05_InquisitorGeese.png" alt="Coming soon...">
                 </figure>
                 <div class="member-card__meta">
                   <p class="name-vertical">Coming soon...</p>
@@ -177,7 +177,7 @@
 
               <article class="member-card">
                 <figure class="member-card__figure">
-                  <img src="public/images/character_thumbnail/Thumbnail_06_bishop.png" alt="Coming soon...">
+                  <img src="images/character_thumbnail/Thumbnail_06_bishop.png" alt="Coming soon...">
                 </figure>
                 <div class="member-card__meta">
                   <p class="name-vertical">Coming soon...</p>
@@ -187,7 +187,7 @@
 
               <article class="member-card">
                 <figure class="member-card__figure">
-                  <img src="public/images/character_thumbnail/Thumbnail_07.png" alt="Coming soon...">
+                  <img src="images/character_thumbnail/Thumbnail_07.png" alt="Coming soon...">
                 </figure>
                 <div class="member-card__meta">
                   <p class="name-vertical">Coming soon...</p>
@@ -228,27 +228,27 @@
         <div class="gallery__layout">
           <div class="gallery__visual" data-gallery>
             <figure class="gallery-preview" aria-live="polite">
-              <img src="public/images/gallery/scene_blowjob.jpg" alt="密やかな儀式のワンシーン" data-gallery-preview>
+              <img src="images/gallery/scene_blowjob.jpg" alt="密やかな儀式のワンシーン" data-gallery-preview>
               <figcaption id="gallery-preview-caption">囁きは甘美な戒律。</figcaption>
             </figure>
             <div class="gallery-thumbs" role="list">
               <button class="gallery-thumb is-active" type="button" aria-current="true" role="listitem" data-image="images/gallery/scene_blowjob.jpg" data-caption="囁きは甘美な戒律。" data-alt="密やかな儀式のワンシーン">
-                <img src="public/images/gallery/scene_blowjob.jpg" alt="">
+                <img src="images/gallery/scene_blowjob.jpg" alt="">
               </button>
               <button class="gallery-thumb" type="button" role="listitem" data-image="images/gallery/scene_caning.jpg" data-caption="疼く傷は忠誠の証。" data-alt="鞭の軌跡が描く軌道">
-                <img src="public/images/gallery/scene_caning.jpg" alt="">
+                <img src="images/gallery/scene_caning.jpg" alt="">
               </button>
               <button class="gallery-thumb" type="button" role="listitem" data-image="images/gallery/scene_daily.jpg" data-caption="嵐の前の安息。" data-alt="静謐な日常の一幕">
-                <img src="public/images/gallery/scene_daily.jpg" alt="">
+                <img src="images/gallery/scene_daily.jpg" alt="">
               </button>
               <button class="gallery-thumb" type="button" role="listitem" data-image="images/gallery/scene_mary_onTop.jpg" data-caption="夜明け前の懺悔。" data-alt="マリィが覆いかぶさる姿">
-                <img src="public/images/gallery/scene_mary_onTop.jpg" alt="">
+                <img src="images/gallery/scene_mary_onTop.jpg" alt="">
               </button>
               <button class="gallery-thumb" type="button" role="listitem" data-image="images/gallery/scene_mary_smile.jpg" data-caption="慈悲にも似た微笑。" data-alt="微笑を浮かべるマリィ">
-                <img src="public/images/gallery/scene_mary_smile.jpg" alt="">
+                <img src="images/gallery/scene_mary_smile.jpg" alt="">
               </button>
               <button class="gallery-thumb" type="button" role="listitem" data-image="images/gallery/scene_orgy.jpg" data-caption="集団儀式の終わらない熱。" data-alt="儀式で絡み合う姿">
-                <img src="public/images/gallery/scene_orgy.jpg" alt="">
+                <img src="images/gallery/scene_orgy.jpg" alt="">
               </button>
             </div>
           </div>
@@ -257,7 +257,7 @@
               <p class="eyebrow gallery__eyebrow" id="gallery-title">EVENT ILLUST</p>
             </header>
             <!-- <p class="gallery__lead">密室の儀式、甘い告解、静謐な余韻――修道院を巡る瞬間を抜き出し、胸の内にしまったままの湿度をそのまま閉じ込めたピース。</p> -->
-            <a class="gallery__cta" href="public/gallery.html">VIEW ALL</a>
+            <a class="gallery__cta" href="gallery.html">VIEW ALL</a>
           </div>
         </div>
       </section>
@@ -269,7 +269,7 @@
   </div>
 
   <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js" defer></script>
-  <script src="public/js/main.js" defer></script>
+  <script src="js/main.js" defer></script>
 </body>
 </html>
 <!-- Deploy timestamp: 2025-11-12 21:26:15 -->
