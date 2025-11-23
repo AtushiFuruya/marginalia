@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function(){
   const openingFlashEl = document.getElementById('opening-flash');
   const fireVideoLayer = document.getElementById('fire-video-layer');
   const fireVideo = document.getElementById('fire-video');
-  const MAIN_PAGE = 'main.html';
+  const MAIN_PAGE = 'public/main.html';
   const ageGateState = window.KarinAgeGate || {};
   const rememberAgeVerification = typeof ageGateState.setVerified === 'function'
     ? ageGateState.setVerified
@@ -79,10 +79,10 @@ document.addEventListener('DOMContentLoaded', function(){
 
   // ---- Background slideshow behind age gate ----
   const bgSlides = [
-    'images/gallery/scene_mary_onTop.jpg',
-    'images/gallery/scene_sex_Elaine.jpg',
-    'images/gallery/scene_caning.jpg',
-    'images/gallery/scene_pear of anguish.jpg'
+    'public/images/gallery/scene_mary_onTop.jpg',
+    'public/images/gallery/scene_sex_Elaine.jpg',
+    'public/images/gallery/scene_caning.jpg',
+    'public/images/gallery/scene_pear of anguish.jpg'
   ];
   const slideshowContainer = document.getElementById('bg-slideshow');
   const slideshowImg = document.getElementById('slideshow-img');
@@ -128,11 +128,11 @@ document.addEventListener('DOMContentLoaded', function(){
 
   // ---- Opening sequence (now inline on index) ----
   const openingSlides = [
-    { src: 'images/gallery/scene_caning.jpg', text: '痛みと恥辱の中で微笑むあなた。' },
-    { src: 'images/gallery/scene_pear of anguish.jpg', text: '私はだれ？' },
-    { src: 'images/gallery/scene_sex_Elaine.jpg', text: '屈するしかない。' },
-    { src: 'images/gallery/scene_tits.jpg', text: '痛みの中' },
-    { src: 'images/gallery/scene_orgy.jpg', text: '破綻へと向かう道。' }
+    { src: 'public/images/gallery/scene_caning.jpg', text: '痛みと恥辱の中で微笑むあなた。' },
+    { src: 'public/images/gallery/scene_pear of anguish.jpg', text: '私はだれ？' },
+    { src: 'public/images/gallery/scene_sex_Elaine.jpg', text: '屈するしかない。' },
+    { src: 'public/images/gallery/scene_tits.jpg', text: '痛みの中' },
+    { src: 'public/images/gallery/scene_orgy.jpg', text: '破綻へと向かう道。' }
   ];
   const openingDuration = prefersReducedMotion.matches ? 4000 : 2000;
   let openingTimer = null;
@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded', function(){
       animateOpeningProgress(openingDuration);
     };
     loader.onerror = ()=>{
-      openingSlideEl.src = 'assets/images/opening/placeholder.svg';
+      openingSlideEl.src = 'public/assets/images/opening/placeholder.svg';
       openingSlideEl.alt = 'スライド画像を読み込めませんでした';
       updateOpeningStatus();
       triggerOpeningFlash();
