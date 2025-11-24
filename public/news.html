@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ニュース・更新情報 | marginalia 〜歪んだ真珠〜</title>
+  <meta name="description" content="最新の更新情報と告知をまとめたニュースページです。">
+  <link rel="canonical" href="https://example.com/news.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="marginalia 〜歪んだ真珠〜">
+  <meta property="og:title" content="ニュース・更新情報 | marginalia 〜歪んだ真珠〜">
+  <meta property="og:description" content="最新の更新情報と告知をまとめたニュースページです。">
+  <meta property="og:url" content="https://example.com/news.html">
+  <meta property="og:image" content="https://example.com/images/Twitter:OG/twitter_card.png">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ニュース・更新情報 | marginalia 〜歪んだ真珠〜">
+  <meta name="twitter:description" content="最新の更新情報と告知をまとめたニュースページです。">
+  <meta name="twitter:image" content="https://example.com/images/Twitter:OG/twitter_card.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/reset.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=IM+Fell+DW+Pica+SC&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages/product.css">
+  <link rel="stylesheet" href="css/pages/news.css">
+  <script src="js/age-gate-state.js"></script>
+  <script>
+    (function(){
+      var gate = window.KarinAgeGate;
+      var verified = false;
+      try{
+        verified = gate && typeof gate.isVerified === 'function' && gate.isVerified();
+      }catch(err){}
+      if(!verified){
+        window.location.replace('index.html');
+      }
+    })();
+  </script>
+</head>
+<body class="product-page news-page">
+  <div class="page-container">
+    <header class="site-header" aria-label="グローバルヘッダー">
+      <a class="brand" href="index.html" aria-label="トップページへ戻る">
+        <img class="brand__logo" src="images/logo/Logo.png" alt="Karin Project ロゴ">
+      </a>
+      <button class="hamburger" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="ナビゲーションを開閉する">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="site-nav" class="main-nav" aria-hidden="true">
+        <a href="main.html#story">Story</a>
+        <a href="main.html#character">Character</a>
+        <a href="main.html#gallery">Gallery</a>
+        <a href="news.html">News</a>
+        <a href="product.html">Download/Spec</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="product-section news-section" aria-labelledby="summary-title">
+        <div class="section__inner">
+          <header class="section-heading">
+            <h1 class="eyebrow center" id="summary-title">NEWS</h1>
+          </header>
+          <p class="product-lead news-lead">最新の更新情報と告知をまとめています。</p>
+
+          <div class="news-entries">
+            <article class="news-entry">
+              <time datetime="2025-11-13" class="news-entry__date">2025.11.13</time>
+              <h3 class="news-entry__title">オープニング演出と年齢確認のUX微調整</h3>
+              <p class="product-lead news-entry__body">イントロ演出とメッシュオーバーレイを最適化し、スキップ動作を安定化。年齢確認のキーボード操作も確認済みです。</p>
+            </article>
+
+            <article class="news-entry">
+              <time datetime="2025-11-08" class="news-entry__date">2025.11.08</time>
+              <h3 class="news-entry__title">ギャラリー画像の差し替えとモーダル表現を更新</h3>
+              <p class="product-lead news-entry__body">主要イベントCGを高解像度版へ差し替え、モーダル表示とキャプションの可読性を向上させました。</p>
+            </article>
+
+            <article class="news-entry">
+              <time datetime="2025-11-07" class="news-entry__date">2025.11.07</time>
+              <h3 class="news-entry__title">キャラクターページの構成整理</h3>
+              <p class="product-lead news-entry__body">メンバースライダーの挙動を調整し、各キャラクターの詳細導線を整理。追加キャラクター枠も確保済みです。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© 2025 Karin Project. All Rights Reserved.</p>
+    </footer>
+  </div>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
