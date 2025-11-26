@@ -1056,13 +1056,16 @@ main{
   justify-content:space-between;
   gap:1rem;
   padding:1.25rem 0;
-  color:var(--coffee);
+  color:#c9a961;
+  letter-spacing:0.25em;
+  text-decoration:none;
+  transition:color 0.3s ease, opacity 0.3s ease;
 }
 
 .news__list time{
   font-size:0.9rem;
   letter-spacing:0.2em;
-  color:var(--gothic-crimson);
+  color:#c9a961;
 }
 
 .site-footer{
