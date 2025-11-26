@@ -1037,7 +1037,7 @@ main{
 }
 
 .news{
-  background:var(--beige-bg);
+  /* background:var(--beige-bg); */
 }
 
 .news__list{
