@@ -1065,7 +1065,7 @@ main{
 .news__list time{
   font-size:0.9rem;
   letter-spacing:0.2em;
-  color:#c9a961;
+  color:var(--gothic-crimson);
 }
 
 .site-footer{
