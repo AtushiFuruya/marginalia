@@ -172,6 +172,12 @@
   }
 }
 
+@media (min-width:913px) and (max-width:1350px){
+  .character-directory__grid{
+    gap:1.5rem 2rem;
+  }
+}
+
 @media (max-width:767px){
   .character-profile{
     padding:3rem 1.5rem;
