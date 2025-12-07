@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <!-- Force GitHub Pages cache refresh: 2025-11-13T10:30:00Z -->
+  <title>司教長 | キャラクター紹介 | Karin Project</title>
+  <meta name="description" content="モンテファルコの直属の上司、司教長の現実的な判断と抑制を記すプロフィール。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../css/reset.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/pages/characters.css">
+  <script src="../js/age-gate-state.js"></script>
+  <script>
+    (function(){
+      var gate = window.KarinAgeGate;
+      var verified = false;
+      try{
+        verified = gate && typeof gate.isVerified === 'function' && gate.isVerified();
+      }catch(err){}
+      if(!verified){
+        window.location.replace('../index.html');
+      }
+    })();
+  </script>
+</head>
+<body class="characters-page">
+  <div class="page-container">
+    <header class="site-header" aria-label="グローバルヘッダー">
+      <a class="brand" href="../index.html" aria-label="トップページへ戻る">
+        <img class="brand__logo" src="../images/logo/Logo.png" alt="Karin Project ロゴ">
+      </a>
+      <button class="hamburger" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="ナビゲーションを開閉する">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="site-nav" class="main-nav" aria-hidden="true">
+        <a href="../main.html#story">Story</a>
+        <a href="../main.html#character">Character</a>
+        <a href="../main.html#gallery">Gallery</a>
+        <a href="../main.html#news">News</a>
+        <a href="../product.html">Download/Spec</a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="bishop" class="character-profile" aria-labelledby="bishop-name">
+        <div class="character-profile__media">
+          <img src="../images/characters/character_06_bishop.png" alt="司教長" loading="lazy">
+        </div>
+        <div class="character-profile__body">
+          <p class="character-profile__role">אֲדֹנָי</p>
+          <h2 id="bishop-name" class="character-profile__name">司教長</h2>
+          <p class="character-profile__quote">「今や異端審問の場は、我々教会ではなく世俗の裁きの下にある。」</p>
+          <dl class="character-profile__meta">
+            <div>
+              <dt>所属</dt>
+              <dd>教会</dd>
+            </div>
+            <div>
+              <dt>性格</dt>
+              <dd>現実的</dd>
+            </div>
+          </dl>
+          <div class="character-profile__text">
+            <p>モンテファルコの直属の上司。</p>
+            <p>真実を求めようとするモンテファルコを抑制する。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="character-directory" aria-label="他のキャラクターページへのショートカット">
+        <div class="character-directory__inner">
+          <p class="character-directory__label">MEMBER</p>
+          <ul class="character-directory__grid" role="list">
+            <li role="listitem">
+              <a class="character-directory__avatar" href="mary.html" aria-label="マリィ">
+                <img src="../images/character_thumbnail/Thumbnail_03_mary.png" alt="">
+              </a>
+            </li>
+            <li role="listitem">
+              <a class="character-directory__avatar" href="irene.html" aria-label="イレーヌ">
+                <img src="../images/character_thumbnail/Thumbnail_01_Elaine.png" alt="">
+              </a>
+            </li>
+            <li role="listitem">
+              <a class="character-directory__avatar" href="christa.html" aria-label="クリスタ">
+                <img src="../images/character_thumbnail/Thumbnail_02_Christa.png" alt="">
+              </a>
+            </li>
+            <li role="listitem">
+              <a class="character-directory__avatar" href="pauline.html" aria-label="ポーリン">
+                <img src="../images/character_thumbnail/Thumbnail_04_Pauline.png" alt="">
+              </a>
+            </li>
+            <li role="listitem">
+              <a class="character-directory__avatar" href="geese.html" aria-label="ギース">
+                <img src="../images/character_thumbnail/Thumbnail_05_geese.png" alt="">
+              </a>
+            </li>
+            <li role="listitem">
+              <a class="character-directory__avatar is-active" href="bishop.html" aria-label="司教長" aria-current="page">
+                <img src="../images/character_thumbnail/Thumbnail_06_bishop.png" alt="">
+              </a>
+            </li>
+            <li role="listitem">
+              <a class="character-directory__avatar" href="gourmand.html" aria-label="グルマン">
+                <img src="../images/character_thumbnail/Thumbnail_07_gourmand.png" alt="">
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© 2025 Karin Project. All Rights Reserved.</p>
+    </footer>
+  </div>
+
+  <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js" defer></script>
+  <script src="../js/main.js" defer></script>
+</body>
+</html>
