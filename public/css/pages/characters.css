@@ -172,9 +172,9 @@
   }
 }
 
-@media (min-width:913px) and (max-width:1350px){
+@media (min-width:768px) and (max-width:1023px){
   .character-directory__grid{
-    gap:1.5rem 2rem;
+    gap:2.5vw 2.5vw;
   }
 }
 
