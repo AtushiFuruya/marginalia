@@ -389,6 +389,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalLabel = modal.querySelector('[data-modal-label]');
     const modalStory = modal.querySelector('[data-modal-story]');
     const closeBtn = modal.querySelector('[data-modal-close]');
+    const scrollHint = modal.querySelector('[data-scroll-hint]');
+    const scrollTarget = modal;
+
+    const updateScrollHint = () => {
+      if(!scrollHint || !scrollTarget) return;
+      const hasOverflow = scrollTarget.scrollHeight - scrollTarget.clientHeight > 8;
+      const atBottom = scrollTarget.scrollTop + scrollTarget.clientHeight >= scrollTarget.scrollHeight - 8;
+      scrollHint.classList.toggle('is-hidden', !hasOverflow || atBottom);
+    };
 
     const renderStory = (text) => {
       if(!modalStory) return;
@@ -415,6 +424,7 @@ document.addEventListener('DOMContentLoaded', () => {
       body.classList.add('modal-open');
       closeBtn?.focus();
       modal.setAttribute('aria-hidden','false');
+      updateScrollHint();
     };
 
     const closeModal = () => {
@@ -428,6 +438,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     closeBtn?.addEventListener('click', closeModal);
+
+    if(scrollHint){
+      scrollHint.addEventListener('click', () => {
+        scrollTarget?.scrollBy({top: window.innerHeight * 0.8, behavior:'smooth'});
+      });
+    }
+
+    scrollTarget?.addEventListener('scroll', updateScrollHint, {passive:true});
   };
 
   initLibraryModal();

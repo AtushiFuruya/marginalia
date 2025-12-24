@@ -668,6 +668,7 @@ main{
   pointer-events:none;
 }
 
+/* 
 .altar-links::after{
   content:"";
   position:absolute;
@@ -677,7 +678,7 @@ main{
   height:100%;
   background:linear-gradient(180deg,transparent,rgba(139,0,0,0.3) 50%,transparent);
   animation:flicker 3s ease-in-out infinite;
-}
+} */
 
 .altar-links__inner{
   position:relative;
@@ -699,8 +700,11 @@ main{
   justify-content:center;
   padding:2rem 2.5rem;
   background:
-    linear-gradient(135deg,rgba(30,20,15,0.9),rgba(20,15,12,0.95)),
-    radial-gradient(circle at 30% 40%,rgba(139,0,0,0.08),transparent);
+    linear-gradient(135deg,rgba(14,9,8,0.75),rgba(12,8,7,0.85)),
+    url("../images/main/altar-frame.png");
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
   border:1px solid;
   border-image:linear-gradient(135deg,rgba(139,0,0,0.4),rgba(218,165,32,0.25),rgba(139,0,0,0.4)) 1;
   text-decoration:none;
@@ -764,7 +768,7 @@ main{
 
 .sacrament-link__main{
   font-family:"IM Fell DW Pica SC",serif;
-  font-size:1.5rem;
+  font-size:2rem;
   letter-spacing:0.15em;
   color:#f4e4c1;
   font-weight:400;
