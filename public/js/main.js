@@ -391,6 +391,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtn = modal.querySelector('[data-modal-close]');
     const scrollHint = modal.querySelector('[data-scroll-hint]');
     const scrollTarget = modal;
+    const modalPanel = modal.querySelector('.library-modal__panel');
 
     const updateScrollHint = () => {
       if(!scrollHint || !scrollTarget) return;
@@ -424,7 +425,14 @@ document.addEventListener('DOMContentLoaded', () => {
       body.classList.add('modal-open');
       closeBtn?.focus();
       modal.setAttribute('aria-hidden','false');
-      updateScrollHint();
+
+      // レイアウト確定後にスクロール位置をリセット
+      requestAnimationFrame(() => {
+        scrollTarget?.scrollTo({top:0, behavior:'auto'});
+        modalPanel?.scrollTo({top:0, behavior:'auto'});
+        window.scrollTo({top:0, behavior:'auto'});
+        requestAnimationFrame(updateScrollHint);
+      });
     };
 
     const closeModal = () => {
