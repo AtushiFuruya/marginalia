@@ -1096,6 +1096,10 @@ main{
   background:rgba(12,6,8,0.75);
   backdrop-filter:blur(6px);
 }
+.site-footer p{
+  font-size:0.85rem;
+  letter-spacing:0.08em;
+}
 
 .site-footer nav{
   display:flex;

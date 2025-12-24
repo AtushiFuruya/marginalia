@@ -6,9 +6,15 @@
   padding-top:120px;
   transition:filter 0.1s ease;
 }
+.gallery-page main{
+  padding-bottom:4rem;
+}
 @media (max-width:767px){
   .gallery-page .page-container{
     padding-top:88px;
+  }
+  .gallery-page main{
+    padding-bottom:3rem;
   }
 }
 
