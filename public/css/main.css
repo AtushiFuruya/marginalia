@@ -364,6 +364,8 @@ main{
   /* background:linear-gradient(135deg,#fefbf7,#f0e7e1); */
   box-shadow:var(--member-shadow);
   overflow:hidden;
+  transform:scale(0.7);
+  transform-origin:center center;
 }
 
 .member-card__figure img{

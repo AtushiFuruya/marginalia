@@ -87,6 +87,14 @@
 ## 2025-12-24 18:45 (JST)
 - 変更内容: キャラ個別ページの画像パス修正。グルマンは大画像欠損のためサムネイルに差し替え、ギースは実在ファイル名（スペース付き）に合わせて参照先を修正（`public/characters/gourmand.html`, `public/characters/geese.html`）。
 - 確認ポイント: `gourmand.html` と `geese.html` でメイン画像が表示されること。
+
+## 2025-12-24 18:50 (JST)
+- 変更内容: グルマン、ギースのメイン画像を実在ファイルに差し替え（`public/characters/gourmand.html`, `public/characters/geese.html`）。ギースはスペース入りのファイル名、グルマンは `character_03_gourmand.png` を参照。
+- 確認ポイント: `gourmand.html` / `geese.html` のメインビジュアルが表示されること。
+
+## 2025-12-24 18:58 (JST)
+- 変更内容: キャラクターカードの表示サイズを0.7倍に縮小（円形フレーム込みで `transform: scale(0.7)` を適用、`public/css/main.css`）。
+- 確認ポイント: Characterセクションの丸いカードが一回り小さく表示されること。
 ## 2025-12-24 16:59 (JST)
 - 変更内容: アルタールリンクカード中央の赤い縦ラインを削除（`css/main.css` の `.altar-links::after` を除去）し、不要な装飾をなくした。
 - 手順メモ:
