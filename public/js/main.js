@@ -426,12 +426,21 @@ document.addEventListener('DOMContentLoaded', () => {
       closeBtn?.focus();
       modal.setAttribute('aria-hidden','false');
 
-      // レイアウト確定後にスクロール位置をリセット
+      // レイアウト確定後に複数階層のスクロールをリセット
       requestAnimationFrame(() => {
-        scrollTarget?.scrollTo({top:0, behavior:'auto'});
-        modalPanel?.scrollTo({top:0, behavior:'auto'});
-        window.scrollTo({top:0, behavior:'auto'});
-        requestAnimationFrame(updateScrollHint);
+        const resetScroll = () => {
+          scrollTarget?.scrollTo({top:0, behavior:'auto'});
+          modalPanel?.scrollTo({top:0, behavior:'auto'});
+          document.documentElement?.scrollTo?.({top:0, behavior:'auto'});
+          window.scrollTo({top:0, behavior:'auto'});
+        };
+        resetScroll();
+        // さらにフレームを跨いで確実にトップを担保
+        requestAnimationFrame(() => {
+          resetScroll();
+          modalPanel?.scrollIntoView({block:'start'});
+          updateScrollHint();
+        });
       });
     };
 
