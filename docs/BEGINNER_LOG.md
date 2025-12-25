@@ -1,5 +1,11 @@
 # ビギナーログ
 
+## 2025-12-25 10:04 (JST)
+- 変更内容: メタタグのドメインを `https://marginalia-108.com/` 系に統一（`public/index.html`, `public/main.html`, `public/news.html`, `public/product.html`, `public/gallery.html`）。OG/Twitter画像URLも同ドメインに変更。
+- 確認ポイント: 各ページの `canonical` / `og:url` / `og:image` / `twitter:image` が `marginalia-108.com` で始まること。
+- デプロイ: `lftp -u wp700713,karinyamamoto sv6103.wpx.ne.jp` で `/home/wp700713/marginalia-108.com/public_html` に `public/` を `mirror --reverse --delete --no-perms --exclude-glob .DS_Store` で反映。`main.html` を取得してドメイン統一を確認。
+- 後処理: リモートの `.DS_Store` を削除（`rm -f .DS_Store`）。
+
 ## 2025-12-25 09:38 (JST)
 - 変更内容: 本番未適用と思われるレイアウト差分を確認。`public/main.html` ではメンバースライダーの矢印とドットを同一行（`member-slider__nav-row`）にまとめ、`public/css/main.css` ではギャラリーの余白を詰めるために `gallery__layout` のパディングを除去している点を確認。
 - 確認ポイント: `public/main.html` のスライダーで矢印がドットの左右に並ぶこと、`gallery` セクションの左右余白が意図どおりに反映されること。
