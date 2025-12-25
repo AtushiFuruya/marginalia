@@ -10,6 +10,11 @@
 - 変更内容: CSSキャッシュ更新のため、`public/main.html`, `public/news.html`, `public/product.html`, `public/gallery.html` の `css/main.css` 読み込みにクエリパラメータ `?v=20251225a` を付与。
 - 確認ポイント: 本番で `main.css?v=20251225a` が読み込まれ、スライダー/ギャラリーの最新レイアウトが反映されること。
 
+## 2025-12-25 19:32 (JST)
+- 変更内容: 誤った旧ドキュメントルート `/home/wp700713/marginalia-108.com/public_html` を空ディレクトリで初期化（以後使用しない）。本番配信の正しいルート `/marginalia-108.com/public_html` に `public/` を `mirror --reverse --delete --no-perms --exclude-glob .DS_Store` で再デプロイ。
+- 追加対応: `public/.htaccess` を追加し、HTMLに no-cache ヘッダを付与。`main.css` のキャッシュバスターを `?v=20251225b` に更新。
+- 確認ポイント: `https://marginalia-108.com/main.html` でキャッシュコメント `2025-12-25a` が見えること、`Cache-Control: no-cache` が付与されていること、スライダー矢印とドットが同一行に並び、タグラインが `AIZOU GAME PROJECT` になっていること。
+
 ## 2025-12-25 09:38 (JST)
 - 変更内容: 本番未適用と思われるレイアウト差分を確認。`public/main.html` ではメンバースライダーの矢印とドットを同一行（`member-slider__nav-row`）にまとめ、`public/css/main.css` ではギャラリーの余白を詰めるために `gallery__layout` のパディングを除去している点を確認。
 - 確認ポイント: `public/main.html` のスライダーで矢印がドットの左右に並ぶこと、`gallery` セクションの左右余白が意図どおりに反映されること。
