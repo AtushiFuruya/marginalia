@@ -1,10 +1,15 @@
 # ビギナーログ
 
+## 2025-12-25 09:38 (JST)
+- 変更内容: 本番未適用と思われるレイアウト差分を確認。`public/main.html` ではメンバースライダーの矢印とドットを同一行（`member-slider__nav-row`）にまとめ、`public/css/main.css` ではギャラリーの余白を詰めるために `gallery__layout` のパディングを除去している点を確認。
+- 確認ポイント: `public/main.html` のスライダーで矢印がドットの左右に並ぶこと、`gallery` セクションの左右余白が意図どおりに反映されること。
+- デプロイ試行: `reference/production-docs/ftp-upload-log.md` / `.ftp-credentials.md` 記載のFTP情報で `sv6823.wpx.ne.jp` / `sv6103.wpx.ne.jp` に接続を試みたが、いずれも 530 Login incorrect で拒否され、本番との差分取得・反映は未実施。正しい認証情報が必要。
+
 ## 2025-12-24 16:34 (JST)
-- 変更内容: `public/index.html` の OP ムービー HUD 左上テキストを「AIZO GAME PROJECT」に変更。
+- 変更内容: `public/index.html` の OP ムービー HUD 左上テキストを「AIZOU GAME PROJECT」に設定。
 - 手順メモ:
   1. 該当箇所を検索: `rg -n "opening__tagline" public/index.html`
-  2. 該当行を更新: `<p class="opening__tagline">AIZO GAME PROJECT</p>`
+  2. 該当行を更新: `<p class="opening__tagline">AIZOU GAME PROJECT</p>`
   3. 置換後、検索で元文言が残っていないことを確認: `rg -n "Karin Game Project" public/index.html`
 - 確認ポイント: ブラウザキャッシュが効く場合はハードリロードで反映を確認。
 
@@ -99,6 +104,15 @@
 ## 2025-12-24 19:05 (JST)
 - 変更内容: キャラクターカードの縮小率を0.9倍に再調整（`public/css/main.css`）。
 - 確認ポイント: Characterセクションのカードサイズが0.9倍になっていること。
+
+## 2025-12-25 09:16 (JST)
+- 変更内容: ニュース本文の季節表記を「来年春」に修正し、OPムービーのタグラインを「AIZOU GAME PROJECT」に変更（`public/news.html`, `public/index.html`）。
+- 手順メモ:
+  1. 画像の文言に一致する箇所を検索: `rg "本日、公式ページを正式にオープンいたしました" public/news.html`
+  2. 対象文内の「冬」を「春」に置換。
+  3. タグラインを検索: `rg "AIZOU GAME PROJECT" public/index.html`
+  4. 表記を「AIZOU GAME PROJECT」に置換し、新表記が入っていることを確認: `rg "AIZOU GAME" public/index.html`
+- 確認ポイント: `public/news.html` のニュース本文に「来年春」、`public/index.html` の左上タグラインに「AIZOU GAME PROJECT」が表示されること。
 ## 2025-12-24 16:59 (JST)
 - 変更内容: アルタールリンクカード中央の赤い縦ラインを削除（`css/main.css` の `.altar-links::after` を除去）し、不要な装飾をなくした。
 - 手順メモ:
