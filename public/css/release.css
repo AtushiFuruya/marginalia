@@ -1,0 +1,183 @@
+/* 発売特設ページ。既存の意匠（金色・罫・ボタン）をそのまま使う。 */
+
+/* --- 主画像の上に重ねる発売告知 --- */
+/* 位置は、主画像の右下（黄色の印の位置）に合わせている。 */
+.hero__release {
+  position: absolute;
+  right: 6%;
+  bottom: 12%;
+  z-index: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.hero__release-date {
+  font-size: clamp(1.35rem, 3.2vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.25;
+  margin: 0;
+  color: var(--gothic-gold);
+  background: linear-gradient(180deg, #f6e3a8 0%, #daa520 52%, #9c7314 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
+  filter: drop-shadow(0 0 10px rgba(218, 165, 32, 0.35));
+}
+
+.hero__release-note {
+  font-size: clamp(0.72rem, 1.4vw, 0.95rem);
+  letter-spacing: 0.16em;
+  color: #f2e6c8;
+  margin: 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+@media (max-width: 767px) {
+  .hero__release {
+    right: 50%;
+    transform: translateX(50%);
+    bottom: 7%;
+    width: 90%;
+  }
+}
+
+/* --- 特設ページ本体 --- */
+.release-hero {
+  padding: 5rem 2rem 3rem;
+  text-align: center;
+}
+
+.release-hero__eyebrow {
+  font-size: clamp(0.9rem, 2.5vw, 1.125rem);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+  color: #c9a961;
+}
+
+.release-hero__date {
+  font-size: clamp(2rem, 6vw, 3.8rem);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.3;
+  margin: 0 0 1rem;
+  background: linear-gradient(180deg, #f6e3a8 0%, #daa520 52%, #9c7314 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.release-hero__sub {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  letter-spacing: 0.14em;
+  margin: 0 0 1.4rem;
+}
+
+.release-hero__channels {
+  font-size: clamp(0.85rem, 1.8vw, 1rem);
+  letter-spacing: 0.1em;
+}
+
+.release-hero__channels .sep {
+  margin: 0 0.6rem;
+  color: #b69e74;
+}
+
+/* --- 限定セット --- */
+.release-lead {
+  text-align: center;
+  margin-bottom: 2.4rem;
+}
+
+.release-set__figure {
+  margin: 0 auto 2.6rem;
+  max-width: 900px;
+  border: 1px solid rgba(218, 165, 32, 0.35);
+}
+
+.release-set__figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.release-set__detail {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.release-set__list {
+  margin: 0;
+  padding-left: 1.4em;
+}
+
+.release-set__list li {
+  margin-bottom: 0.3rem;
+}
+
+/* --- ブース --- */
+.release-booth__card {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 2.2rem 1.6rem;
+  border: 2px solid var(--gothic-gold);
+  text-align: center;
+}
+
+.release-booth__event {
+  font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+  letter-spacing: 0.12em;
+  margin: 0 0 0.9rem;
+}
+
+.release-booth__place {
+  font-size: clamp(1.6rem, 4.5vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  margin: 0 0 0.9rem;
+  color: var(--gothic-gold);
+}
+
+.release-booth__day {
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
+  letter-spacing: 0.14em;
+  margin: 0;
+}
+
+/* --- 導線 --- */
+.release-cta .section__action {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+
+/* --- 文字色。この頁は背景が暗いので、既存の明色に合わせる --- */
+.release-hero__sub,
+.release-hero__channels,
+.release-booth__event,
+.release-booth__day {
+  color: #f4e4c1;
+}
+
+.release-page .product-lead,
+.release-page .release-set__list li,
+.release-page .spec-table dd {
+  color: #f4e4c1;
+}
+
+.release-page .spec-table dt {
+  color: #c9a961;
+}
+
+.release-page .spec-note {
+  color: #b69e74;
+  text-align: center;
+  margin-top: 1.4rem;
+}
